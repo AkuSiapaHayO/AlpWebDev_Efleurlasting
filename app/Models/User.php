@@ -18,9 +18,21 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
+        'name',
+        'gender',
+        'age',
+        'birthdate',
+        'phone',
+        'address',
+        'province',
+        'city',
+        'district',
+        'zipcode',
+        'role_id',
+        'is_login',
     ];
 
     /**
@@ -42,4 +54,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function isAdmin()
+    {
+        if ($this->role_id == 1) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function isUser()
+    {
+        if ($this->role_id == 2) {
+            return true;
+        }
+
+        return false;
+    }
 }
