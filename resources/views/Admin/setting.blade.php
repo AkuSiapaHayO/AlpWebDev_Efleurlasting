@@ -25,7 +25,7 @@
                             <div class="card-body">
                                 <h5 class="card-title mb-3">Registered Users</h5>
                                 <h6 class="card-subtitle mb-3 text-body-secondary">View all registered users</h6>
-                                <a href="#" class="card-link">View</a>
+                                <a href="{{ route('user.view') }}" class="card-link">View</a>
                             </div>
                         </div>
                     </div>

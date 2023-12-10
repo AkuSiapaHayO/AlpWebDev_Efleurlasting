@@ -80,7 +80,7 @@ class RegisterController extends Controller
             'city' => $data['city'],
             'district' => $data['district'],
             'zipcode' => $data['zipcode'],
-            'role_id' => 1,
+            'role_id' => 2,
         ]);
     }
 

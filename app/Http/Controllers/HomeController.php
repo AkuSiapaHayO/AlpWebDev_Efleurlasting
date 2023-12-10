@@ -26,8 +26,13 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function setting()
+    public function settingAdmin()
     {
         return view('Admin.setting');
+    }
+
+    public function settingUser()
+    {
+        return view('User.setting');
     }
 }

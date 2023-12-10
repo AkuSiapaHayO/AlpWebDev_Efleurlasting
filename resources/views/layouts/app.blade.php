@@ -13,7 +13,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     {{-- <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> --}}
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="{{ route('home') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
                     Efleurlasting
                 </a>
@@ -39,7 +39,17 @@
                         @if (Auth::user()->isAdmin())
                             <ul class="navbar-nav me-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/setting">Settings</a>
+                                    <a class="nav-link" href="{{ route('admin.setting') }}">Settings</a>
+                                </li>
+                            </ul>
+                        @endif
+                    @endauth
+
+                    @auth
+                        @if (Auth::user()->isUser())
+                            <ul class="navbar-nav me-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('user.setting') }}">Settings</a>
                                 </li>
                             </ul>
                         @endif
