@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,4 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/setting', [HomeController::class, 'setting'])->middleware('admin')->name('setting');
