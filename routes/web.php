@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+<<<<<<< Updated upstream
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 
 Route::get('/setting/admin', [HomeController::class, 'settingAdmin'])->middleware('admin')->name('admin.setting');
@@ -32,3 +33,7 @@ Route::get('/user/{id}/show', [UserController::class, 'show'])->middleware('admi
 Route::get('/user/{user}/edit',[UserController::class, 'edit'])->middleware('auth')->name('user.edit');
 Route::put('/user/{user}/update', [UserController::class, 'update'])->middleware('auth')->name('user.update');
 Route::delete('/user/{user}/destroy', [UserController::class, 'destroy'])->middleware('auth')->name('user.destroy');
+=======
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/setting', [HomeController::class, 'setting'])->middleware('admin')->name('setting');
+>>>>>>> Stashed changes
