@@ -3,7 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,18 +22,21 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
-<<<<<<< Updated upstream
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+// Main Pages
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/aboutus', [HomeController::class, 'about'])->middleware('auth')->name('about');
+Route::get('/products', [HomeController::class, 'products'])->middleware('auth')->name('products');
+Route::get('/contact', [HomeController::class, 'contact'])->middleware('auth')->name('contact');
 
-Route::get('/setting/admin', [HomeController::class, 'settingAdmin'])->middleware('admin')->name('admin.setting');
+// User
 Route::get('/setting/user', [HomeController::class, 'settingUser'])->middleware('auth')->name('user.setting');
+Route::get('/user/{user}/edit',[UserController::class, 'edit'])->middleware('auth')->name('user.edit');
+Route::delete('/user/{user}/destroy', [UserController::class, 'destroy'])->middleware('auth')->name('user.destroy');
+Route::put('/user/{user}/update', [UserController::class, 'update'])->middleware('auth')->name('user.update');
 
+// Admin
+Route::get('/setting/admin', [HomeController::class, 'settingAdmin'])->middleware('admin')->name('admin.setting');
 Route::get('/user/view', [UserController::class, 'index'])->middleware('admin')->name('user.view');
 Route::get('/user/{id}/show', [UserController::class, 'show'])->middleware('admin')->name('user.show');
-Route::get('/user/{user}/edit',[UserController::class, 'edit'])->middleware('auth')->name('user.edit');
-Route::put('/user/{user}/update', [UserController::class, 'update'])->middleware('auth')->name('user.update');
-Route::delete('/user/{user}/destroy', [UserController::class, 'destroy'])->middleware('auth')->name('user.destroy');
-=======
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 Route::get('/setting', [HomeController::class, 'setting'])->middleware('admin')->name('setting');
->>>>>>> Stashed changes
