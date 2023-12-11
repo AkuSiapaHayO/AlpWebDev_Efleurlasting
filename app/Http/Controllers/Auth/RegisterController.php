@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'name' => ['required', 'string', 'max:255'],
+            'profile-image' => ['image']
         ]);
     }
 
@@ -66,26 +67,50 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'name' => $data['name'],
-            'gender' => $data['gender'],
-            'age' => $data['age'],
-            'birthdate' => $data['birthdate'],
-            'phone' => $data['phone'],
-            'address' => $data['address'],
-            'province' => $data['province'],
-            'city' => $data['city'],
-            'district' => $data['district'],
-            'zipcode' => $data['zipcode'],
-            'role_id' => 2,
-        ]);
+        if (!empty($data['profile-image'])) {
+            $data['profile-image'] = $data['profile-image']->store('images', ['disk' => 'public']);
+
+            return User::create([
+                'username' => $data['username'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'name' => $data['name'],
+                'profile_image' => $data['profile-image'],
+                'gender' => $data['gender'],
+                'age' => $data['age'],
+                'birthdate' => $data['birthdate'],
+                'phone' => $data['phone'],
+                'address' => $data['address'],
+                'province' => $data['province'],
+                'city' => $data['city'],
+                'district' => $data['district'],
+                'zipcode' => $data['zipcode'],
+                'role_id' => 2,
+            ]);
+        } else {
+            return User::create([
+                'username' => $data['username'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'name' => $data['name'],
+                'gender' => $data['gender'],
+                'age' => $data['age'],
+                'birthdate' => $data['birthdate'],
+                'phone' => $data['phone'],
+                'address' => $data['address'],
+                'province' => $data['province'],
+                'city' => $data['city'],
+                'district' => $data['district'],
+                'zipcode' => $data['zipcode'],
+                'role_id' => 2,
+            ]);
+        }
+
+
     }
 
     public function register(Request $request)
-    {   
+    {
         $this->validator($request->all())->validate();
         $user = $this->create($request->all());
         if (empty($user)) {

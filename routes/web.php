@@ -22,14 +22,9 @@ use Illuminate\Support\Facades\Auth;
 
 
 Auth::routes();
-// Main Pages
-Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
-Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('home');
-Route::get('/aboutus', [HomeController::class, 'about'])->middleware('auth')->name('about');
-Route::get('/products', [HomeController::class, 'products'])->middleware('auth')->name('products');
-Route::get('/contact', [HomeController::class, 'contact'])->middleware('auth')->name('contact');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 
-// User
+Route::get('/setting/admin', [HomeController::class, 'settingAdmin'])->middleware('admin')->name('admin.setting');
 Route::get('/setting/user', [HomeController::class, 'settingUser'])->middleware('auth')->name('user.setting');
 Route::get('/user/{user}/edit',[UserController::class, 'edit'])->middleware('auth')->name('user.edit');
 Route::delete('/user/{user}/destroy', [UserController::class, 'destroy'])->middleware('auth')->name('user.destroy');
