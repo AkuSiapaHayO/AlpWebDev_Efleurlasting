@@ -13,6 +13,19 @@
                 <div class="card-body">
                     <div class="row gx-5 mb-4">
                         <div class="col-md-3 mb-3">
+                            <p class="fw-bold fs-5">Profile Picture</p>
+                            @if ($user->profile_image)
+                                <div style="max-width: 300px; max-height:300px; oveflow: hidden" class="mb-3">
+                                    <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile-image"
+                                        class="img-fluid">
+                                </div>
+                            @else
+                                <div style="max-width: 300px; max-height:300px; oveflow: hidden" class="mb-3">
+                                    <img src="{{ asset('Assets/profile.png') }}" alt="Profile-image"
+                                        class="img-fluid">
+                                </div>
+                            @endif
+
                             <p class="fw-bold fs-5">Personal Information</p>
                             <p class="card-text">Edit your profile according to your preferences. Make a cool username. Also
                                 make sure to fill your full name, your active email, and other information such as your
@@ -94,8 +107,8 @@
                                 </div>
                                 <div class="col-md-2">
                                     <label for="age" class="form-label">Age</label>
-                                    <input type="number" class="form-control" id="age" name="age" min="1"
-                                        max="100" value="{{ $user->age }}" required>
+                                    <input type="number" class="form-control" id="age" name="age"
+                                        min="1" max="100" value="{{ $user->age }}" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="city" class="form-label">City</label>

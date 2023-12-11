@@ -30,23 +30,5 @@ class UserSeeder extends Seeder
             'role_id' => 1, 
             'is_login' => '0', 
         ]);
-
-        User::create([
-            'username' => "Test",
-            'email' => "test@example.com",
-            'password' => bcrypt('12345678'),
-            'name' => "Test",
-            'gender' => 'Male', 
-            'age' => 19, 
-            'birthdate' => '2004-04-14', 
-            'phone' => '082171833200', 
-            'address' => 'Test',
-            'province' => 'Test',
-            'city' => 'Test',
-            'district' => 'Test',
-            'zipcode' => 60216,
-            'role_id' => 2, 
-            'is_login' => '0', 
-        ]);
     }
 }
