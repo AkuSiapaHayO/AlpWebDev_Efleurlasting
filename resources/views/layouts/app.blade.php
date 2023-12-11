@@ -25,7 +25,10 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
-                    Efleurlasting
+                    <img src="{{ asset('assets/logo_image_efleurlasting.png') }}" alt="Logo Image Efleurlasting"
+                        class="img-fluid" style="width: 50px; height: auto;">
+                    <img src="{{ asset('assets/logo_title_efleurlasting.png') }}" alt="Logo Title Efleurlasting"
+                        class="img-fluid" style="width: 150px; height: auto;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -35,29 +38,46 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    @auth
-                        @if (Auth::user()->isAdmin())
-                            <ul class="navbar-nav me-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.setting') }}">Settings</a>
-                                </li>
-                            </ul>
-                        @endif
-                    @endauth
 
-                    @auth
-                        @if (Auth::user()->isUser())
-                            <ul class="navbar-nav me-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('user.setting') }}">Settings</a>
-                                </li>
-                            </ul>
-                        @endif
-                    @endauth
+                    {{-- FIX ROUTE  --}}
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('about') }}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('products') }}">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                        </li>
+                    </ul>
+
+
 
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        @auth
+                            @if (Auth::user()->isAdmin())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.setting') }}">Settings</a>
+                                </li>
+                            @endif
+                        @endauth
+
+                        @auth
+                            @if (Auth::user()->isUser())
+                                {{-- FIX ROUTE --}}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('user.setting') }}">Shopping Cart</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('user.setting') }}">Profile</a>
+                                </li>
+                            @endif
+                        @endauth
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
