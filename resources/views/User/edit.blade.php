@@ -15,12 +15,12 @@
                         <div class="col-md-3 mb-3">
                             <p class="fw-bold fs-5">Profile Picture</p>
                             @if ($user->profile_image)
-                                <div style="max-width: 300px; max-height:300px; oveflow: hidden" class="mb-3">
+                                <div style="max-width: 300px; oveflow: hidden" class="mb-3">
                                     <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile-image"
-                                        class="img-fluid">
+                                        class="img-fluid" style="max-height: 300px;">
                                 </div>
                             @else
-                                <div style="max-width: 300px; max-height:300px; oveflow: hidden" class="mb-3">
+                                <div style="max-width: 300px; oveflow: hidden" class="mb-3">
                                     <img src="{{ asset('Assets/profile.png') }}" alt="Profile-image"
                                         class="img-fluid">
                                 </div>

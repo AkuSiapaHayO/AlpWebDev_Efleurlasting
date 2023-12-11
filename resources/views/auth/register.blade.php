@@ -62,7 +62,7 @@
                             <div class="col-12">
                                 <label for="profile-image" class="form-label">Upload Profile Image</label>
                                 <input type="file" id="profile-image" name="profile-image" class="form-control"
-                                    accept="image/jpg, image/png, image/jpeh" onchange="previewImage()">
+                                    accept="image/jpg, image/png, image/jpeg" onchange="previewImage()">
                                 <img class="img-preview img-fluid mt-3 col-sm-5 w-25">
                             </div>
                             <div class="col-md-6">

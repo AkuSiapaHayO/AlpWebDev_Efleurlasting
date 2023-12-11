@@ -56,7 +56,7 @@
 
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto align-items-center">
                         @auth
                             @if (Auth::user()->isAdmin())
                                 <li class="nav-item">
@@ -69,11 +69,16 @@
                             @if (Auth::user()->isUser())
                                 {{-- FIX ROUTE --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('user.setting') }}">Shopping Cart</a>
+                                    <a class="nav-link" href="#">Shopping Cart</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('user.setting') }}">Profile</a>
+                                    @php($user = Auth::user())
+                                    <a class="nav-link" href="{{ route('user.setting') }}">
+                                        <img src="{{ asset('storage/' . $user->profile_image) }}" alt=""
+                                            style="width: 35px; height: 35px; overflow: hidden; object-fit:cover; object-position: center; border-radius: 50%"
+                                            class="img-fluid">
+                                    </a>
                                 </li>
                             @endif
                         @endauth

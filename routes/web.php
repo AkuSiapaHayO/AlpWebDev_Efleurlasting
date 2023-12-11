@@ -21,17 +21,24 @@ use Illuminate\Support\Facades\Auth;
 
 
 
+//Authentication
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 
-Route::get('/setting/admin', [HomeController::class, 'settingAdmin'])->middleware('admin')->name('admin.setting');
+//Main
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/products', [HomeController::class, 'products'])->name('products');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
+//Settings
 Route::get('/setting/user', [HomeController::class, 'settingUser'])->middleware('auth')->name('user.setting');
+Route::get('/setting/admin', [HomeController::class, 'settingAdmin'])->middleware('admin')->name('admin.setting');
+
+//CRUD User
+Route::get('/user/view', [UserController::class, 'index'])->middleware('admin')->name('user.view');
+Route::get('/user/{id}/show', [UserController::class, 'show'])->middleware('admin')->name('user.show');
 Route::get('/user/{user}/edit',[UserController::class, 'edit'])->middleware('auth')->name('user.edit');
 Route::delete('/user/{user}/destroy', [UserController::class, 'destroy'])->middleware('auth')->name('user.destroy');
 Route::put('/user/{user}/update', [UserController::class, 'update'])->middleware('auth')->name('user.update');
 
-// Admin
-Route::get('/setting/admin', [HomeController::class, 'settingAdmin'])->middleware('admin')->name('admin.setting');
-Route::get('/user/view', [UserController::class, 'index'])->middleware('admin')->name('user.view');
-Route::get('/user/{id}/show', [UserController::class, 'show'])->middleware('admin')->name('user.show');
-Route::get('/setting', [HomeController::class, 'setting'])->middleware('admin')->name('setting');
+

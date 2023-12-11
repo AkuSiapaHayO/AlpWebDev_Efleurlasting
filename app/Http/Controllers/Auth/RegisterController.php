@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+// require './vendor/autoload.php';
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator; 
 
 class RegisterController extends Controller
 {
