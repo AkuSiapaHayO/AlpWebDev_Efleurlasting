@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -27,8 +28,11 @@ Auth::routes();
 //Main
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
-Route::get('/products', [HomeController::class, 'products'])->name('products');
+Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
+// Products
+Route::get('/product/{product}', [ProductController::class, 'show'])->name('showproduct');
 
 //Settings
 Route::get('/setting/user', [HomeController::class, 'settingUser'])->middleware('auth')->name('user.setting');
