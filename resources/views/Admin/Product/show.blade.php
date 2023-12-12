@@ -53,44 +53,15 @@
                             </table>
                             <h4>Available Colors</h4>
                             <div class="row">
-                                <form action="{{ route('cartitem.store') }}" method="post">
-                                    @csrf
-                                    @foreach ($productColors as $productColor)
-                                        <div class="col-auto mb-4">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <input type="radio" name="productcolor"
-                                                        id="productcolor_{{ $productColor->id }}"
-                                                        value="{{ $productColor->id }}" required>
-                                                    <label for="productcolor_{{ $productColor->id }}">
-                                                        {{ $productColor->color->color_name }}
-                                                    </label>
-                                                </div>
+                                @foreach ($productColors as $productColor)
+                                    <div class="col-auto mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <p class="card-text">{{ $productColor->color->color_name }}</p>
                                             </div>
                                         </div>
-                                    @endforeach
-
-
-                                    {{-- <h4>Available Colors</h4>
-                                    <div class="row">
-                                        @foreach ($productColors as $productColor)
-                                            <div class="col-auto mb-4">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <p class="card-text">{{ $productColor->color->color_name }}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div> --}}
-
-                                    <div class="mb-3">
-                                        <label for="quantity" class="form-label">Quantity</label>
-                                        <input type="number" class="form-control" id="quantity" name="quantity" required>
                                     </div>
-
-                                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                                </form>
+                                @endforeach
                             </div>
                         </div>
                     </div>

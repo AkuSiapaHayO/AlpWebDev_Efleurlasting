@@ -19,10 +19,25 @@ class ProductController extends Controller
         ]);
     }
 
-    public function adminview() {
+    public function adminindex() {
         return view('Admin.Product.view', [
             'products' => Product::all(),
             'categories' => Category::all(),
+        ]);
+    }
+
+    public function adminshow(Product $product) {
+
+        $product->load('category');
+
+        $productColors = $product->productColors;
+        $images = $product->images;
+
+        return view ('Admin.Product.show', [
+            'product' => $product,
+            'category' => $product->category,
+            'productColors' => $productColors,
+            'images' => $images,
         ]);
     }
 

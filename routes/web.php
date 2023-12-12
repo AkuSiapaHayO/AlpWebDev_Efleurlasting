@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CartItemController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -29,14 +30,15 @@ Auth::routes();
 //Main
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
-Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 // Products
+Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('showproduct');
 
 // Cart
-Route::get('/cart/{user}', [CartController::class, 'index'])->name('cart');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/product/addcart', [CartItemController::class, 'store'])->name('cartitem.store');
 
 //Settings
 Route::get('/setting/user', [HomeController::class, 'settingUser'])->middleware('auth')->name('user.setting');
@@ -52,7 +54,8 @@ Route::delete('/user/{user}/destroy', [UserController::class, 'destroy'])->middl
 Route::delete('/user/{user}/destroyProfileImage', [UserController::class, 'destroyProfileImage'])->middleware('auth')->name('user.destroyProfileImage');
 
 //CRUD Product
-Route::get('/setting/admin/products', [ProductController::class, 'adminview'])->name('products.view');
+Route::get('/setting/admin/products', [ProductController::class, 'adminindex'])->name('products.view');
+Route::get('/setting/admin/product/{product}', [ProductController::class, 'adminshow'])->name('products.show');
 
 
 

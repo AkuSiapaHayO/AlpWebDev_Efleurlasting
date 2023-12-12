@@ -12,13 +12,13 @@ class CartController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(User $user)
+    public function index()
     {
         $user = Auth::user();
         $cart = $user->cart;
         $cartItems = $cart->cartItems()->with('productColor')->get();
 
-        return view('cart', [
+        return view('Cart.cart', [
             'cart' => $cart,
             'cartItems' => $cartItems,
         ]);
