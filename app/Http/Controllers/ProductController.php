@@ -19,6 +19,13 @@ class ProductController extends Controller
         ]);
     }
 
+    public function adminview() {
+        return view('Admin.Product.view', [
+            'products' => Product::all(),
+            'categories' => Category::all(),
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

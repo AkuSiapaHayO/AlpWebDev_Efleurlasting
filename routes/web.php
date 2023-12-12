@@ -31,8 +31,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
 // Products
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('showproduct');
+
 // Cart
 Route::get('/cart/{user}', [CartController::class, 'index'])->name('cart');
 
@@ -48,6 +50,9 @@ Route::put('/user/{user}/update', [UserController::class, 'update'])->middleware
 Route::put('/user/{user}/updateProfileImage', [UserController::class, 'updateProfileImage'])->middleware('auth')->name('user.updateProfileImage');
 Route::delete('/user/{user}/destroy', [UserController::class, 'destroy'])->middleware('auth')->name('user.destroy');
 Route::delete('/user/{user}/destroyProfileImage', [UserController::class, 'destroyProfileImage'])->middleware('auth')->name('user.destroyProfileImage');
+
+//CRUD Product
+Route::get('/setting/admin/products', [ProductController::class, 'adminview'])->name('products.view');
 
 
 

@@ -45,6 +45,13 @@
                             available
                             on the platform. Add, edit, or remove products as needed to keep the product catalog up to date.
                         </p>
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3">Products</h5>
+                                <h6 class="card-subtitle mb-3 text-body-secondary">View all products</h6>
+                                <a href="{{ route('products.view') }}" class="card-link">View</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
