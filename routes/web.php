@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -32,11 +33,12 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
-// Products
+//Products + Category
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('showproduct');
+Route::get('/category/{category}', [CategoryController::class, 'show'])->name('showcategory');
 
-// Cart
+//CRUD Cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/product/addcart', [CartItemController::class, 'store'])->name('cartitem.store');
 

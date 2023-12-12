@@ -2,23 +2,8 @@
 
 @section('content')
     <div class="container mt-4">
-        <h1 class="mb-4">Products</h1>
-
-        {{-- Display Categories --}}
-        <div class="mb-4">
-            <h2>Categories</h2>
-            <div class="card-group">
-                @foreach ($categories as $category)
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $category->category_name }}</h5>
-                            <p class="card-text">{{ $category->description }}</p>
-                            <a href="{{ route('showcategory', ['category' => $category->id]) }}" class="btn btn-primary">View Category</a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
+        <h1 class="mb-4">{{ $category->category_name }} Products</h1>
+        <p class="card-text">{{ $category->description }}</p>
 
         {{-- Display Products --}}
         <div class="row">
@@ -43,7 +28,5 @@
                 </div>
             @endforeach
         </div>
-
-
     </div>
 @endsection
