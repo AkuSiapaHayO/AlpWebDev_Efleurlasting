@@ -17,7 +17,7 @@
                             @if ($user->profile_image)
                                 <div style="max-width: 300px; oveflow: hidden" class="mb-3">
                                     <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile-image"
-                                        class="img-fluid" style="max-height: 300px;">
+                                        class="img-fluid rounded" style="max-height: 300px;">
                                 </div>
                             @else
                                 <div style="max-width: 300px; oveflow: hidden" class="mb-3">
@@ -163,7 +163,7 @@
                                         placeholder="08xxxxxxxxxx" value="{{ $user->phone }}" required>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-outline-primary">Update</button>
+                                    <button type="submit" class="btn btn-outline-primary w-100">Update Profile</button>
                                 </div>
                             </form>
                         </div>
@@ -177,7 +177,7 @@
                         </div>
                         <div class="col-md-9">
                             <p>
-                                <button class="btn btn-danger" type="button" data-bs-toggle="collapse"
+                                <button class="btn btn-danger w-100" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseExample" aria-expanded="false"
                                     aria-controls="collapseExample">
                                     Are you sure you want to delete your account?

@@ -12,6 +12,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
+
     {{-- <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> --}}
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
@@ -50,6 +51,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('contact') }}">Contact</a>
                         </li>
+                        @auth
+                            @if (Auth::user()->isUser())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('cart', Auth::user()) }}">Cart</a>
+                                </li>
+                            @endif
+                        @endauth
                     </ul>
 
 
@@ -67,10 +75,6 @@
 
                         @auth
                             @if (Auth::user()->isUser())
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('cart', Auth::user()) }}">Cart</a>
-                                </li>
-
                                 <li class="nav-item">
                                     @php($user = Auth::user())
                                     @if ($user->profile_image)
@@ -129,10 +133,11 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>
+
 </body>
 
 </html>
