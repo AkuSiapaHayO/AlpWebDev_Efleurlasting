@@ -42,7 +42,10 @@ Route::get('/setting/admin', [HomeController::class, 'settingAdmin'])->middlewar
 Route::get('/user/view', [UserController::class, 'index'])->middleware('admin')->name('user.view');
 Route::get('/user/{id}/show', [UserController::class, 'show'])->middleware('admin')->name('user.show');
 Route::get('/user/{user}/edit',[UserController::class, 'edit'])->middleware('auth')->name('user.edit');
-Route::delete('/user/{user}/destroy', [UserController::class, 'destroy'])->middleware('auth')->name('user.destroy');
 Route::put('/user/{user}/update', [UserController::class, 'update'])->middleware('auth')->name('user.update');
+Route::put('/user/{user}/updateProfileImage', [UserController::class, 'updateProfileImage'])->middleware('auth')->name('user.updateProfileImage');
+Route::delete('/user/{user}/destroy', [UserController::class, 'destroy'])->middleware('auth')->name('user.destroy');
+Route::delete('/user/{user}/destroyProfileImage', [UserController::class, 'destroyProfileImage'])->middleware('auth')->name('user.destroyProfileImage');
+
 
 

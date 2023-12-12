@@ -69,16 +69,25 @@
                             @if (Auth::user()->isUser())
                                 {{-- FIX ROUTE --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Shopping Cart</a>
+                                    <a class="nav-link" href="#">Cart</a>
                                 </li>
 
                                 <li class="nav-item">
                                     @php($user = Auth::user())
-                                    <a class="nav-link" href="{{ route('user.setting') }}">
-                                        <img src="{{ asset('storage/' . $user->profile_image) }}" alt=""
-                                            style="width: 35px; height: 35px; overflow: hidden; object-fit:cover; object-position: center; border-radius: 50%"
-                                            class="img-fluid">
-                                    </a>
+                                    @if ($user->profile_image)
+                                        <a class="nav-link" href="{{ route('user.setting') }}">
+                                            <img src="{{ asset('storage/' . $user->profile_image) }}" alt=""
+                                                style="width: 35px; height: 35px; overflow: hidden; object-fit:cover; object-position: center; border-radius: 50%"
+                                                class="img-fluid">
+                                        </a>
+                                    @else
+                                        <a class="nav-link" href="{{ route('user.setting') }}">
+                                            <img src="{{ asset('assets/profile.png') }}" alt=""
+                                                style="width: 35px; height: 35px; overflow: hidden; object-fit:cover; object-position: center; border-radius: 50%"
+                                                class="img-fluid">
+                                        </a>
+                                    @endif
+
                                 </li>
                             @endif
                         @endauth
