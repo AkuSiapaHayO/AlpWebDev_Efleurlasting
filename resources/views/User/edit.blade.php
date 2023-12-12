@@ -21,11 +21,31 @@
                                 </div>
                             @else
                                 <div style="max-width: 300px; oveflow: hidden" class="mb-3">
-                                    <img src="{{ asset('Assets/profile.png') }}" alt="Profile-image"
-                                        class="img-fluid">
+                                    <img src="{{ asset('Assets/profile.png') }}" alt="Profile-image" class="img-fluid">
                                 </div>
                             @endif
-
+                            <form action="{{ route('user.updateProfileImage', $user) }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('put')
+                                <div class="col-12">
+                                    <label for="profile-image" class="form-label fw-bold fs-5">Upload New Profile
+                                        Image</label>
+                                    <input type="file" id="profile-image" name="profile-image" class="form-control mb-3"
+                                        accept="image/jpg, image/png, image/jpeg" required>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-outline-primary mb-3 w-100">Edit Profile
+                                        Image</button>
+                                </div>
+                            </form>
+                            <div class="col-12 mb-3">
+                                <form action="{{route('user.destroyProfileImage', $user)}}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-outline-danger w-100" name="delete" id="delete">Delete Profile Image</button>
+                                </form>
+                            </div>
                             <p class="fw-bold fs-5">Personal Information</p>
                             <p class="card-text">Edit your profile according to your preferences. Make a cool username. Also
                                 make sure to fill your full name, your active email, and other information such as your
@@ -39,7 +59,8 @@
                                     class="text-danger">remember</span> it!</p>
                         </div>
                         <div class="col-md-9">
-                            <form method="POST" action="{{ route('user.update', $user) }}" class="row g-3">
+                            <form method="POST" action="{{ route('user.update', $user) }}" enctype="multipart/form-data"
+                                class="row g-3">
                                 @method('put')
                                 @csrf
                                 <div class="col-md-6">
@@ -99,8 +120,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="gender" class="form-label">Gender</label>
-                                    <select id="gender" class="form-select" name="gender" value="{{ old('gender') }}"
-                                        required>
+                                    <select id="gender" class="form-select" name="gender"
+                                        value="{{ old('gender') }}" required>
                                         <option {{ $user->gender == 'Male' ? 'selected' : '' }}>Male</option>
                                         <option {{ $user->gender == 'Female' ? 'selected' : '' }}>Female</option>
                                     </select>
