@@ -21,5 +21,18 @@
                 </li>
             @endforeach
         </ul>
+
+        {{-- Display associated Images --}}
+        <h2>Images</h2>
+        <div class="row">
+            @foreach ($images as $image)
+                <div class="col-md-4 mb-4">
+                    <div style="max-width: 300px; oveflow: hidden" class="mb-3">
+                        {{-- ROUTE BUAT KE IMAGE NYA?? --}}
+                        <img src="{{ asset('Assets/products/' . $image->image_name) }}" alt="Profile-image" class="img-fluid" style="max-height: 300px;">
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
 @endsection

@@ -43,11 +43,13 @@ class ProductController extends Controller
         $product->load('category');
 
         $productColors = $product->productColors;
+        $images = $product->images;
 
         return view('Products.productshow', [
             'product' => $product,
             'category' => $product->category,
             'productColors' => $productColors,
+            'images' => $images,
         ]);
     }
 

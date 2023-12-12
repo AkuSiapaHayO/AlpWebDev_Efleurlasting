@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ProductColor extends Model
 {
@@ -20,5 +21,9 @@ class ProductColor extends Model
 
     public function color() {
         return $this->belongsTo(Color::class);
+    }
+
+    public function cartItems(): HasMany {
+        return $this->hasMany(CartItem::class);
     }
 }

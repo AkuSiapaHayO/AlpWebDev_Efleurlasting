@@ -67,9 +67,8 @@
 
                         @auth
                             @if (Auth::user()->isUser())
-                                {{-- FIX ROUTE --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Cart</a>
+                                    <a class="nav-link" href="{{ route('cart', Auth::user()) }}">Cart</a>
                                 </li>
 
                                 <li class="nav-item">
@@ -87,10 +86,10 @@
                                                 class="img-fluid">
                                         </a>
                                     @endif
-
                                 </li>
                             @endif
                         @endauth
+
 
                         <!-- Authentication Links -->
                         @guest

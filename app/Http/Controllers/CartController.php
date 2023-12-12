@@ -3,16 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(User $user)
     {
-        //
+        $user = Auth::user();
+        $cart = $user->cart;
+        $cartItems = $cart->cartItems()->with('productColor')->get();
+
+        return view('cart', [
+            'cart' => $cart,
+            'cartItems' => $cartItems,
+        ]);
     }
 
     /**

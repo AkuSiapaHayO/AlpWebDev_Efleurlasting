@@ -14,13 +14,28 @@ class ImageSeeder extends Seeder
     public function run(): void
     {
         Image::create([
-            'image_name' => 'classic_sizeregular_1',
+            'image_name' => 'classic_sizeregular_1.jpg',
             'product_id' => '1'
         ]);
 
         Image::create([
-            'image_name' => 'classic_sizeregular_2',
+            'image_name' => 'classic_sizeregular_2.jpg',
             'product_id' => '1'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizepetite_1.jpg',
+            'product_id' => '3'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizepetite_2.jpg',
+            'product_id' => '3'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizepetite_3.jpg',
+            'product_id' => '3'
         ]);
     }
 }

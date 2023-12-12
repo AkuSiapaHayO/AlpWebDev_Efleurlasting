@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -30,9 +31,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-
 // Products
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('showproduct');
+// Cart
+Route::get('/cart/{user}', [CartController::class, 'index'])->name('cart');
 
 //Settings
 Route::get('/setting/user', [HomeController::class, 'settingUser'])->middleware('auth')->name('user.setting');

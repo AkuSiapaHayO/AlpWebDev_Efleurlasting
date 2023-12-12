@@ -12,6 +12,14 @@ class CartItem extends Model
     protected $fillable = [
         'quantity',
         'cart_id',
-        'product_id'
+        'productcolor_id'
     ];
+
+    public function productColor() {
+        return $this->belongsTo(ProductColor::class);
+    }
+
+    public function cart() {
+        return $this->belongsTo(Cart::class);
+    }
 }

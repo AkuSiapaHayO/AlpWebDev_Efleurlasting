@@ -16,19 +16,19 @@ class CartItemSeeder extends Seeder
         CartItem::create([
             'quantity' => 1,
             'cart_id' => 1,
-            'product_id' => 1,
+            'productcolor_id' => 1,
         ]);
 
         CartItem::create([
             'quantity' => 3,
             'cart_id' => 1,
-            'product_id' => 2,
+            'productcolor_id' => 3,
         ]);
 
         CartItem::create([
             'quantity' => 2,
             'cart_id' => 2,
-            'product_id' => 3,
+            'productcolor_id' => 3,
         ]);
     }
 }

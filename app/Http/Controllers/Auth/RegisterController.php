@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Auth;
 // require './vendor/autoload.php';
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator; 
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -109,6 +110,7 @@ class RegisterController extends Controller
         }
 
 
+
     }
 
     public function register(Request $request)
@@ -117,6 +119,10 @@ class RegisterController extends Controller
         $user = $this->create($request->all());
         if (empty($user)) {
             redirect()->route('register');
+        } else {
+            Cart::create([
+                'user_id' => $user->id,
+            ]);
         }
 
         return redirect()->route('login');
