@@ -81,7 +81,7 @@ class UserController extends Controller
                 Storage::disk('public')->delete($user->profile_image);
             }
 
-            $validatedData['profile-image'] = $request->file('profile-image')->store('images', ['disk' => 'public']);
+            $validatedData['profile-image'] = $request->file('profile-image')->store('user', ['disk' => 'public']);
             
             $user->update([
                 'profile_image' => $validatedData['profile-image']

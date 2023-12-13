@@ -17,18 +17,6 @@ class CartItemController extends Controller
         //
     }
 
-    public function addToCart(array $data)
-    {
-        $user = auth()->user();
-        $cart = $user->cart;
-
-        return CartItem::create([
-            'quantity' => $data['username'],
-            'cart_id' => $cart,
-            'productcolor_id' => $data['productColor'],
-        ]);
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -42,7 +30,11 @@ class CartItemController extends Controller
      */
     public function store(Request $request)
     {
-
+        if (!Auth::check()) {
+            // If not authenticated, redirect to the login page
+            return redirect()->route('login')->with('error', 'Please log in to add products to your cart');
+        }
+        
         $user = Auth::user();
         $cart = $user->cart;
 

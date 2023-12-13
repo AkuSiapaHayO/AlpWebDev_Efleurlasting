@@ -15,14 +15,16 @@
                         <div class="col-md-3 mb-3">
                             <p class="fw-bold fs-5">Profile Picture</p>
                             @if ($user->profile_image)
-                                <div style="max-width: 300px; oveflow: hidden" class="mb-3">
-                                    <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile-image"
-                                        class="img-fluid rounded" style="max-height: 300px;">
-                                </div>
+                                {{-- <div style="max-width: 300px; oveflow: hidden" class="mb-3"> --}}
+                                <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile-image"
+                                    class="img-fluid rounded w-100 mb-3" style="max-height: 300px; object-fit:cover">
+                                {{-- </div> --}}
                             @else
-                                <div style="max-width: 300px; oveflow: hidden" class="mb-3">
-                                    <img src="{{ asset('Assets/profile.png') }}" alt="Profile-image" class="img-fluid">
-                                </div>
+                                {{-- <div style="max-width: 300px; oveflow: hidden" class="mb-3"> --}}
+                                <img src="{{ asset('Assets/profile.png') }}" alt="Profile-image"
+                                    class="img-fluid rounded w-100 mb-3"
+                                    style="max-height: 300px; width:auto; object-fit:cover">
+                                {{-- </div> --}}
                             @endif
                             <form action="{{ route('user.updateProfileImage', $user) }}" method="POST"
                                 enctype="multipart/form-data">
@@ -40,10 +42,11 @@
                                 </div>
                             </form>
                             <div class="col-12 mb-3">
-                                <form action="{{route('user.destroyProfileImage', $user)}}" method="POST">
+                                <form action="{{ route('user.destroyProfileImage', $user) }}" method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button class="btn btn-outline-danger w-100" name="delete" id="delete">Delete Profile Image</button>
+                                    <button class="btn btn-outline-danger w-100" name="delete" id="delete">Delete
+                                        Profile Image</button>
                                 </form>
                             </div>
                             <p class="fw-bold fs-5">Personal Information</p>

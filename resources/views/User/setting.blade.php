@@ -7,39 +7,27 @@
             <div class="card-body">
                 <div class="row gx-5">
                     <div class="col-md-4 border-end">
-                        <div style="max-width:500px; overflow:hidden">
-                            <img src="{{ asset('storage/' . $user->profile_image) }}" alt=""
-                                class="img-fluid w-100 rounded" style="max-height:500px">
+                        <div style="max-width:500px; overflow:hidden" class="mb-3">
+                            @if ($user->profile_image)
+                                <img src="{{ asset('storage/' . $user->profile_image) }}" alt=""
+                                    class="img-fluid w-100 rounded" style="max-height:500px; object-fit:cover">
+                            @else
+                                <img src="{{ asset('Assets/profile.png') }}" alt="" class="img-fluid w-100 rounded"
+                                    style="max-height:500px; object-fit:cover">
+                            @endif
                         </div>
-                        <div class="my-3 border-bottom">
-                            <p class="text-secondary text-uppercase fw-bold mb-1">Personal Infomation</p>
-                        </div>
-                        <div class="row fw-bold">
-                            <label for="staticEmail" class="col-sm-4 col-form-label">Name</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                                    value="{{ $user->name }}">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Profile</h5>
                             </div>
-                        </div>
-                        <div class="row fw-bold">
-                            <label for="staticEmail" class="col-sm-4 col-form-label">Birthdate</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                                    value="{{ $user->birthdate }}">
-                            </div>
-                        </div>
-                        <div class="row fw-bold">
-                            <label for="staticEmail" class="col-sm-4 col-form-label">Gender</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                                    value="{{ $user->gender }}">
-                            </div>
-                        </div>
-                        <div class="row fw-bold">
-                            <label for="staticEmail" class="col-sm-4 col-form-label">Age</label>
-                            <div class="col-sm-8">
-                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
-                                    value="{{ $user->age }}">
+                            <div class="card-body">
+                                <p class="card-text">Customize your online presence with the ability to edit your profile
+                                    by
+                                    updating your
+                                    personal information.
+                                </p>
+                                <a href="{{ route('user.edit', $user) }}" class="btn btn-outline-primary"
+                                    id="edit">Edit</a>
                             </div>
                         </div>
                     </div>
@@ -98,6 +86,37 @@
                                     value="{{ $user->province }}">
                             </div>
                         </div>
+                        <div class="my-3 border-bottom">
+                            <p class="text-secondary text-uppercase fw-bold mb-1">Personal Infomation</p>
+                        </div>
+                        <div class="row fw-bold">
+                            <label for="staticEmail" class="col-sm-4 col-form-label">Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{ $user->name }}">
+                            </div>
+                        </div>
+                        <div class="row fw-bold">
+                            <label for="staticEmail" class="col-sm-4 col-form-label">Birthdate</label>
+                            <div class="col-sm-8">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{ $user->birthdate }}">
+                            </div>
+                        </div>
+                        <div class="row fw-bold">
+                            <label for="staticEmail" class="col-sm-4 col-form-label">Gender</label>
+                            <div class="col-sm-8">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{ $user->gender }}">
+                            </div>
+                        </div>
+                        <div class="row fw-bold">
+                            <label for="staticEmail" class="col-sm-4 col-form-label">Age</label>
+                            <div class="col-sm-8">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{ $user->age }}">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -107,25 +126,12 @@
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Edit Profile
+                        Order History
                     </button>
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <div class="card">
-                            <div class="card-header">
-                                Featured
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Profile</h5>
-                                <p class="card-text">Customize your online presence with the ability to edit your profile by
-                                    updating your
-                                    personal information.
-                                </p>
-                                <a href="{{ route('user.edit', $user) }}" class="btn btn-outline-primary"
-                                    id="edit">Edit</a>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

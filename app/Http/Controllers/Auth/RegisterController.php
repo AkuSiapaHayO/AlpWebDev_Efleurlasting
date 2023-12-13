@@ -71,7 +71,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         if (!empty($data['profile-image'])) {
-            $data['profile-image'] = $data['profile-image']->store('images', ['disk' => 'public']);
+            $data['profile-image'] = $data['profile-image']->store('user', ['disk' => 'public']);
 
             return User::create([
                 'username' => $data['username'],

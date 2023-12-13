@@ -1,41 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container p-0">
+    <div class="container">
         <div id="carouselExampleCaptions" class="carousel slide">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
+                @foreach ($carousels as $key => $carousel)
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $key }}"
+                        @if ($key === 0) class="active" aria-current="true" @endif
+                        aria-label="Slide {{ $key + 1 }}"></button>
+                @endforeach
             </div>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="{{ asset('Assets/Products/classic_sizeregular_2.jpg') }}" class="d-block w-100"
-                        alt="..." style="max-height: 90vh; width: auto; object-fit: cover;">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
+                @foreach ($carousels as $key => $carousel)
+                    <div class="carousel-item @if ($key === 0) active @endif">
+                        @if (Storage::disk('public')->exists($carousel->image))
+                            <img src="{{ asset('storage/images/products/' . $carousel->image) }}" class="d-block w-100"
+                                alt="..." style="max-height: 85vh; width: auto; object-fit: cover;">
+                        @else
+                            <img src="{{ asset('Assets/products/' . $carousel->image) }}" class="d-block w-100"
+                                alt="..." style="max-height: 85vh; width: auto; object-fit: cover;">
+                        @endif
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{{ $carousel->title }}</h5>
+                            <p>{{ $carousel->description }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('Assets/Products/classic_sizeregular_2.jpg') }}" class="d-block w-100"
-                        alt="..." style="max-height: 90vh; width: auto; object-fit: cover;">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('Assets/Products/classic_sizeregular_2.jpg') }}" class="d-block w-100"
-                        alt="..." style="max-height: 90vh; width: auto; object-fit: cover;">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Third slide label</h5>
-                        <p>Some representative placeholder content for the third slide.</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                 data-bs-slide="prev">

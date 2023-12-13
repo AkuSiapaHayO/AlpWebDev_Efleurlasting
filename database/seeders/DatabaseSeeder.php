@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             ProductColorSeeder::class,
             CartSeeder::class,
             CartItemSeeder::class,
+            CarouselSeeder::class,
         ]);
 
         Model::reguard();
