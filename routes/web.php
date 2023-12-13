@@ -63,6 +63,7 @@ Route::get('/setting/admin/product/{product}', [ProductController::class, 'admin
 //CRUD Carousels
 Route::get('/setting/admin/carousel', [CarouselController::class, 'index'])->middleware('admin')->name('carousel.view');
 Route::get('/setting/admin/carousel/create', [CarouselController::class, 'create'])->middleware('admin')->name('carousel.create');
+Route::get('/setting/admin/carousel/store', [CarouselController::class, 'store'])->middleware('admin')->name('carousel.store');
 
 
 
