@@ -36,12 +36,12 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 //Products + Category
 Route::get('/products', [ProductController::class, 'index'])->name('products');
-Route::get('/product/{product}', [ProductController::class, 'show'])->name('showproduct');
-Route::get('/category/{category}', [CategoryController::class, 'show'])->name('showcategory');
+Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
 
 //CRUD Cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::post('/product/addcart', [CartItemController::class, 'store'])->name('cartitem.store');
+Route::post('/product/cart/create', [CartItemController::class, 'store'])->name('cartitem.store');
 
 //Settings
 Route::get('/setting/user', [HomeController::class, 'settingUser'])->middleware('auth')->name('user.setting');
@@ -56,13 +56,18 @@ Route::put('/user/{user}/updateProfileImage', [UserController::class, 'updatePro
 Route::delete('/user/{user}/destroy', [UserController::class, 'destroy'])->middleware('auth')->name('user.destroy');
 Route::delete('/user/{user}/destroyProfileImage', [UserController::class, 'destroyProfileImage'])->middleware('auth')->name('user.destroyProfileImage');
 
-//CRUD Product
+//CRUD Product + tbh the name is too similar with that of the user so might update this
 Route::get('/setting/admin/products', [ProductController::class, 'adminindex'])->name('products.view');
 Route::get('/setting/admin/product/{product}', [ProductController::class, 'adminshow'])->name('products.show');
+Route::get('/setting/admin/product/create', [ProductController::class, 'create'])->name('products.create');
 
 //CRUD Carousels
 Route::get('/setting/admin/carousel', [CarouselController::class, 'index'])->middleware('admin')->name('carousel.view');
 Route::get('/setting/admin/carousel/create', [CarouselController::class, 'create'])->middleware('admin')->name('carousel.create');
 
-
+//CRUD Category
+Route::post('/setting/admin/category/create', [CategoryController::class, 'store'])->middleware('admin')->name('category.store');
+Route::get('/setting/admin/category/{category}/edit', [CategoryController::class, 'edit'])->middleware('admin')->name('category.edit');
+Route::put('/setting/admin/category/{category}/update', [CategoryController::class, 'update'])->middleware('admin')->name('category.update');
+Route::delete('/setting/admin/category/{category}/destroy', [CategoryController::class, 'destroy'])->middleware('admin')->name('category.destroy');
 
