@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-3">
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
@@ -107,6 +107,8 @@
                             Please review and modify the carousel content responsibly, keeping the website's aesthetics and
                             overall user appeal in mind.
                         </p>
+                        <a href="{{ route('carousel.view') }}"><button class="btn btn-outline-primary">Edit
+                                Carousel</button></a>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,9 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        //
+        $carousels = Carousel::all();
+
+        return view('Admin.Carousel.view', compact('carousels'));
     }
 
     /**
@@ -21,7 +23,7 @@ class CarouselController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.Carousel.create');
     }
 
     /**

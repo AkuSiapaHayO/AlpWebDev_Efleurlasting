@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
@@ -58,6 +59,10 @@ Route::delete('/user/{user}/destroyProfileImage', [UserController::class, 'destr
 //CRUD Product
 Route::get('/setting/admin/products', [ProductController::class, 'adminindex'])->name('products.view');
 Route::get('/setting/admin/product/{product}', [ProductController::class, 'adminshow'])->name('products.show');
+
+//CRUD Carousels
+Route::get('/setting/admin/carousel', [CarouselController::class, 'index'])->middleware('admin')->name('carousel.view');
+Route::get('/setting/admin/carousel/create', [CarouselController::class, 'create'])->middleware('admin')->name('carousel.create');
 
 
 
