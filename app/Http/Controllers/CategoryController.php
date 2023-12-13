@@ -29,7 +29,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category::create([
+            'category_name' => $request->category_name,
+            'description' => $request->description
+        ]);
+
+        return redirect()->route('products.view')->with('success', 'New Category Created');
     }
 
     /**
@@ -39,7 +44,7 @@ class CategoryController extends Controller
     {
         $products = Product::where('category_id', $category->id)->get();
 
-        return view('Products.categoryshow', [
+        return view('Category.show', [
             'category' => $category,
             'products' => $products,
         ]);
@@ -51,7 +56,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('Category.edit', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -59,7 +66,18 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'category_name' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+
+        $category->update([
+            'category_name' => $request->input('category_name'),
+            'description' => $request->input('description'),
+        ]);
+
+        return redirect()->route('products.view', ['category' => $category->id])
+            ->with('success', 'Category updated successfully');
     }
 
     /**
@@ -67,6 +85,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->products()->delete();
+        $category->delete();
+        return redirect()->route('products.view');
     }
 }
