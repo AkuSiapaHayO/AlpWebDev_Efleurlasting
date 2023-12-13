@@ -12,7 +12,7 @@
                                 <img src="{{ asset('storage/' . $user->profile_image) }}" alt=""
                                     class="img-fluid w-100 rounded" style="max-height:500px; object-fit:cover">
                             @else
-                                <img src="{{ asset('Assets/profile.png') }}" alt="" class="img-fluid w-100 rounded"
+                                <img src="{{ asset('Assets/Icons/profile.png') }}" alt="" class="img-fluid w-100 rounded"
                                     style="max-height:500px; object-fit:cover">
                             @endif
                         </div>
@@ -38,7 +38,7 @@
                         <div class="d-flex align-items-center my-1 fs-5">
                             <p class="my-0 me-2 text-secondary">{{ $user->district }},</p>
                             <p class="my-0 text-secondary">{{ $user->city }}</p>
-                            <img src="{{ asset('Assets/maps.svg') }}" alt="" class="img-fluid"
+                            <img src="{{ asset('Assets/Icons/maps.svg') }}" alt="" class="img-fluid"
                                 style="max-width: 25px">
                         </div>
                         <div class="my-3 border-bottom">

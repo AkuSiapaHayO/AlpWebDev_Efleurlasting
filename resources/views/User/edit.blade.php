@@ -21,7 +21,7 @@
                                 {{-- </div> --}}
                             @else
                                 {{-- <div style="max-width: 300px; oveflow: hidden" class="mb-3"> --}}
-                                <img src="{{ asset('Assets/profile.png') }}" alt="Profile-image"
+                                <img src="{{ asset('Assets/Icons/profile.png') }}" alt="Profile-image"
                                     class="img-fluid rounded w-100 mb-3"
                                     style="max-height: 300px; width:auto; object-fit:cover">
                                 {{-- </div> --}}

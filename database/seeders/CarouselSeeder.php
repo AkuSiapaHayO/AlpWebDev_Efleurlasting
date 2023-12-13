@@ -15,25 +15,25 @@ class CarouselSeeder extends Seeder
     {
         Carousel::create([
             'title' => 'Efleurlasting',
-            'image' => 'classic_sizeregular_2.jpg',
+            'image' => 'Carousel1.JPG',
             'description' => 'Gift your loved ones flowers that will last a lifetime. With many different variations of artificial flowers that you can customize. Holiday sale up to 50%'
         ]);
 
         Carousel::create([
             'title' => 'Efleurlasting',
-            'image' => 'classic_sizeregular_2.jpg',
+            'image' => 'Carousel2.JPG',
             'description' => 'Gift your loved ones flowers that will last a lifetime. With many different variations of artificial flowers that you can customize. Holiday sale up to 50%'
         ]);
 
         Carousel::create([
             'title' => 'Efleurlasting',
-            'image' => 'classic_sizeregular_2.jpg',
+            'image' => 'Carousel3.JPG',
             'description' => 'Gift your loved ones flowers that will last a lifetime. With many different variations of artificial flowers that you can customize. Holiday sale up to 50%'
         ]);
 
         Carousel::create([
             'title' => 'Efleurlasting',
-            'image' => 'classic_sizeregular_2.jpg',
+            'image' => 'Carousel4.JPG',
             'description' => 'Gift your loved ones flowers that will last a lifetime. With many different variations of artificial flowers that you can customize. Holiday sale up to 50%'
         ]);
     }
