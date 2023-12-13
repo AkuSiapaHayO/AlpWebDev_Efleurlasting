@@ -13,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('Products.products', [
+        return view('Products.view', [
             'products' => Product::all(),
             'categories' => Category::all(),
         ]);
@@ -67,7 +67,7 @@ class ProductController extends Controller
         $productColors = $product->productColors;
         $images = $product->images;
 
-        return view('Products.productshow', [
+        return view('Products.show', [
             'product' => $product,
             'category' => $product->category,
             'productColors' => $productColors,

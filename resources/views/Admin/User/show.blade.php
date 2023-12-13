@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-3">
         <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between">
                 <a href="{{ route('user.view') }}"><button class="btn btn-outline-success">Back</button></a>
