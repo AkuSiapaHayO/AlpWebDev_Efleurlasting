@@ -6,28 +6,28 @@ $font-family-sans-serif: 'Inter', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
-// @import "bootstrap/scss/functions";
-// @import "bootstrap/scss/variables";
-// @import "bootstrap/scss/variables-dark";
-// @import "bootstrap/scss/maps";
-// @import "bootstrap/scss/mixins";
-// @import "bootstrap/scss/utilities";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
 
-// $all-colors: map-merge-multiple($blues, $indigos, $purples, $pinks, $reds, $oranges, $yellows, $greens, $teals, $cyans);
+$all-colors: map-merge-multiple($blues, $indigos, $purples, $pinks, $reds, $oranges, $yellows, $greens, $teals, $cyans);
 
-// $pink-color: (
-//     "pink-color": #fbe9e6
-// );
+$pink-color: (
+    "pink-color": #fbe9e6
+);
 
-// $theme-colors: map-merge($theme-colors , $pink-color);
+$theme-colors: map-merge($theme-colors , $pink-color);
 
-// $utilities: map-merge($utilities,
-//         ("color": map-merge(map-get($utilities, "color"),
-//                 (values: map-merge(map-get(map-get($utilities, "color"), "values"),
-//                         ($all-colors ),
-//                     ),
-//                 ),
-//             ),
-//         ));
+$utilities: map-merge($utilities,
+        ("color": map-merge(map-get($utilities, "color"),
+                (values: map-merge(map-get(map-get($utilities, "color"), "values"),
+                        ($all-colors ),
+                    ),
+                ),
+            ),
+        ));
 
-// @import "bootstrap/scss/utilities/api";
+@import "bootstrap/scss/utilities/api";

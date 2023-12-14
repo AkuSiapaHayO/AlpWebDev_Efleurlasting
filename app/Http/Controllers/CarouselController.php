@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carousel;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreCarouselRequest;
 use App\Http\Requests\UpdateCarouselRequest;
 
@@ -29,9 +30,27 @@ class CarouselController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCarouselRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:225',
+            'description' => 'required|string|max:225',
+            'carousel-image' => 'required|image',
+        ]);
+
+        if ($request->file('carousel-image')) {
+            $validatedData['carousel-image'] = $request->file('carousel-image')->store('carousel', 'public');
+
+            Carousel::create([
+                'title' => $validatedData['title'],
+                'description' => $validatedData['description'],
+                'image' => $validatedData['carousel-image'],
+            ]);
+
+            return redirect()->route('carousel.view');
+        }
+
+        return redirect()->route('carousel.view');
     }
 
     /**
@@ -47,13 +66,13 @@ class CarouselController extends Controller
      */
     public function edit(Carousel $carousel)
     {
-        //
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCarouselRequest $request, Carousel $carousel)
+    public function update(Request $request, Carousel $carousel)
     {
         //
     }
@@ -63,6 +82,7 @@ class CarouselController extends Controller
      */
     public function destroy(Carousel $carousel)
     {
-        //
+        // $carousel->delete();
+        return redirect()->route('carousel.view');
     }
 }
