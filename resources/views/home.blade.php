@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container p-0" style="max-width: 1336px">
+    <div class="container p-0" style="max-width: 1540px">
         <div id="carouselExampleCaptions" class="carousel slide">
             <div class="carousel-indicators pb-3">
                 @foreach ($carousels as $key => $carousel)
@@ -15,10 +15,10 @@
                     <div class="carousel-item @if ($key === 0) active @endif">
                         @if (Storage::disk('public')->exists($carousel->image))
                             <img src="{{ asset('storage/' . $carousel->image) }}" class="d-block w-100" alt="..."
-                                style="max-height: 60vh; max-width: 1366px; object-fit: cover;">
+                                style="max-height: 60vh; max-width: 1540px; object-fit: cover;">
                         @else
                             <img src="{{ asset('Assets/Carousel/' . $carousel->image) }}" class="d-block w-100"
-                                alt="..." style="max-height: 60vh; max-width: 1366px; object-fit: cover;">
+                                alt="..." style="max-height: 60vh; max-width: 1540px; object-fit: cover;">
                         @endif
                         <div class="carousel-caption d-none d-md-block p-5"
                             style="background-image:radial-gradient(circle, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1), transparent)">
