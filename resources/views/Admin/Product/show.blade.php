@@ -9,13 +9,15 @@
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             @foreach ($images as $key => $image)
-                                @if (Storage::disk('public')->exists($image->image_name))
+                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                    @if (Storage::disk('public')->exists($image->image_name))
                                     <img src="{{ asset('storage/' . $image->image_name) }}" class="d-block w-100"
                                         alt="Product Image">
                                 @else
                                     <img src="{{ asset('Assets/products/' . $image->image_name) }}" alt="Product Image"
                                         class="d-block w-100">
                                 @endif
+                                </div>
                             @endforeach
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"

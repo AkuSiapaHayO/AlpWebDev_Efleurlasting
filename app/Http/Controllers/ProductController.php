@@ -19,21 +19,23 @@ class ProductController extends Controller
         ]);
     }
 
-    public function adminindex() {
+    public function adminindex()
+    {
         return view('Admin.Product.view', [
             'products' => Product::all(),
             'categories' => Category::all(),
         ]);
     }
 
-    public function adminshow(Product $product) {
+    public function adminshow(Product $product)
+    {
 
         $product->load('category');
 
         $productColors = $product->productColors;
         $images = $product->images;
 
-        return view ('Admin.Product.show', [
+        return view('Admin.Product.show', [
             'product' => $product,
             'category' => $product->category,
             'productColors' => $productColors,
@@ -46,7 +48,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.Product.create', [
+            'categories' => Category::all(),
+        ]);
     }
 
     /**
@@ -54,7 +58,40 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the form data, including the file upload
+        $request->validate([
+            // ... your existing validation rules ...
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Adjust the allowed file types and size
+        ]);
+
+        // Store the uploaded image
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('user', ['disk' => 'public']);
+            // You can save the image path and associate it with the product
+            $product = Product::create([
+                'product_name' => $request->input('product_name'),
+                'description' => $request->input('description'),
+                'size' => $request->input('size'),
+                'price' => $request->input('price'),
+                'category_id' => $request->input('category_id'),
+            ]);
+
+            $product->images()->create([
+                'image_name' => $imagePath,
+                'product_id' => $product->id,
+            ]);
+        } else {
+            Product::create([
+                'product_name' => $request->input('product_name'),
+                'description' => $request->input('description'),
+                'size' => $request->input('size'),
+                'price' => $request->input('price'),
+                'category_id' => $request->input('category_id'),
+            ]);
+        }
+
+        return redirect()->route('products.view')->with('success', 'New Product Created');
+
     }
 
     /**
