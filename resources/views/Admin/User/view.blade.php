@@ -3,7 +3,10 @@
 @section('content')
     <div class="container mt-3">
         <div class="card">
-            <h5 class="card-header">Registered Users</h5>
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <a href="{{ route('admin.setting') }}"><button class="btn btn-outline-primary">Back</button></a>
+                <h5 class="text-center my-1 mx-auto">Registered Users</h5>
+            </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
@@ -30,7 +33,7 @@
                                 <td class="align-middle">{{ $user->birthdate }}</td>
                                 <td class="align-middle text-center">
                                     <a href="{{ route('user.show', $user->id) }}"><button
-                                            class="btn btn-outline-success">More</button></a>
+                                            class="btn btn-outline-primary">More</button></a>
                                 </td>
                             </tr>
                         @endforeach

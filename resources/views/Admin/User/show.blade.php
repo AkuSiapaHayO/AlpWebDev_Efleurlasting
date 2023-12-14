@@ -4,7 +4,7 @@
     <div class="container mt-3">
         <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between">
-                <a href="{{ route('user.view') }}"><button class="btn btn-outline-success">Back</button></a>
+                <a href="{{ route('user.view') }}"><button class="btn btn-outline-primary">Back</button></a>
                 <h3 class="text-center my-1 mx-auto">{{ $user->name }}'s Details</h3>
             </div>
             <div class="card-body">

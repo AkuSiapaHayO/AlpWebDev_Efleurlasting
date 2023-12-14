@@ -21,13 +21,9 @@
                             Please use this section <span class="text-danger">responsibly</span> and ensure the security and
                             privacy of user data.
                         </p>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title mb-3">Registered Users</h5>
-                                <h6 class="card-subtitle mb-3 text-body-secondary">View all registered users</h6>
-                                <a href="{{ route('user.view') }}" class="card-link">View</a>
-                            </div>
-                        </div>
+                        <a href="{{ route('user.view') }}" class="card-link">
+                            <button class="btn btn-outline-primary">Manage Users</button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -45,13 +41,9 @@
                             available
                             on the platform. Add, edit, or remove products as needed to keep the product catalog up to date.
                         </p>
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title mb-3">Products</h5>
-                                <h6 class="card-subtitle mb-3 text-body-secondary">View all products</h6>
-                                <a href="{{ route('products.view') }}" class="card-link">View</a>
-                            </div>
-                        </div>
+                        <a href="{{ route('products.view') }}" class="card-link">
+                            <button class="btn btn-outline-primary">Manage Products</button>
+                        </a>
                     </div>
                 </div>
             </div>
