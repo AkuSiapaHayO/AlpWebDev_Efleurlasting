@@ -74,7 +74,30 @@ class CarouselController extends Controller
      */
     public function update(Request $request, Carousel $carousel)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => ['required', 'string', 'max:225'],
+            'description' => ['required', 'string', 'max:225'],
+        ]);
+
+        $carousel->update([
+            'title' => $validatedData['title'],
+            'description' => $validatedData['description']
+        ]);
+
+        return redirect()->route('Admin.Carousel.view');
+    }
+
+    public function updateImage(Request $request, Carousel $carousel)
+    {
+        $validatedData = $request->validate([
+            'carousel' => ['required', 'image']
+        ]);
+
+        if ($request->file('carousel-image')) {
+            
+        }
+
+        return redirect()->route('Admin.Carousel.view');
     }
 
     /**

@@ -42,7 +42,7 @@
                                                 Slide
                                             </button>
                                         </form>
-                                        <form action="{{ route('carousel.update', $carousel) }}" class="mt-3">
+                                        <form action="{{ route('carousel.updateImage', $carousel) }}" class="mt-3">
                                             <div>
                                                 <label for="carousel-image" class="form-label">Insert New Image</label>
                                                 <input type="file" name="carousel-image" id="carousel-image"
