@@ -68,64 +68,88 @@
         </div>
     </div>
 
-    <div class="container pb-5 bg-color-2" style="max-width: 1540px">
-        <div class="p-5 text-center">
-            <p class="sub-heading mb-2 text-secondary">Featured</p>
-            <h1 class="heading">Categories</h1>
-        </div>
-        <div>
-            @foreach ($categories as $i => $category)
-                @if ($i % 2 == 0 || $i == 0)
-                    <div class="d-flex justify-content-center align-items-center w-100 pb-5">
-                        <div class="row w-75">
-                            <div class="col-md-8 py-3 px-5 d-flex align-items-center">
-                                <div>
-                                    <h1 class="heading">{{ $category->category_name }}</h1>
-                                    <p class="text">{{ $category->description }}</p>
-                                    <a href="#"><button class="btn btn-outline-pink-color px-5 fw-bold">Know
-                                            More</button></a>
-                                </div>
-                            </div>
-                            <div class="col-md-4 px-3 position-relative image">
-                                @if (Storage::disk('public')->exists($category->category_image))
-                                    <img src="{{ asset('storage/' . $category->category_image) }}" class="d-block w-100"
-                                        alt="..." style="max-height: 400px; object-fit: cover;">
-                                @else
-                                    <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
-                                        class="d-block w-100" alt="..." style="max-height: 400px; object-fit: cover; z-index:10">
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                @else
-                    <div class="d-flex justify-content-center w-100 align-items-center pb-5">
-                        <div class="row w-75">
-                            <div class="col-md-4 px-3 position-relative images">
-                                @if (Storage::disk('public')->exists($category->category_image))
-                                    <img src="{{ asset('storage/' . $category->category_image) }}" class="d-block w-100"
-                                        alt="..." style="max-height: 400px; object-fit: cover;">
-                                @else
-                                    <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
-                                        class="d-block w-100" alt="..." style="max-height: 400px; object-fit: cover;">
-                                @endif
-                            </div>
-                            <div class="col-md-8 py-3 px-5 d-flex align-items-center">
-                                <div>
-                                    <h1 class="heading text-end">{{ $category->category_name }}</h1>
-                                    <p class="text text-end">{{ $category->description }}</p>
-                                    <div class="d-flex justify-content-end align-items-center">
+    <div class="container pb-5 px-0" style="max-width: 1540px">
+        <div class="w-100 bg-color-2">
+            <div class="p-5 text-center">
+                <p class="sub-heading mb-2 text-secondary">Featured</p>
+                <h1 class="heading pb-3 borders">Categories</h1>
+            </div>
+            <div>
+                @foreach ($categories as $i => $category)
+                    @if ($i % 2 == 0 || $i == 0)
+                        <div class="d-flex justify-content-center align-items-center w-100 pb-5">
+                            <div class="row w-75">
+                                <div class="col-md-8 py-3 px-5 d-flex align-items-center">
+                                    <div>
+                                        <p class="sub-heading text-secondary mb-1">Category</p>
+                                        <h1 class="heading">{{ $category->category_name }}</h1>
+                                        <p class="text">{{ $category->description }}</p>
                                         <a href="#"><button class="btn btn-outline-pink-color px-5 fw-bold">Know
                                                 More</button></a>
                                     </div>
-
+                                </div>
+                                <div class="col-md-4 px-3 position-relative image">
+                                    @if (Storage::disk('public')->exists($category->category_image))
+                                        <img src="{{ asset('storage/' . $category->category_image) }}"
+                                            class="d-block w-100 rounded img-2" alt="..."
+                                            style="max-height: 400px; object-fit: cover;">
+                                    @else
+                                        <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
+                                            class="d-block w-100 rounded img-2" alt="..."
+                                            style="max-height: 400px; object-fit: cover;">
+                                    @endif
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endif
-            @endforeach
+                    @else
+                        <div class="d-flex justify-content-center w-100 align-items-center pb-5">
+                            <div class="row w-75">
+                                <div class="col-md-4 px-3 position-relative images">
+                                    @if (Storage::disk('public')->exists($category->category_image))
+                                        <img src="{{ asset('storage/' . $category->category_image) }}"
+                                            class="d-block w-100 rounded img-3" alt="..."
+                                            style="max-height: 400px; object-fit: cover;">
+                                    @else
+                                        <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
+                                            class="d-block w-100 rounded img-3" alt="..."
+                                            style="max-height: 400px; object-fit: cover;">
+                                    @endif
+                                </div>
+                                <div class="col-md-8 py-3 px-5 d-flex align-items-center">
+                                    <div>
+                                        <p class="sub-heading text-secondary mb-1 text-end">Category</p>
+                                        <h1 class="heading text-end">{{ $category->category_name }}</h1>
+                                        <p class="text text-end">{{ $category->description }}</p>
+                                        <div class="d-flex justify-content-end align-items-center">
+                                            <a href="#"><button class="btn btn-outline-pink-color px-5 fw-bold">Know
+                                                    More</button></a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
         </div>
+    </div>
 
-
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-md-8 d-flex align-items-center justify-content-center px-5 py-3">
+                <div class="w-75">
+                    <p class="sub-heading text-secondary">Contact</p>
+                    <h1 class="heading">Contact Us</h1>
+                    <p class="text">Please contact us for more information or detail about the product. For customization
+                        in your order, please contact us via <span class="text-success">Whats-Apps</span> about the detail.
+                        Feel free to reach out to us, we value your questions, feedback, and inquiries. Our
+                        dedicated team is here to assist you and provide the support you need.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                
+            </div>
+        </div>
     </div>
 @endsection
