@@ -18,6 +18,7 @@ class ProductSeeder extends Seeder
             'description' => 'Premium artificial rose 5 stems',
             'size' => '40 x 50 cm',
             'price' => 150000,
+            'is_active' => true,
             'category_id' => 1,
         ]);
 
@@ -26,6 +27,7 @@ class ProductSeeder extends Seeder
             'description' => 'Premium artificial rose 9 stems',
             'size' => '55 x 50 cm',
             'price' => 230000,
+            'is_active' => true,
             'category_id' => 1,
         ]);
 
@@ -34,6 +36,7 @@ class ProductSeeder extends Seeder
             'description' => 'Artificial rose Single stem',
             'size' => '15 x 25 cm',
             'price' => 85000,
+            'is_active' => true,
             'category_id' => 2,
         ]);
 
@@ -42,6 +45,16 @@ class ProductSeeder extends Seeder
             'description' => 'Mix Artificial Flower',
             'size' => '20-25 x 30 cm',
             'price' => 135000,
+            'is_active' => true,
+            'category_id' => 2,
+        ]);
+
+        Product::create([
+            'product_name' => 'This is supposed to be hidden',
+            'description' => 'Hidden product.',
+            'size' => '20-25 x 30 cm',
+            'price' => 135000,
+            'is_active' => false,
             'category_id' => 2,
         ]);
     }

@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('Products.view', [
-            'products' => Product::all(),
+            'products' => Product::where('is_active', true)->get(),
             'categories' => Category::all(),
         ]);
     }
@@ -70,6 +70,7 @@ class ProductController extends Controller
             'description' => $request->input('description'),
             'size' => $request->input('size'),
             'price' => $request->input('price'),
+            'is_active' => true,
             'category_id' => $request->input('category_id'),
         ]);
 
