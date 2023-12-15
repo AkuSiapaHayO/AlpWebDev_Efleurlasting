@@ -12,7 +12,7 @@
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     @foreach ($carousels as $i => $carousel)
                         <div class="col">
-                            <div class="card w-100">
+                            <div class="card w-100 h-100">
                                 @if (Storage::disk('public')->exists($carousel->image))
                                     <img src="{{ asset('storage/' . $carousel->image) }}" class="card-img-top"
                                         style="max-height:125px; object-fit:cover" alt="...">
@@ -27,7 +27,9 @@
                                         <p class="card-text">{{ $carousel->description }}</p>
                                     </div>
                                     <div class="border-bottom pb-3">
-                                        <form action="{{ route('carousel.update', $carousel) }}" class="mt-3">
+                                        <form action="{{ route('carousel.update', $carousel) }}" class="mt-3" method="POST">
+                                            @csrf
+                                            @method('put')
                                             <div>
                                                 <label for="title" class="form-label">New Title</label>
                                                 <input type="text" name="title" id="title" class="form-control"
@@ -42,7 +44,9 @@
                                                 Slide
                                             </button>
                                         </form>
-                                        <form action="{{ route('carousel.update', $carousel) }}" class="mt-3">
+                                        <form action="{{ route('carousel.updateImage', $carousel) }}" class="mt-3" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('put')
                                             <div>
                                                 <label for="carousel-image" class="form-label">Insert New Image</label>
                                                 <input type="file" name="carousel-image" id="carousel-image"

@@ -1,0 +1,76 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Kalnia:wght@400;500;600;700&display=swap');
+
+
+:root {
+    --main-color: #efc4b9;
+    --color-2: #d3e3d6;
+    --color-3: #dbcfc3;
+    --color-4: #fdbc96;
+    --color-5: #dac2cf;
+    --color-6: #e0c9bc;
+    --color-white: white;
+    --color-black: black;
+    --color-7: #ee7c99;
+}
+
+.heading {
+    font-family: 'Hedvig Letters Serif', serif;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.sub-heading {
+    font-family: 'Hedvig Letters Serif', serif;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 17px;
+}
+
+.text {
+    letter-spacing: 1px;
+    line-height: 25px;
+    text-align: left;
+}
+
+.bg-color-1 {
+    background-color: var(--main-color);
+}
+.bg-color-2 {
+    background-color: var(--color-2);
+}
+.bg-color-3 {
+    background-color: var(--color-3);
+}
+.bg-color-4 {
+    background-color: var(--color-4);
+}
+.bg-color-5 {
+    background-color: var(--color-5);
+}
+.bg-color-6 {
+    background-color: var(--color-6);
+}
+
+.carousel-indicators {
+    background-color: var(--main-color);
+}
+
+.carousel-caption {
+    background-color: var(--main-color);
+    border-radius: 35% 35% 0 0 ;
+}
+
+.borders {
+    border-bottom: 3px solid var(--color-black);
+}
+
+#img-1 {
+    position: absolute;
+    z-index: -1;
+    border: 5px solid var(--color-2);
+    top: 5%;
+    left: -7%;
+}

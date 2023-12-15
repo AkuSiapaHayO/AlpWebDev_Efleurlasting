@@ -69,7 +69,8 @@ Route::destroy('/setting/admin/product/{product}/destroy', [ProductController::c
 Route::get('/setting/admin/carousel', [CarouselController::class, 'index'])->middleware('admin')->name('carousel.view');
 Route::get('/setting/admin/carousel/create', [CarouselController::class, 'create'])->middleware('admin')->name('carousel.create');
 Route::post('/setting/admin/carousel/store', [CarouselController::class, 'store'])->middleware('admin')->name('carousel.store');
-Route::put('/setting/admin/caroousel/{carousel}/update', [CarouselController::class, 'update'])->middleware('admin')->name('carousel.update');
+Route::put('/setting/admin/carousel/{carousel}/update', [CarouselController::class, 'update'])->middleware('admin')->name('carousel.update');
+Route::put('/setting/admin/carousel/{carousel}/updateImage', [CarouselController::class, 'updateImage'])->middleware('admin')->name('carousel.updateImage');
 Route::delete('/setting/admin/caroousel/{carousel}/destroy', [CarouselController::class, 'destroy'])->middleware('admin')->name('carousel.destroy');
 
 //CRUD Category

@@ -10,17 +10,20 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="icon" href="{{ asset('Assets/Logo/logo_image_efleurlasting.png') }}" type="image/x-icon">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
 
     {{-- <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> --}}
     {{-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet"> --}}
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     {{-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"> --}}
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    
+
 </head>
 
 <body>
