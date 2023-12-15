@@ -39,11 +39,13 @@
             </button>
         </div>
     </div>
+
     <div class="container pb-5">
         <div class="row">
             <div class="col-md-8 px-5 d-flex align-items-center" style="border-radius:0 0 0 30px">
                 <div class="mb-5">
-                    <p class="sub-heading text-secondary">Efleurlasting</p>
+                    <p class="sub-heading text-secondary ps-3" style="border-left: 7px solid var(--color-7);">Efleurlasting
+                    </p>
                     <h1 class="heading mb-3 pb-1">What We Do</h1>
                     <p class="text">Indulge in the everlasting beauty of meticulously crafted artificial flower bouquets
                         that
@@ -53,21 +55,8 @@
                         botanical
                         masterpieces that tell stories of beauty, passion, and attention to detail.
                     </p>
+                    <a href="#"><button class="btn btn-outline-pink-color px-5 fw-bold">More</button></a>
                 </div>
-                {{-- <div class="mb-5">
-                    <h1 class="heading mb-3 pb-1">Blossom That Last</h1>
-                    <p class="text">Our exquisite collection showcases a harmonious blend of art and nature. Each bouquet
-                        is a testament to craftsmanship, featuring the finest artificial flowers that rival the beauty of
-                        their living counterparts. Revel in the joy of everlasting blooms that never fade.
-                    </p>
-                </div>
-                <div class="mb-5">
-                    <h1 class="heading mb-3 pb-1">Perfect Gifts, Timeless Memories</h1>
-                    <p class="text">Looking for a gift that lasts forever? Our artificial flower bouquets make for
-                        unforgettable presents. Celebrate special moments, express love, and send messages of joy with the
-                        enduring beauty of our thoughtfully crafted arrangements.
-                    </p>
-                </div> --}}
             </div>
             <div class="col-md-4 m-0 px-3 d-flex align-items-center justify-content-center">
                 <div class="position-relative">
@@ -78,32 +67,65 @@
             </div>
         </div>
     </div>
+
     <div class="container pb-5 bg-color-2" style="max-width: 1540px">
         <div class="p-5 text-center">
-            <p class="sub-heading mb-2">Featured</p>
+            <p class="sub-heading mb-2 text-secondary">Featured</p>
             <h1 class="heading">Categories</h1>
         </div>
-        @foreach ($categories as $i => $category)
-            @if ($i % 2 == 0 || $i == 0)
-                <div class="row">
-                    <div class="col-md-8">
-                        
+        <div>
+            @foreach ($categories as $i => $category)
+                @if ($i % 2 == 0 || $i == 0)
+                    <div class="d-flex justify-content-center align-items-center w-100 pb-5">
+                        <div class="row w-75">
+                            <div class="col-md-8 py-3 px-5 d-flex align-items-center">
+                                <div>
+                                    <h1 class="heading">{{ $category->category_name }}</h1>
+                                    <p class="text">{{ $category->description }}</p>
+                                    <a href="#"><button class="btn btn-outline-pink-color px-5 fw-bold">Know
+                                            More</button></a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 px-3 position-relative image">
+                                @if (Storage::disk('public')->exists($category->category_image))
+                                    <img src="{{ asset('storage/' . $category->category_image) }}" class="d-block w-100"
+                                        alt="..." style="max-height: 400px; object-fit: cover;">
+                                @else
+                                    <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
+                                        class="d-block w-100" alt="..." style="max-height: 400px; object-fit: cover; z-index:10">
+                                @endif
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
+                @else
+                    <div class="d-flex justify-content-center w-100 align-items-center pb-5">
+                        <div class="row w-75">
+                            <div class="col-md-4 px-3 position-relative images">
+                                @if (Storage::disk('public')->exists($category->category_image))
+                                    <img src="{{ asset('storage/' . $category->category_image) }}" class="d-block w-100"
+                                        alt="..." style="max-height: 400px; object-fit: cover;">
+                                @else
+                                    <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
+                                        class="d-block w-100" alt="..." style="max-height: 400px; object-fit: cover;">
+                                @endif
+                            </div>
+                            <div class="col-md-8 py-3 px-5 d-flex align-items-center">
+                                <div>
+                                    <h1 class="heading text-end">{{ $category->category_name }}</h1>
+                                    <p class="text text-end">{{ $category->description }}</p>
+                                    <div class="d-flex justify-content-end align-items-center">
+                                        <a href="#"><button class="btn btn-outline-pink-color px-5 fw-bold">Know
+                                                More</button></a>
+                                    </div>
 
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            @else
-                <div class="row">
-                    <div class="col-md-4">
+                @endif
+            @endforeach
+        </div>
 
-                    </div>
-                    <div class="col-md-8">
-
-                    </div>
-                </div>
-            @endif
-        @endforeach
 
     </div>
 @endsection
