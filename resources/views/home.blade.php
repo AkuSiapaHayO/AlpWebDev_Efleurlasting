@@ -20,11 +20,11 @@
                             <img src="{{ asset('Assets/Carousel/' . $carousel->image) }}" class="d-block w-100"
                                 alt="..." style="max-height: 60vh; max-width: 1540px; object-fit: cover;">
                         @endif
-                        <div class="carousel-caption d-none d-md-block p-5"
+                        {{-- <div class="carousel-caption d-none d-md-block p-5"
                             style="background-image:radial-gradient(circle, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1), transparent)">
                             <h5>{{ $carousel->title }}</h5>
                             <p>{{ $carousel->description }}</p>
-                        </div>
+                        </div> --}}
                     </div>
                 @endforeach
             </div>

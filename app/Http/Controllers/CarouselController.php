@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Carousel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreCarouselRequest;
 use App\Http\Requests\UpdateCarouselRequest;
 
@@ -84,20 +85,30 @@ class CarouselController extends Controller
             'description' => $validatedData['description']
         ]);
 
-        return redirect()->route('Admin.Carousel.view');
+        return redirect()->route('carousel.view');
     }
 
     public function updateImage(Request $request, Carousel $carousel)
     {
         $validatedData = $request->validate([
-            'carousel' => ['required', 'image']
+            'carousel-image' => ['required', 'image']
         ]);
 
         if ($request->file('carousel-image')) {
-            
+            if ($carousel->image) {
+                if (Storage::disk('public')->exists($carousel->image)) {
+                    Storage::disk('public')->delete($carousel->image);
+                }
+            }
         }
 
-        return redirect()->route('Admin.Carousel.view');
+        $validatedData['carousel-image'] = $request->file('carousel-image')->store('carousel', 'public');
+
+        $carousel->update([
+            'image' => $validatedData['carousel-image'],
+        ]);
+
+        return redirect()->route('carousel.view');
     }
 
     /**
@@ -105,7 +116,12 @@ class CarouselController extends Controller
      */
     public function destroy(Carousel $carousel)
     {
-        // $carousel->delete();
+        if ($carousel->image) {
+            if (Storage::disk('public')->exists($carousel->image)) {
+                Storage::disk('public')->delete($carousel->image);
+            }
+        }
+        $carousel->delete();
         return redirect()->route('carousel.view');
     }
 }
