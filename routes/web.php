@@ -63,7 +63,7 @@ Route::get('/setting/admin/product/create/new', [ProductController::class, 'crea
 Route::post('/setting/admin/product/save', [ProductController::class, 'store'])->middleware('admin')->name('products.store');
 Route::get('/setting/admin/product/{product}/edit', [ProductController::class, 'edit'])->middleware('admin')->name('products.edit');
 Route::put('/setting/admin/product/{product}/update', [ProductController::class, 'update'])->middleware('admin')->name('products.update');
-Route::destroy('/setting/admin/product/{product}/destroy', [ProductController::class, 'destroy'])->middleware('admin')->name('products.destroy');
+Route::delete('/setting/admin/product/{product}/destroy', [ProductController::class, 'destroy'])->middleware('admin')->name('products.destroy');
 
 //CRUD Carousels
 Route::get('/setting/admin/carousel', [CarouselController::class, 'index'])->middleware('admin')->name('carousel.view');
