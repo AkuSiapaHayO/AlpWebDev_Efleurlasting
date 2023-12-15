@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
+use App\Models\ProductColor;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -50,6 +52,7 @@ class ProductController extends Controller
     {
         return view('Admin.Product.create', [
             'categories' => Category::all(),
+            'colors' => Color::all(),
         ]);
     }
 
@@ -58,40 +61,54 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the form data, including the file upload
         $request->validate([
-            // ... your existing validation rules ...
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Adjust the allowed file types and size
+            'images.*' => 'image',
         ]);
 
-        // Store the uploaded image
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('user', ['disk' => 'public']);
-            // You can save the image path and associate it with the product
-            $product = Product::create([
-                'product_name' => $request->input('product_name'),
-                'description' => $request->input('description'),
-                'size' => $request->input('size'),
-                'price' => $request->input('price'),
-                'category_id' => $request->input('category_id'),
-            ]);
+        $product = Product::create([
+            'product_name' => $request->input('product_name'),
+            'description' => $request->input('description'),
+            'size' => $request->input('size'),
+            'price' => $request->input('price'),
+            'category_id' => $request->input('category_id'),
+        ]);
 
-            $product->images()->create([
-                'image_name' => $imagePath,
-                'product_id' => $product->id,
-            ]);
-        } else {
-            Product::create([
-                'product_name' => $request->input('product_name'),
-                'description' => $request->input('description'),
-                'size' => $request->input('size'),
-                'price' => $request->input('price'),
-                'category_id' => $request->input('category_id'),
-            ]);
+        // Existing Colors
+        if ($request->has('selected_colors')) {
+            foreach ($request->input('selected_colors') as $colorId) {
+                ProductColor::create([
+                    'product_id' => $product->id,
+                    'color_id' => $colorId,
+                ]);
+            }
         }
 
-        return redirect()->route('products.view')->with('success', 'New Product Created');
+        // New Colors
+        if ($request->has('additional_newcolors')) {
+            foreach ($request->input('additional_newcolors') as $color) {
+                if (!is_null($color)) {
+                    $colorModal = Color::create(['color_name' => $color]);
+                    ProductColor::create([
+                        'product_id' => $product->id,
+                        'color_id' => $colorModal->id
+                    ]);
+                }
+            }
+        }
 
+        // Images
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('user', ['disk' => 'public']);
+
+                $product->images()->create([
+                    'image_name' => $imagePath,
+                    'product_id' => $product->id,
+                ]);
+            }
+        }
+
+        return redirect()->route('products.view', ['product' => $product->id])->with('success', 'New Product Created');
     }
 
     /**
@@ -99,7 +116,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $product->load('category');
 
         $productColors = $product->productColors;
         $images = $product->images;
@@ -117,7 +133,18 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $productColors = $product->productColors;
+        $images = $product->images;
+        $checkedColors = $productColors->pluck('color_id')->toArray();
+        return view('Admin.Product.edit', [
+            'product' => $product,
+            'category' => $product->category,
+            'productColors' => $productColors,
+            'images' => $images,
+            'categories' => Category::all(),
+            'colors' => Color::all(),
+            'checkedColors' => $checkedColors,
+        ]);
     }
 
     /**
@@ -125,8 +152,81 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'images.*' => 'image',
+        ]);
+
+        $updateData = [];
+
+        if ($request->filled('product_name')) {
+            $updateData['product_name'] = $request->input('product_name');
+        }
+
+        if ($request->filled('description')) {
+            $updateData['description'] = $request->input('description');
+        }
+
+        if ($request->filled('size')) {
+            $updateData['size'] = $request->input('size');
+        }
+
+        if ($request->filled('price')) {
+            $updateData['price'] = $request->input('price');
+        }
+
+        if ($request->filled('category_id')) {
+            $updateData['category_id'] = $request->input('category_id');
+        }
+
+        // Existing Colors
+        $selectedColorIds = $request->input('selected_colors', []);
+
+        // Check and create ProductColor entries
+        foreach ($selectedColorIds as $colorId) {
+            // Check if ProductColor with the same product_id and color_id already exists
+            $existingProductColor = ProductColor::where('product_id', $product->id)
+                ->where('color_id', $colorId)
+                ->first();
+
+            // If not, create a new ProductColor entry
+            if (!$existingProductColor) {
+                ProductColor::create([
+                    'product_id' => $product->id,
+                    'color_id' => $colorId,
+                ]);
+            }
+        }
+
+        // Delete ProductColor entries with color_id not in selected colors
+        ProductColor::where('product_id', $product->id)
+            ->whereNotIn('color_id', $selectedColorIds)
+            ->delete();
+
+
+        // New Colors
+        if ($request->has('additional_newcolors')) {
+            foreach ($request->input('additional_newcolors') as $color) {
+                $colorModel = Color::create(['color_name' => $color]);
+
+                $product->colors()->attach($colorModel->id);
+            }
+        }
+
+        // Images
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imagePath = $image->store('user', ['disk' => 'public']);
+
+                $product->images()->create([
+                    'image_name' => $imagePath,
+                    'product_id' => $product->id,
+                ]);
+            }
+        }
+
+        return redirect()->route('products.show', ['product' => $product->id])->with('success', 'Product Updated');
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -59,9 +59,11 @@ Route::delete('/user/{user}/destroyProfileImage', [UserController::class, 'destr
 //CRUD Product + tbh the name is too similar with that of the user so might update this
 Route::get('/setting/admin/products', [ProductController::class, 'adminindex'])->middleware('admin')->name('products.view');
 Route::get('/setting/admin/product/{product}', [ProductController::class, 'adminshow'])->middleware('admin')->name('products.show');
-Route::get('/setting/admin/product/create/ok', [ProductController::class, 'create'])->middleware('admin')->name('products.create');
+Route::get('/setting/admin/product/create/new', [ProductController::class, 'create'])->middleware('admin')->name('products.create');
 Route::post('/setting/admin/product/save', [ProductController::class, 'store'])->middleware('admin')->name('products.store');
-
+Route::get('/setting/admin/product/{product}/edit', [ProductController::class, 'edit'])->middleware('admin')->name('products.edit');
+Route::put('/setting/admin/product/{product}/update', [ProductController::class, 'update'])->middleware('admin')->name('products.update');
+Route::destroy('/setting/admin/product/{product}/destroy', [ProductController::class, 'destroy'])->middleware('admin')->name('products.destroy');
 
 //CRUD Carousels
 Route::get('/setting/admin/carousel', [CarouselController::class, 'index'])->middleware('admin')->name('carousel.view');

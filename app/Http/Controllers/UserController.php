@@ -25,7 +25,7 @@ class UserController extends Controller
     // Create a new record
     // public function create()
     // {
-        
+
     // }
 
     // Store a new record
@@ -35,7 +35,7 @@ class UserController extends Controller
     // }
 
     // Edit an existing record
-    public function edit(User $user) 
+    public function edit(User $user)
     {
         $user = User::where('id', $user->id)->first();
         return view('User.edit', compact('user'));
@@ -82,7 +82,7 @@ class UserController extends Controller
             }
 
             $validatedData['profile-image'] = $request->file('profile-image')->store('user', ['disk' => 'public']);
-            
+
             $user->update([
                 'profile_image' => $validatedData['profile-image']
             ]);
@@ -94,6 +94,12 @@ class UserController extends Controller
     // Delete a record
     public function destroy(User $user)
     {
+        $cart = $user->cart;
+        if ($cart) {
+            $cart->cartItems()->delete();
+            $cart->delete();
+        }
+
         $user->delete();
         return redirect()->route('login');
     }

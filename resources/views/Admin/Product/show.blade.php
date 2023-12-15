@@ -68,6 +68,9 @@
                                     </div>
                                 @endforeach
                             </div>
+
+                            <!-- Add an "Edit" button -->
+                            <a href="{{ route('products.edit', ['product' => $product]) }}" class="btn btn-primary">Edit</a>
                         </div>
                     </div>
                 </div>
