@@ -83,3 +83,6 @@ Route::put('/setting/admin/category/{category}/update', [CategoryController::cla
 Route::delete('/setting/admin/category/{category}/destroy', [CategoryController::class, 'destroy'])->middleware('admin')->name('category.destroy');
 Route::get('/setting/admin/categories', [CategoryController::class, 'adminindex'])->middleware('admin')->name('admin.categories.view');
 
+//WhatsApp
+Route::get('/home/chat', [HomeController::class, 'chat'])->name('chat.whatsapp');
+
