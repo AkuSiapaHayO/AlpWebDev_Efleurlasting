@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -64,6 +65,8 @@ Route::post('/setting/admin/product/save', [ProductController::class, 'store'])-
 Route::get('/setting/admin/product/{product}/edit', [ProductController::class, 'edit'])->middleware('admin')->name('products.edit');
 Route::put('/setting/admin/product/{product}/update', [ProductController::class, 'update'])->middleware('admin')->name('products.update');
 Route::delete('/setting/admin/product/{product}/destroy', [ProductController::class, 'destroy'])->middleware('admin')->name('products.destroy');
+Route::delete('/setting/admin/image/{image}/destroy', [ImageController::class, 'destroy'])->middleware('admin')->name('image.delete');
+Route::post('/setting/admin/{product}/image/save', [ImageController::class, 'store'])->middleware('admin')->name('image.store');
 
 //CRUD Carousels
 Route::get('/setting/admin/carousel', [CarouselController::class, 'index'])->middleware('admin')->name('carousel.view');
