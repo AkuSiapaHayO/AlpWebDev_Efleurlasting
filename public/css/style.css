@@ -53,6 +53,9 @@
 .bg-color-6 {
     background-color: var(--color-6);
 }
+.bg-color-7{
+    background-color: var(--color-7);
+}
 
 .carousel-indicators {
     background-color: var(--main-color);

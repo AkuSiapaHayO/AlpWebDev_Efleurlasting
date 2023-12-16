@@ -19,7 +19,11 @@ $pink-color: (
     "pink-color": #ee7c99
 );
 
-$theme-colors: map-merge($theme-colors , $pink-color);
+$light-green: (
+    "light-green": #25D366
+);
+
+$theme-colors: map-merge-multiple($theme-colors , $pink-color, $light-green);
 
 $utilities: map-merge($utilities,
         ("color": map-merge(map-get($utilities, "color"),

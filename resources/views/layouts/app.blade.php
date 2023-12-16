@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Efleurlasting</title>
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="icon" href="{{ asset('Assets/Logo/logo_image_efleurlasting.png') }}" type="image/x-icon">
@@ -28,7 +28,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-color-7 shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
@@ -47,7 +47,7 @@
                     <!-- Left Side Of Navbar -->
 
                     {{-- FIX ROUTE  --}}
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav me-auto fw-bold">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('about') }}">About Us</a>
                         </li>
@@ -70,7 +70,7 @@
 
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto align-items-center">
+                    <ul class="navbar-nav ms-auto align-items-center fw-bold">
                         @auth
                             @if (Auth::user()->isAdmin())
                                 <li class="nav-item">
@@ -142,6 +142,9 @@
         <main>
             @yield('content')
         </main>
+        <footer class="w-100 bg-color-7 p-5">
+
+        </footer>
     </div>
 
 </body>

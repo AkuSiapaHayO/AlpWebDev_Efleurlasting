@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $carousels = Carousel::all();
-        $categories = Category::inRandomOrder()->limit(3)->get();
+        $categories = Category::inRandomOrder()->limit(2)->get();
 
         return view('home', compact('carousels', 'categories'));
     }
@@ -50,5 +50,15 @@ class HomeController extends Controller
     public function settingUser()
     {
         return view('User.setting');
+    }
+
+    public function chat()
+    {
+        // Replace '123456789' with your actual WhatsApp number
+        $adminPhoneNumber = '082171833200';
+
+        // Redirect to the WhatsApp chat link
+        $whatsappLink = "whatsapp://send?phone={$adminPhoneNumber}";
+        return redirect()->to($whatsappLink);
     }
 }
