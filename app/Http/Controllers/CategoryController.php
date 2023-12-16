@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -36,12 +37,21 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create([
-            'category_name' => $request->category_name,
-            'description' => $request->description
+        $validatedData = $request->validate([
+            'category_name' => 'required|string|max:225',
+            'description' => 'required|string|max:225',
+            'category_image' => 'required|image',
         ]);
 
-        return redirect()->route('products.view')->with('success', 'New Category Created');
+        $validatedData['category_image'] = $request->file('category_image')->store('category', 'public');
+
+        Category::create([
+            'category_name' => $request->category_name,
+            'description' => $request->description,
+            'category_image' => $validatedData['category_image'],
+        ]);
+
+        return redirect()->route('admin.categories.view')->with('success', 'New Category Created');
     }
 
     /**
@@ -49,9 +59,21 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $products = Product::where('category_id', $category->id)->get();
+        $products = Product::where('is_active', true)
+            ->where('category_id', $category->id)
+            ->get();
 
         return view('Category.show', [
+            'category' => $category,
+            'products' => $products,
+        ]);
+    }
+
+    public function adminshow(Category $category)
+    {
+        $products = Product::where('category_id', $category->id)->get();
+
+        return view('Admin.Category.show', [
             'category' => $category,
             'products' => $products,
         ]);
@@ -76,15 +98,27 @@ class CategoryController extends Controller
         $request->validate([
             'category_name' => 'required|string|max:255',
             'description' => 'required|string',
+            'category_image' => 'nullable|image', // Make the image field optional
         ]);
 
+        // Update category data
         $category->update([
             'category_name' => $request->input('category_name'),
             'description' => $request->input('description'),
         ]);
 
-        return redirect()->route('products.view', ['category' => $category->id])
-            ->with('success', 'Category updated successfully');
+        // Check if a new image is provided
+        if ($request->hasFile('category_image')) {
+
+            if ($category->category_image && Storage::disk('public')->exists($category->category_image)) {
+                Storage::disk('public')->delete($category->category_image);
+            }
+
+            $category->category_image = $request->file('category_image')->store('category', 'public');
+            $category->save();
+        }
+
+        return redirect()->route('admin.categories.view')->with('success', 'Category updated successfully');
     }
 
     /**
@@ -92,8 +126,14 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        if ($category->category_image && Storage::disk('public')->exists($category->category_image)) {
+            // Delete the old image
+            Storage::disk('public')->delete($category->category_image);
+        }
+
         $category->products()->delete();
         $category->delete();
-        return redirect()->route('products.view');
+
+        return redirect()->route('admin.categories.view')->with('success', 'Category deleted successfully');
     }
 }

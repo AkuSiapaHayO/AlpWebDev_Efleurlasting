@@ -26,8 +26,8 @@
                                     data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
                                         <p>
-                                            View All of your Categories at once. Create, Update and Delete with this section.
-                                        </p>
+                                            Manage all your product categories in one place. Create, update, and delete categories easily with
+                                            this section.                                        </p>
                                         <a href="{{ route('admin.categories.view') }}" class="card-link">
                                             <button class="btn btn-outline-primary">Manage Categories</button>
                                         </a>
@@ -48,8 +48,8 @@
                                     data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
                                         <p>
-                                            View All of your colors here
-                                        </p>
+                                            Explore all available colors for your products. Manage and update color options effortlessly in
+                                            this section.                                        </p>
                                         <a href="{{ route('user.view') }}" class="card-link">
                                             <button class="btn btn-outline-primary">Manage Colors</button>
                                         </a>
@@ -58,60 +58,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                Add New Category
-                            </button>
-                        </h2>
-                        <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                            data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                <div class="card mt-4">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Create New Category</h5>
-                                        <form action="{{ route('category.store') }}" method="post">
-                                            @csrf
-                                            <div class="mb-3">
-                                                <label for="category_name" class="form-label">Category Name</label>
-                                                <input type="text" class="form-control" id="category_name"
-                                                    name="category_name" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="description" class="form-label">Description</label>
-                                                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-success">Create Category</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Display Categories, too much makes the view so ew --}}
-                <div class="mb-4">
-                    <h2>Categories</h2>
-                    <div class="card-group">
-                        @foreach ($categories as $category)
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title" style="height: 50px; overflow: hidden;">
-                                        {{ $category->category_name }}
-                                    </h5>
-                                    <p class="card-text">{{ $category->description }}</p>
-                                    <a href="{{ route('category.show', ['category' => $category->id]) }}"
-                                        class="btn btn-sm btn-primary">View</a>
-                                    <a href="{{ route('category.edit', ['category' => $category->id]) }}"
-                                        class="btn btn-sm btn-secondary">Edit</a>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
 
                 <a href="{{ route('products.create') }}" class="btn btn-primary">Create Product</a>
 
