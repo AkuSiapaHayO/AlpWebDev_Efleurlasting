@@ -15,52 +15,106 @@
                 @foreach ($cartItems as $cartItem)
                     @php
                         $productColor = \App\Models\ProductColor::find($cartItem->productcolor_id);
+                        $product = $productColor->product;
+                        $color = $productColor->color;
+                        $category = $product->category;
                     @endphp
                     <div class="col mb-4">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    @if ($productColor && $productColor->product)
-                                        {{ $productColor->product->product_name }}
-                                    @else
-                                        Product not available
-                                    @endif
+                                    {{ $category->category_name }} - {{ $product->product_name }}
                                 </h5>
-
+                                <p class="card-text">Color: {{ $color->color_name }}</p>
+                                <p class="card-text">Quantity: {{ $cartItem->quantity }}</p>
+                                <p class="card-text">Note: {{ $cartItem->note }}</p>
                                 <p class="card-text">
-                                    <strong>Color:</strong>
-                                    @if ($productColor && $productColor->color)
-                                        {{ $productColor->color->color_name }}
-                                    @else
-                                        Color not available
-                                    @endif
+                                    Price:
+                                    {{ $productColor->product->price }}
+                                    @php
+                                        $totalAmount += $cartItem->quantity * $productColor->product->price;
+                                    @endphp
                                 </p>
 
                                 <p class="card-text">
-                                    <strong>Quantity:</strong> {{ $cartItem->quantity }}
+                                    <strong>Total:</strong> {{ $cartItem->quantity * $productColor->product->price }}
                                 </p>
 
-                                <p class="card-text">
-                                    <strong>Price:</strong>
-                                    @if ($productColor && $productColor->product)
-                                        {{ $productColor->product->price }}
-                                        @php
-                                            // Increment totalAmount by the current product price
-                                            $totalAmount += $cartItem->quantity * $productColor->product->price;
-                                        @endphp
-                                    @else
-                                        N/A
-                                    @endif
-                                </p>
+                                {{-- Update and Delete buttons --}}
+                                <div class="d-flex justify-content-between mt-3">
+                                    <!-- Update Button - Trigger Modal -->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#updateModal{{ $cartItem->id }}">
+                                        Update
+                                    </button>
 
-                                <p class="card-text">
-                                    <strong>Total:</strong>
-                                    @if ($productColor && $productColor->product)
-                                        {{ $cartItem->quantity * $productColor->product->price }}
-                                    @else
-                                        N/A
-                                    @endif
-                                </p>
+                                    <!-- Delete Button - Trigger Modal -->
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal{{ $cartItem->id }}">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Update Modal --}}
+                    <div class="modal fade" id="updateModal{{ $cartItem->id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="updateModalLabel{{ $cartItem->id }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="updateModalLabel{{ $cartItem->id }}">Update Cart Item</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Add your update form fields here -->
+                                    <form action="{{ route('cartitem.update', ['cartitem' => $cartItem->id]) }}"
+                                        method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        <!-- Your form fields go here -->
+                                        <div class="mb-3">
+                                            <label for="quantity">Quantity:</label>
+                                            <input type="number" class="form-control" id="quantity" name="quantity"
+                                                value="{{ $cartItem->quantity }}" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="note">Note:</label>
+                                            <textarea class="form-control" id="note" name="note"
+                                                rows="3">{{ $cartItem->note }}</textarea>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Delete Modal --}}
+                    <div class="modal fade" id="deleteModal{{ $cartItem->id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="deleteModalLabel{{ $cartItem->id }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel{{ $cartItem->id }}">Delete Cart Item</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete this item?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form action="{{ route('cartitem.delete', ['cartitem' => $cartItem->id]) }}"
+                                        method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>

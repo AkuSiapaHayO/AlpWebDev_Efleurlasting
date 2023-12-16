@@ -44,6 +44,8 @@ Route::get('/category/{category}', [CategoryController::class, 'show'])->name('c
 //CRUD Cart
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::post('/product/cart/create', [CartItemController::class, 'store'])->name('cartitem.store');
+Route::delete('/product/cart/cartitem/{cartitem}/destroy', [CartItemController::class, 'destroy'])->name('cartitem.delete');
+Route::put('/product/cart/cartitem/{cartitem}/update', [CartItemController::class, 'update'])->name('cartitem.update');
 
 //Settings
 Route::get('/setting/user', [HomeController::class, 'settingUser'])->middleware('auth')->name('user.setting');

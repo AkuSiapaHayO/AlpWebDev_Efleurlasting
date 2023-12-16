@@ -34,12 +34,13 @@ class CartItemController extends Controller
             // If not authenticated, redirect to the login page
             return redirect()->route('login')->with('error', 'Please log in to add products to your cart');
         }
-        
+
         $user = Auth::user();
         $cart = $user->cart;
 
         CartItem::create([
             'quantity' => $request->quantity,
+            'note' => $request->note ?? "",
             'cart_id' => $cart->id,
             'productcolor_id' => $request->productcolor,
         ]);
@@ -66,16 +67,23 @@ class CartItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CartItem $cartItem)
+    public function update(Request $request, CartItem $cartitem)
     {
-        //
+        $cartitem->update([
+            'quantity' => $request->input('quantity'),
+            'note' => $request->input('note', ''),
+        ]);
+
+        return redirect()->route('cart')->with('success', 'Cart item updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CartItem $cartItem)
+    public function destroy(CartItem $cartitem)
     {
-        //
+        $cartitem->delete();
+        return redirect()->route('cart');
     }
 }

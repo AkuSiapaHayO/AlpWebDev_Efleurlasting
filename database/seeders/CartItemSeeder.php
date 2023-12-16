@@ -15,20 +15,23 @@ class CartItemSeeder extends Seeder
     {
         CartItem::create([
             'quantity' => 1,
-            'cart_id' => 1,
+            'note' => "Cart 1",
+            'cart_id' => 2,
             'productcolor_id' => 1,
         ]);
 
         CartItem::create([
             'quantity' => 3,
-            'cart_id' => 1,
-            'productcolor_id' => 3,
+            'note' => "Cart 2",
+            'cart_id' => 2,
+            'productcolor_id' => 1,
         ]);
 
         CartItem::create([
             'quantity' => 2,
+            'note' => "Cart 3",
             'cart_id' => 2,
-            'productcolor_id' => 3,
+            'productcolor_id' => 1,
         ]);
     }
 }
