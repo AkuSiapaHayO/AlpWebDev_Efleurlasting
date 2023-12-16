@@ -55,7 +55,7 @@ class HomeController extends Controller
     public function chat()
     {
         // Replace '123456789' with your actual WhatsApp number
-        $adminPhoneNumber = '+6289684838111';
+        $adminPhoneNumber = '+628983979074';
 
         // Redirect to the WhatsApp chat link
         $whatsappLink = "whatsapp://send?phone={$adminPhoneNumber}";
