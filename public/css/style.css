@@ -74,3 +74,11 @@
     top: 5%;
     left: -7%;
 }
+
+.img-2 {
+    box-shadow: 10px 10px 5px var(--color-black);
+}
+
+.img-3 {
+    box-shadow: -10px 10px 5px var(--color-black);
+}
