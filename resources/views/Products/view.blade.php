@@ -31,16 +31,16 @@
                             @if ($product->images->isNotEmpty() && Storage::disk('public')->exists($product->images->first()->image_name))
                                 <img src="{{ asset('storage/' . $product->images->first()->image_name) }}"
                                     class="d-block w-100" alt="..."
-                                    style="max-height: 50vh; max-width: 100vw; object-fit: cover;">
-                            @else
+                                    style="height: 25vh; max-width: 100vw; object-fit: cover;">
+                                    @else
                                 @if ($product->images->isNotEmpty())
                                     <img src="{{ asset('Assets/products/' . $product->images->first()->image_name) }}"
                                         alt="Product Image" class="card-img-top img-fluid"
-                                        style="height: 250px; object-fit: cover;">
-                                @else
+                                        style="height: 30vh; max-width: 100vw; object-fit: cover;">
+                                        @else
                                     {{-- Display a placeholder image or text when no image is available --}}
                                     <div class="card-img-top d-flex align-items-center justify-content-center"
-                                        style="height: 250px; background: rgba(255, 255, 255, 0.7);">
+                                        style="height: 30vh; background: rgba(255, 255, 255, 0.7);">
                                         <p class="text-muted">No image available</p>
                                     </div>
                                 @endif

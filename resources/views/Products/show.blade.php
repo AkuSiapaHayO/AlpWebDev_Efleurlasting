@@ -11,12 +11,12 @@
                             @foreach ($images as $key => $image)
                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                     @if (Storage::disk('public')->exists($image->image_name))
-                                    <img src="{{ asset('storage/' . $image->image_name) }}" class="d-block w-100"
-                                        alt="Product Image">
-                                @else
-                                    <img src="{{ asset('Assets/products/' . $image->image_name) }}" alt="Product Image"
-                                        class="d-block w-100">
-                                @endif
+                                        <img src="{{ asset('storage/' . $image->image_name) }}" class="d-block w-100"
+                                            alt="Product Image" style="height: 75vh; object-fit: cover;">
+                                    @else
+                                        <img src="{{ asset('Assets/products/' . $image->image_name) }}" alt="Product Image"
+                                            class="d-block w-100" style="height: 75vh; object-fit: cover;">
+                                    @endif
                                 </div>
                             @endforeach
                         </div>

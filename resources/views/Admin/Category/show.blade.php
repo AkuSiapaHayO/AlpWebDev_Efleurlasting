@@ -50,11 +50,11 @@
                                             @if ($product->images->isNotEmpty())
                                                 <img src="{{ asset('Assets/products/' . $product->images->first()->image_name) }}"
                                                     alt="Product Image" class="card-img-top img-fluid"
-                                                    style="height: 250px; object-fit: cover;">
+                                                    style="max-height: 50vh; max-width: 100vw; object-fit: cover;">
                                             @else
                                                 {{-- Display a placeholder image or text when no image is available --}}
                                                 <div class="card-img-top d-flex align-items-center justify-content-center"
-                                                    style="height: 250px; background: rgba(255, 255, 255, 0.7);">
+                                                    style="height: 50vh; width:100vw; background: rgba(255, 255, 255, 0.7);">
                                                     <p class="text-muted">No image available</p>
                                                 </div>
                                             @endif
@@ -65,7 +65,7 @@
                                             <h6 class="card-title mb-0" style="max-height: 50px; overflow: hidden;">
                                                 {{ $product->category->category_name }} - {{ $product->product_name }}
                                             </h6>
-                                            <p>{{ $product->is_active ? 'Shown' : 'Not Shown' }}</p>
+                                            <p>{{ $product->is_active ? 'Active' : 'InActive' }}</p>
                                             <a href="{{ route('products.show', ['product' => $product->id]) }}"
                                                 class="btn btn-primary mt-2">View Details</a>
                                         </div>
