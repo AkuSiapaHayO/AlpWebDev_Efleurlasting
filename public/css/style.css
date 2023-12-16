@@ -66,8 +66,16 @@
     border-radius: 35% 35% 0 0 ;
 }
 
-.borders {
+.borders-left {
+    border-left: 7px solid var(--color-7);
+}
+
+.borders-bottom-1 {
     border-bottom: 3px solid var(--color-black);
+}
+
+.borders-bottom-2 {
+    border-bottom: 7px solid var(--color-7);
 }
 
 #img-1 {

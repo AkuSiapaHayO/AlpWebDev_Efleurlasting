@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <section>
-        <div class="container p-0" style="max-width: 1540px">
+    <section class="bg-color-1">
+        <div class="container-lg p-0" style="max-width: 1540px;">
             <div id="carouselExampleCaptions" class="carousel slide">
                 <div class="carousel-indicators py-3 m-0">
                     @foreach ($carousels as $key => $carousel)
@@ -47,7 +47,7 @@
             <div class="row py-5">
                 <div class="col-md-7 d-flex align-items-center justify-content-center px-5 py-3">
                     <div>
-                        <p class="sub-heading text-secondary ps-3" style="border-left: 7px solid var(--color-7);">
+                        <p class="sub-heading text-secondary ps-3 borders-left" >
                             Efleurlasting
                         </p>
                         <h1 class="heading mb-3 pb-1">What We Do</h1>
@@ -75,7 +75,7 @@
         <div class="container-lg">
             <div class="px-5 pt-5 text-center">
                 <p class="sub-heading mb-2 text-secondary">Efleurlasting</p>
-                <h1 class="heading pb-3 borders">Categories</h1>
+                <h1 class="heading pb-3 borders-bottom-1">Categories</h1>
             </div>
             @foreach ($categories as $i => $category)
                 <div class="row py-5">
@@ -104,19 +104,16 @@
         </div>
     </section>
 
-    <section>
+    <section class="contact position-relative">
         <div class="container-lg">
-            <div class="d-flex flex-column align-items-center justify-content-center py-5">
+            <div class="d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="w-75">
-                    <p class="sub-heading text-secondary text-center mb-2">Efleurlasting</p>
-                    <h1 class="heading text-center">Contact Us</h1>
-                    <p class="text text-center">Please contact us for more information or detail about the product. For
-                        customization
-                        in your order, please contact us via <span class="text-success">Whats-Apps</span> about the detail.
-                        Feel free to reach out to us, we value your questions, feedback, and inquiries. Our
-                        dedicated team is here to assist you and provide the support you need.</p>
+                    <h1 class="heading text-center text-light">Contact Us</h1>
+                    <p class="text text-center text-light">Contact us for more information about the product. For
+                        custom order, please order via Whats-Apps.
+                    </p>
                 </div>
-                <a href="{{route('chat.whatsapp')}}">
+                <a href="{{ route('chat.whatsapp') }}">
                     <button class="btn btn-light-green text-light fw-bold fs-5" style="padding:10px 40px">
                         <img src="{{ asset('Assets/Icons/whatsapp.png') }}" style="max-width: 30px" class="img-fluid me-2"
                             alt="">
@@ -125,5 +122,7 @@
                 </a>
             </div>
         </div>
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="z-index: -1; background-color:rgb(0, 0, 0, 0.6)"></div>
+        <img src="{{ asset('Assets/Categories/CategoryImage7.jpg') }}" class="position-absolute top-0 start-0 w-100 h-100" style="z-index:-2; object-fit:cover; filter:blur(4px)" alt="">
     </section>
 @endsection

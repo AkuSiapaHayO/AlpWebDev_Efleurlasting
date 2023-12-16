@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-3">
+    <div class="container mt-5 vh-100">
         <div class="card">
             <div class="card-header d-flex align-items-center justify-content-between">
                 <a href="{{ route('admin.setting') }}"><button class="btn btn-outline-primary">Back</button></a>

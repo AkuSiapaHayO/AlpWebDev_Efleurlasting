@@ -28,7 +28,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-color-7 shadow-sm">
+        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
@@ -91,7 +91,7 @@
                                         </a>
                                     @else
                                         <a class="nav-link" href="{{ route('user.setting') }}">
-                                            <img src="{{ asset('assets/profile.png') }}" alt=""
+                                            <img src="{{ asset('Assets/Icons/profile.png') }}" alt=""
                                                 style="width: 35px; height: 35px; overflow: hidden; object-fit:cover; object-position: center; border-radius: 50%"
                                                 class="img-fluid">
                                         </a>
@@ -139,11 +139,15 @@
             </div>
         </nav>
 
-        <main>
+        <main style="padding-top: 55px">
             @yield('content')
         </main>
-        <footer class="w-100 bg-color-7 p-5">
 
+        <footer class="w-100 bg-white px-5 pb-5 pt-3">
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <img src="{{asset('Assets/Logo/logo.png')}}" style="max-width: 250px" alt="">
+                <p>&#169; Efleurlasting. All Right Reserved.</p>
+            </div>
         </footer>
     </div>
 
