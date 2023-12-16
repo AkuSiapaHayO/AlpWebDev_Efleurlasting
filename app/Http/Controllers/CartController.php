@@ -18,7 +18,7 @@ class CartController extends Controller
         $cart = $user->cart;
         $cartItems = $cart->cartItems()->with('productColor')->get();
 
-        return view('Cart.cart', [
+        return view('Cart.view', [
             'cart' => $cart,
             'cartItems' => $cartItems,
         ]);

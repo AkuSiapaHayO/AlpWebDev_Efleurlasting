@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-3">
+    <div class="container mt-5">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <a href="{{ route('products.view') }}">
