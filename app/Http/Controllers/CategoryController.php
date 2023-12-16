@@ -16,6 +16,13 @@ class CategoryController extends Controller
         //
     }
 
+    public function adminindex()
+    {
+        return view('Admin.Category.view', [
+            'categories' => Category::all(),
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -56,7 +63,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('Category.edit', [
+        return view('Admin.Category.edit', [
             'category' => $category,
         ]);
     }
