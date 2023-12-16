@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -74,7 +75,7 @@ Route::get('/setting/admin/carousel/create', [CarouselController::class, 'create
 Route::post('/setting/admin/carousel/store', [CarouselController::class, 'store'])->middleware('admin')->name('carousel.store');
 Route::put('/setting/admin/carousel/{carousel}/update', [CarouselController::class, 'update'])->middleware('admin')->name('carousel.update');
 Route::put('/setting/admin/carousel/{carousel}/updateImage', [CarouselController::class, 'updateImage'])->middleware('admin')->name('carousel.updateImage');
-Route::delete('/setting/admin/caroousel/{carousel}/destroy', [CarouselController::class, 'destroy'])->middleware('admin')->name('carousel.destroy');
+Route::delete('/setting/admin/carousel/{carousel}/destroy', [CarouselController::class, 'destroy'])->middleware('admin')->name('carousel.destroy');
 
 //CRUD Category
 Route::post('/setting/admin/category/create', [CategoryController::class, 'store'])->middleware('admin')->name('category.store');
@@ -87,3 +88,6 @@ Route::get('/setting/admin/category/{category}', [CategoryController::class, 'ad
 //WhatsApp
 Route::get('/home/chat', [HomeController::class, 'chat'])->name('chat.whatsapp');
 
+//CRUD Colors
+Route::get('/setting/admin/colors', [ColorController::class, 'index'])->middleware('admin')->name('colors.view');
+Route::delete('/setting/admin/colors/{color}/destroy', [ColorController::class, 'destroy'])->middleware('admin')->name('color.destroy');

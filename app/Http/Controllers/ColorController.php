@@ -12,7 +12,9 @@ class ColorController extends Controller
      */
     public function index()
     {
-        //
+        return view('Admin.Color.view', [
+            'colors' => Color::all(),
+        ]);
     }
 
     /**
@@ -60,6 +62,7 @@ class ColorController extends Controller
      */
     public function destroy(Color $color)
     {
-        //
+        $color->delete();
+        return redirect()->route('colors.view');
     }
 }

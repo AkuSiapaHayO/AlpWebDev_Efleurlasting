@@ -52,7 +52,7 @@
                                             Explore all available colors for your products. Manage and update color options
                                             effortlessly in
                                             this section. </p>
-                                        <a href="{{ route('user.view') }}" class="card-link">
+                                        <a href="{{ route('colors.view') }}" class="card-link">
                                             <button class="btn btn-outline-primary">Manage Colors</button>
                                         </a>
                                     </div>
