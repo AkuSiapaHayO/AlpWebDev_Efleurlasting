@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('recipient_phone');
             $table->string('recipient_address');
             $table->string('notes');
+            $table->string('payment_details');
             $table->string('transfer_evidence_img');
             $table->boolean('delivery_status');
             $table->boolean('isDelivery');

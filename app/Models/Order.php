@@ -19,6 +19,7 @@ class Order extends Model
         'recipient_phone',
         'recipient_address',
         'notes',
+        'payment_details',
         'transfer_evidence_img',
         'delivery_status',
         'isDelivery',
