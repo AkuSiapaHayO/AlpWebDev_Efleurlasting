@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    @php($user = Auth::user())
     <section>
         <div class="container-lg p-0" style="max-width: 1540px;">
             <div id="carouselExampleCaptions" class="carousel slide">
@@ -105,49 +104,54 @@
         </div>
     </section>
 
-    <section>
-        <div class="container-lg">
-            <div class="card shadow-lg h-100 mb-5" style="border: none;">
-                <div class="card-body p-5">
-                    <h1 class="heading borders-left">Testimonial</h1>
-                    <form action="" class="mt-5">
-                        <div class="row g-3">
-                            <div class="col-12">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}" readonly disabled>
-                            </div>
-                            <div class="col-12">
+    @auth
+        @php($user = Auth::user())
+        <section>
+            <div class="container-lg">
+                <div class="card shadow-lg h-100 mb-5" style="border: none;">
+                    <div class="card-body p-5">
+                        <h1 class="heading borders-left">Testimonial</h1>
+                        <form action="" class="mt-5">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" name="name" id="name"
+                                        value="{{ $user->username }}" readonly disabled>
+                                </div>
+                                <div class="col-12">
 
+                                </div>
+                                <div class="col-12">
+                                    <label for="testimony" class="form-label">Leave your testimony here</label>
+                                    <textarea class="form-control" id="testimony" name="testimony" rows="5" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <label for="product" class="form-label">Choose Product</label>
+                                    <select class="form-select" name="product" id="product"
+                                        aria-label="Default select example" required>
+                                        <option value="" disabled selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="product-image" class="form-label">Review Image</label>
+                                    <input type="file" id="product-image" name="product-image" class="form-control"
+                                        accept="image/jpg, image/png, image/jpeg" onchange="previewImage()">
+                                    <img class="img-preview img-fluid mt-3 w-50" style="max-width: 300px">
+                                </div>
+                                <input type="hidden" value="{{ $user->id }}">
                             </div>
-                            <div class="col-12">
-                                <label for="testimony" class="form-label">Leave your testimony here</label>
-                                <textarea class="form-control" id="testimony" name="testimony" rows="5" required></textarea>
-                            </div>
-                            <div class="col-12">
-                                <label for="product" class="form-label">Choose Product</label>
-                                <select class="form-select" name="product" id="product" aria-label="Default select example" required>
-                                    <option value="" disabled selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <label for="product-image" class="form-label">Review Image</label>
-                                <input type="file" id="product-image" name="product-image" class="form-control"
-                                    accept="image/jpg, image/png, image/jpeg" onchange="previewImage()">
-                                <img class="img-preview img-fluid mt-3 w-50" style="max-width: 300px">
-                            </div>
-                            <input type="hidden" value="{{ $user->id }}">
-                        </div>
-                        <button type="submit" class="btn btn-pink-color text-white fw-bold mt-4 w-100">Submit
-                            Testimony</button>
-                    </form>
+                            <button type="submit" class="btn btn-pink-color text-white fw-bold mt-4 w-100">Submit
+                                Testimony</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+    @endauth
 
-    </section>
 
     <section class="contact position-relative">
         <div class="container-lg">
