@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('testimony');
             $table->string('testimony_image');
+            $table->string('name');
             $table->date('date');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

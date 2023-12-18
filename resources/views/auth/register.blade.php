@@ -2,18 +2,18 @@
 
 @section('content')
     <section>
-        <div class="container-fluid bg-color-1 vh-100">
+        <div class="container-fluid">
             <div class="row align-items-center">
-                <div class="col-md-5 d-none d-md-block p-0 vh-100">
-                    <img src="{{ asset('Assets/Categories/CategoryImage7.jpg') }}" class="w-100 h-100"
+                <div class="col-md-6 d-none d-md-block p-0">
+                    <img src="{{ asset('Assets/Categories/CategoryImage7.jpg') }}" class="img-fluid vh-100"
                         style="object-fit: cover; filter: blur(0px);" alt="">
                 </div>
-                <div class="col-md-7 px-5">
+                <div class="col-md-6 px-5 py-5">
                     <div class="">
-                        <div class="d-flex flex-column align-items-center">
+                        <div class="d-flex flex-column align-items-center justify-content-center">
                             <div>
-                                <p class="sub-heading text-black mb-2 text-center">Artificial Flower Shop</p>
-                                <h1 class="heading mb-5 text-center">Register To Efleurlasting</h1>
+                                <p class="sub-heading text-black mb-2 text-center d-none d-md-block">Artificial Flower Shop</p>
+                                <h1 class="heading mb-4 text-center">Register To Efleurlasting</h1>
                             </div>
 
                             <form method="POST" action="{{ route('register') }}" class="row g-3 fw-bold"
@@ -125,7 +125,7 @@
                                         placeholder="08xxxxxxxxxx" value="{{ old('phone') }}" required>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-pink-color w-100 fw-bold">Register</button>
+                                    <button type="submit" class="btn btn-pink-color mt-4 w-100 fw-bold">Register</button>
                                 </div>
                             </form>
                         </div>

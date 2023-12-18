@@ -12,6 +12,7 @@ class Testimony extends Model
     protected $fillable = [
         'testimony',
         'testimony_image',
+        'name',
         'date',
     ];
 }
