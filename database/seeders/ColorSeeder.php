@@ -14,23 +14,31 @@ class ColorSeeder extends Seeder
     public function run(): void
     {
         Color::create([
-            'color_name' => 'pink',
+            'color_name' => 'Pink',
         ]);
 
         Color::create([
-            'color_name' => 'lilac',
+            'color_name' => 'Lilac',
         ]);
 
         Color::create([
-            'color_name' => 'red',
+            'color_name' => 'Red',
         ]);
 
         Color::create([
-            'color_name' => 'blue',
+            'color_name' => 'Blue',
         ]);
 
         Color::create([
-            'color_name' => 'white',
+            'color_name' => 'White',
+        ]);
+
+        Color::create([
+            'color_name' => '*Customizable colors pallete (flower & wrapping paper)',
+        ]);
+
+        Color::create([
+            'color_name' => 'Purple',
         ]);
     }
 }

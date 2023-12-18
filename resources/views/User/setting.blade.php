@@ -131,7 +131,8 @@
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-
+                        <a href="{{ route('order.view') }}" class="btn btn-primary"
+                                    id="edit">View Orders</a>
                     </div>
                 </div>
             </div>

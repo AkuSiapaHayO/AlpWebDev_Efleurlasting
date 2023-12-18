@@ -14,14 +14,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Cart</td>
-                        <td>{{ $cart->id }}</td>
-                    </tr>
-                    <tr>
                         <td>User</td>
                         <td>{{ $user->name }}</td>
                     </tr>
-                    <!-- Add more rows for other fields as needed -->
                     <tr>
                         <td>Delivery Date</td>
                         <td>{{ $deliveryDate }}</td>

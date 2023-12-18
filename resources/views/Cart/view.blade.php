@@ -21,6 +21,7 @@
                             $color = $productColor->color;
                             $category = $product->category;
                         @endphp
+
                         <div class="col mb-4">
                             <div class="card">
                                 <div class="card-body">
@@ -33,20 +34,51 @@
                                             </h5>
                                         </label>
                                     </div>
-                                    <p class="card-text">Color: {{ $color->color_name }}</p>
-                                    <p class="card-text">Quantity: {{ $cartItem->quantity }}</p>
-                                    <p class="card-text">Note: {{ $cartItem->note }}</p>
-                                    <p class="card-text">
-                                        Price:
-                                        {{ $productColor->product->price }}
-                                        @php
-                                            $totalAmount += $cartItem->quantity * $productColor->product->price;
-                                        @endphp
-                                    </p>
 
-                                    <p class="card-text">
-                                        <strong>Total:</strong> {{ $cartItem->quantity * $productColor->product->price }}
-                                    </p>
+                                    {{-- Display the first image of the product --}}
+                                    @if ($product->images->isNotEmpty() && Storage::disk('public')->exists($product->images->first()->image_name))
+                                        <img src="{{ asset('storage/' . $product->images->first()->image_name) }}"
+                                            class="d-block w-100 img-thumbnail" alt="Product Image"
+                                            style="height: 40vh; max-width: 100vw; object-fit: cover;">
+                                    @else
+                                        {{-- Display a placeholder image from the Asset/products/ path when no image is available --}}
+                                        @if ($product->images->isNotEmpty())
+                                            <img src="{{ asset('Assets/products/' . $product->images->first()->image_name) }}"
+                                                alt="Product Image" class="card-img-top img-fluid img-thumbnail"
+                                                style="height: 40vh; max-width: 100vw; object-fit: cover;">
+                                        @else
+                                            {{-- Display a placeholder image or text when no image is available --}}
+                                            <div class="card-img-top d-flex align-items-center justify-content-center"
+                                                style="height: 40vh; background: rgba(255, 255, 255, 0.7);">
+                                                <p class="text-muted">No image available</p>
+                                            </div>
+                                        @endif
+                                    @endif
+
+                                    <table class="table mt-3">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Color</th>
+                                                <td>{{ $color->color_name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Quantity</th>
+                                                <td>{{ $cartItem->quantity }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Note</th>
+                                                <td>{{ $cartItem->note }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Price</th>
+                                                <td>Rp {{ number_format($productColor->product->price, 0, ',', '.') }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Total</th>
+                                                <td>Rp {{ number_format($cartItem->quantity * $productColor->product->price, 0, ',', '.') }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
                                     {{-- Update and Delete buttons --}}
                                     <div class="d-flex justify-content-between mt-3">
@@ -66,6 +98,7 @@
                             </div>
                         </div>
                     @endforeach
+
                 </div>
                 <p>Total: {{ $totalAmount }}</p>
                 <button type="submit" class="btn btn-success">Proceed to Checkout</button>
@@ -123,7 +156,7 @@
                             <form action="{{ route('cartitem.delete', ['cartitem' => $cartItem->id]) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-outline-danger">Delete</button>
                             </form>
                         </div>
                     </div>

@@ -24,6 +24,31 @@ class ImageSeeder extends Seeder
         ]);
 
         Image::create([
+            'image_name' => 'classic_sizeregular_3.jpg',
+            'product_id' => '1'
+        ]);
+
+        Image::create([
+            'image_name' => 'classic_sizeregular_4.jpg',
+            'product_id' => '1'
+        ]);
+
+        Image::create([
+            'image_name' => 'classic_sizeregular_5.jpg',
+            'product_id' => '1'
+        ]);
+
+        Image::create([
+            'image_name' => 'classic_sizeregular_6.jpg',
+            'product_id' => '1'
+        ]);
+
+        Image::create([
+            'image_name' => 'classic_sizelux_1.jpg',
+            'product_id' => '2'
+        ]);
+
+        Image::create([
             'image_name' => 'mixbouquet_sizepetite_1.jpg',
             'product_id' => '3'
         ]);
@@ -36,6 +61,137 @@ class ImageSeeder extends Seeder
         Image::create([
             'image_name' => 'mixbouquet_sizepetite_3.jpg',
             'product_id' => '3'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizepetite_4.jpg',
+            'product_id' => '3'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizepetite_5.jpg',
+            'product_id' => '3'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizepetite_6.jpg',
+            'product_id' => '3'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizesmall_1.jpg',
+            'product_id' => '4'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizesmall_2.jpg',
+            'product_id' => '4'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizesmall_3.jpg',
+            'product_id' => '4'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizesmall_4.jpg',
+            'product_id' => '4'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizesmall_5.jpg',
+            'product_id' => '4'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizesmall_6.jpg',
+            'product_id' => '4'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizemedium_1.jpg',
+            'product_id' => '5'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizemedium_2.jpg',
+            'product_id' => '5'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizemedium_3.jpg',
+            'product_id' => '5'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizemedium_4.jpg',
+            'product_id' => '5'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizemedium_5.jpg',
+            'product_id' => '5'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizemedium_6.jpg',
+            'product_id' => '5'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizemedium_7.jpg',
+            'product_id' => '5'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizemedium_8.jpg',
+            'product_id' => '5'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizemedium_9.jpg',
+            'product_id' => '5'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizemedium_10.jpg',
+            'product_id' => '5'
+        ]);
+
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizelarge_1.jpg',
+            'product_id' => '6'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_minipom_1.jpg',
+            'product_id' => '7'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_midipom_1.jpg',
+            'product_id' => '8'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_miditeddy_1.jpg',
+            'product_id' => '9'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_largeteddy_1.jpg',
+            'product_id' => '10'
+        ]);
+
+        Image::create([
+            'image_name' => 'bloombox_mini_1.jpg',
+            'product_id' => '11'
+        ]);
+
+        Image::create([
+            'image_name' => 'bloombox_midi_1.jpg',
+            'product_id' => '12'
         ]);
     }
 }
