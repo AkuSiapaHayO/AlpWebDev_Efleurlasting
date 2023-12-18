@@ -47,20 +47,17 @@
                     <!-- Left Side Of Navbar -->
 
                     {{-- FIX ROUTE  --}}
-                    <ul class="navbar-nav me-auto fw-bold">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('about') }}">About Us</a>
+                    <ul class="navbar-nav gap-3 ms-5 fw-bold">
+                        <li class="nav-item {{ request()->routeIs('products') ? 'active-link' : '' }}">
+                            <a class="nav-link p-0 text-black" href="{{ route('products') }}">Products</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('products') }}">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+                        <li class="nav-item {{ request()->routeIs('about') ? 'active-link' : '' }}">
+                            <a class="nav-link p-0 text-black" href="{{ route('about') }}">About</a>
                         </li>
                         @auth
                             @if (Auth::user()->isUser())
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('cart', Auth::user()) }}">Cart</a>
+                                    <a class="nav-link p-0 text-black" href="{{ route('cart', Auth::user()) }}">Cart</a>
                                 </li>
                             @endif
                         @endauth
@@ -143,7 +140,7 @@
             @yield('content')
         </main>
 
-        <footer class="w-100 bg-white px-5 pb-5 pt-3">
+        <footer class="w-100 bg-white px-5 pb-3 pt-3 @if(request()->is('login') || request()->is('register')) d-none @endif">
             <div class="d-flex flex-column align-items-center justify-content-center">
                 <img src="{{asset('Assets/Logo/logo.png')}}" style="max-width: 250px" alt="">
                 <p>&#169; Efleurlasting. All Right Reserved.</p>
