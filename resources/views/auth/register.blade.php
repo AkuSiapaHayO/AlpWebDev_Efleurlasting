@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-md-6 d-none d-md-block p-0">
-                    <img src="{{ asset('Assets/Categories/CategoryImage7.jpg') }}" class="img-fluid vh-100"
+                    <img src="{{ asset('Assets/Categories/CategoryImage7.jpg') }}" class="img-fluid vh-100 w-100"
                         style="object-fit: cover; filter: blur(0px);" alt="">
                 </div>
                 <div class="col-md-6 px-5 py-5">
@@ -17,7 +17,7 @@
                             </div>
 
                             <form method="POST" action="{{ route('register') }}" class="row g-3 fw-bold"
-                                enctype="multipart/form-data">
+                                enctype="multipart/form-data" style="max-width: 1200px">
                                 @csrf
                                 <div class="col-md-6">
                                     <label for="username" class="form-label">Username</label>

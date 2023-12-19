@@ -14,12 +14,18 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('Products.view', [
-            'products' => Product::where('is_active', true)->get(),
-            'categories' => Category::all(),
-        ]);
+        $categories = Category::all();
+        if ($request->has('search')) {
+            $products = Product::where('name', 'like', '%'.$request->search.'%')->where('is_active', true)->paginate(15)->withQueryString();
+        } else {
+            $products = Product::where('is_active', true)->paginate(15);
+        }
+
+        
+
+        return view('Products.view', compact('categories', 'products'));
     }
 
     public function adminindex()

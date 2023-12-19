@@ -22,9 +22,9 @@
                                     alt="..." style="max-height: 60vh; max-width: 1540px; object-fit: cover;">
                             @endif
                             <div
-                                class="carousel-captions position-absolute start-0 bottom-0 py-5 w-100 d-none d-md-block px-5">
+                                class="carousel-captions position-absolute start-0 bottom-0 py-5 w-100 d-none d-md-flex flex-column align-items-center px-5">
                                 <h5 class="heading text-black text-center fs-2 py-1 pt-3">{{ $carousel->title }}</h5>
-                                <p class="text text-center py-2 text-black fw-semibold">{{ $carousel->description }}</p>
+                                <p class="text text-center py-2 text-black fw-semibold w-50">{{ $carousel->description }}</p>
                             </div>
                         </div>
                     @endforeach
@@ -141,7 +141,6 @@
                                         accept="image/jpg, image/png, image/jpeg" onchange="previewImage()">
                                     <img class="img-preview img-fluid mt-3 w-50" style="max-width: 300px">
                                 </div>
-                                <input type="hidden" value="{{ $user->id }}">
                             </div>
                             <button type="submit" class="btn btn-pink-color text-white fw-bold mt-4 w-100">Submit
                                 Testimony</button>
