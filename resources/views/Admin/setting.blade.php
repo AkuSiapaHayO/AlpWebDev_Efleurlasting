@@ -77,6 +77,7 @@
                             smooth
                             and secure financial transaction process. Stay vigilant to prevent fraudulent activities.
                         </p>
+                        <a href="{{ route('payment.view') }}"><button class="btn btn-outline-primary">Approve Payment</button></a>
                     </div>
                 </div>
             </div>

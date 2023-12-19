@@ -165,7 +165,52 @@ class ImageSeeder extends Seeder
         ]);
 
         Image::create([
+            'image_name' => 'mixbouquet_sizelarge_2.jpg',
+            'product_id' => '6'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizelarge_3.jpg',
+            'product_id' => '6'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizelarge_4.jpg',
+            'product_id' => '6'
+        ]);
+
+        Image::create([
+            'image_name' => 'mixbouquet_sizelarge_5.jpg',
+            'product_id' => '6'
+        ]);
+
+        Image::create([
             'image_name' => 'graduation_minipom_1.jpg',
+            'product_id' => '7'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_minipom_2.jpg',
+            'product_id' => '7'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_minipom_3.jpg',
+            'product_id' => '7'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_minipom_4.jpg',
+            'product_id' => '7'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_minipom_5.jpg',
+            'product_id' => '7'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_minipom_6.jpg',
             'product_id' => '7'
         ]);
 
@@ -175,7 +220,32 @@ class ImageSeeder extends Seeder
         ]);
 
         Image::create([
+            'image_name' => 'graduation_midipom_2.jpg',
+            'product_id' => '8'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_midipom_3.jpg',
+            'product_id' => '8'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_midipom_4.jpg',
+            'product_id' => '8'
+        ]);
+
+        Image::create([
             'image_name' => 'graduation_miditeddy_1.jpg',
+            'product_id' => '9'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_miditeddy_2.jpg',
+            'product_id' => '9'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_miditeddy_3.jpg',
             'product_id' => '9'
         ]);
 
@@ -185,12 +255,42 @@ class ImageSeeder extends Seeder
         ]);
 
         Image::create([
+            'image_name' => 'graduation_largeteddy_2.jpg',
+            'product_id' => '10'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_largeteddy_3.jpg',
+            'product_id' => '10'
+        ]);
+
+        Image::create([
+            'image_name' => 'graduation_largeteddy_4.jpg',
+            'product_id' => '10'
+        ]);
+
+        Image::create([
             'image_name' => 'bloombox_mini_1.jpg',
             'product_id' => '11'
         ]);
 
         Image::create([
+            'image_name' => 'bloombox_mini_2.jpg',
+            'product_id' => '11'
+        ]);
+
+        Image::create([
+            'image_name' => 'bloombox_mini_3.jpg',
+            'product_id' => '11'
+        ]);
+
+        Image::create([
             'image_name' => 'bloombox_midi_1.jpg',
+            'product_id' => '12'
+        ]);
+
+        Image::create([
+            'image_name' => 'bloombox_midi_2.jpg',
             'product_id' => '12'
         ]);
     }

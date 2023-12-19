@@ -1,6 +1,33 @@
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&family=Kalnia:wght@400;500;600;700&display=swap');
 
+@font-face {
+    font-family: 'himalaya';
+    src: url('/fonts/himalaya.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'newyork';
+    src: url('/fonts/newyork.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'callinda';
+    src: url('/fonts/callinda.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'msyi';
+    src: url('/fonts/msyi.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 :root {
     --main-color: #efc4b9;
@@ -15,7 +42,8 @@
 }
 
 .heading {
-    font-family: 'Hedvig Letters Serif', serif;
+    font-family: 'newyork';
+    /* font-family: 'Hedvig Letters Serif', serif; */
     font-weight: 600;
     letter-spacing: 3px;
 }
@@ -28,6 +56,8 @@
 }
 
 .text {
+    font-family: 'msyi';
+    font-size: 20px;
     letter-spacing: 1px;
     line-height: 25px;
     text-align: left;
@@ -36,22 +66,28 @@
 .bg-color-1 {
     background-color: var(--main-color);
 }
+
 .bg-color-2 {
     background-color: var(--color-2);
 }
+
 .bg-color-3 {
     background-color: var(--color-3);
 }
+
 .bg-color-4 {
     background-color: var(--color-4);
 }
+
 .bg-color-5 {
     background-color: var(--color-5);
 }
+
 .bg-color-6 {
     background-color: var(--color-6);
 }
-.bg-color-7{
+
+.bg-color-7 {
     background-color: var(--color-7);
 }
 
@@ -79,7 +115,3 @@
 .img-shadow {
     box-shadow: 10px 10px 5px var(--color-black);
 }
-
-
-
-
