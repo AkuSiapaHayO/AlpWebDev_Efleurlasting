@@ -3,20 +3,21 @@
 @section('content')
     <section>
         <div class="container-fluid">
-            <div class="row align-items-center">
+            <div class="row align-items-center justify-content-center">
                 <div class="col-md-6 d-none d-md-block p-0">
-                    <img src="{{ asset('Assets/Categories/CategoryImage7.jpg') }}" class="img-fluid vh-100"
-                        style="object-fit: cover; filter: blur(0px);" alt="">
+                    <img src="{{ asset('Assets/Categories/CategoryImage7.jpg') }}" class="img-fluid vh-100 w-100"
+                        style="object-fit: cover; filter: blur(0px); height: 100vh" alt="">
                 </div>
                 <div class="col-md-6 px-5">
                     <div class="">
                         <div class="d-flex flex-column align-items-center justify-content-center" style="height: 100vh">
                             <div>
-                                <p class="sub-heading text-black mb-2 text-center d-none d-md-block" >Artificial Flower Shop</p>
+                                <p class="sub-heading text-black mb-2 text-center d-none d-md-block">Artificial Flower Shop
+                                </p>
                                 <h1 class="heading mb-4 text-center">Welcome to Efleurlasting</h1>
                             </div>
 
-                            <form method="POST" action="{{ route('login') }}" class="w-100">
+                            <form method="POST" action="{{ route('login') }}" class="w-100" style="max-width: 900px">
                                 @csrf
 
                                 <div class="mb-3">
@@ -45,7 +46,8 @@
                                     @enderror
                                 </div>
 
-                                <button type="submit" class="btn btn-pink-color fw-bold mt-4 w-100">{{ __('Login') }}</button>
+                                <button type="submit"
+                                    class="btn btn-pink-color fw-bold mt-4 w-100">{{ __('Login') }}</button>
                             </form>
                         </div>
                     </div>

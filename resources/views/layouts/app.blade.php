@@ -47,7 +47,7 @@
                     <!-- Left Side Of Navbar -->
 
                     {{-- FIX ROUTE  --}}
-                    <ul class="navbar-nav gap-3 ms-5 fw-bold">
+                    <ul class="navbar-nav gap-3 ms-5">
                         <li class="nav-item {{ request()->routeIs('products') ? 'active-link' : '' }}">
                             <a class="nav-link p-0 text-black" href="{{ route('products') }}">Products</a>
                         </li>
@@ -67,7 +67,7 @@
 
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto align-items-center fw-bold">
+                    <ul class="navbar-nav ms-auto align-items-center">
                         @auth
                             @if (Auth::user()->isAdmin())
                                 <li class="nav-item">
