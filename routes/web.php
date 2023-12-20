@@ -35,7 +35,6 @@ Auth::routes();
 //Main
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
-Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 //Products + Category
 Route::get('/products', [ProductController::class, 'index'])->name('products');

@@ -100,7 +100,6 @@
                     @endforeach
 
                 </div>
-                <p>Total: {{ $totalAmount }}</p>
                 <button type="submit" class="btn btn-success">Proceed to Checkout</button>
             </form>
         @endif

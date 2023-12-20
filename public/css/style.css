@@ -126,3 +126,29 @@
     transform: scale(1.1);
     transition: .3s;
 }
+
+
+.number span {
+    cursor: pointer;
+}
+
+.number input {
+    height: 25px;
+    width: 60px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.number .minus,
+.plus {
+    width: 25px;
+    height: 25px;
+    background: #f2f2f2;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 3px 8px;
+    vertical-align: middle;
+}

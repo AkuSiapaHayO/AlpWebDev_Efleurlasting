@@ -18,7 +18,7 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         if ($request->has('search')) {
-            $products = Product::where('name', 'like', '%'.$request->search.'%')->where('is_active', true)->paginate(15)->withQueryString();
+            $products = Product::where('product_name', 'like', '%'.$request->search.'%')->where('is_active', true)->paginate(15)->withQueryString();
         } else {
             $products = Product::where('is_active', true)->paginate(15);
         }
