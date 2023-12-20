@@ -58,12 +58,11 @@
                     <p class="text-secondary fw-bold mb-1 text-uppercase">Quantity</p>
                     @livewire('counter')
                     <div class="my-3">
-                        <label for="note" class="form-label text-secondary fw-bold mb-0 mb-2">Notes (For customizable
-                            color-pallete)</label>
+                        <label for="note" class="form-label text-secondary fw-bold mb-0 mb-2">Notes (Input your custom color here)</label>
                         <input type="text" class="form-control" id="note" name="note"
                             placeholder="Input 'none' for non-customizable color" required>
                     </div>
-                    <h1 class="heading my-4" style="font-size: 35px;">Rp {{ number_format($product->price, 0, '.', ',') }}</h1>
+                    <h1 class="my-4" style="font-size: 35px;">Rp {{ number_format($product->price, 0, '.', ',') }}</h1>
                     <button type="submit" class="btn btn-pink-color fw-bold text-white w-100">Add to Cart</button>
                 </form>
             </div>

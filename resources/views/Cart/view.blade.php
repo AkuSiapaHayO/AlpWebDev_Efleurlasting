@@ -2,18 +2,22 @@
 
 @section('content')
     <div class="container mt-5">
-        <h1>Your Cart</h1>
-
         @if ($cartItems->isEmpty())
             <p>Your cart is empty.</p>
         @else
             @php
                 $totalAmount = 0;
             @endphp
+            <div class="card mb-4 shadow-lg" style="border: none;">
+                <div class="card-body">
+                    <h1 class="heading text-center">Your Cart</h1>
+                    <p class="text text-center mb-0">Don't forget to check the item that you want to checkout</p>
+                </div>
+            </div>
             <form action="{{ route('checkout.create') }}" method="get">
                 @csrf
-                {{-- @method('get') --}}
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+
                     @foreach ($cartItems as $cartItem)
                         @php
                             $productColor = \App\Models\ProductColor::find($cartItem->productcolor_id);
@@ -23,76 +27,79 @@
                         @endphp
 
                         <div class="col mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="cartItem{{ $cartItem->id }}"
-                                            name="selectedCartItems[]" value="{{ $cartItem->id }}">
-                                        <label class="form-check-label" for="cartItem{{ $cartItem->id }}">
-                                            <h5 class="card-title">
-                                                {{ $category->category_name }} - {{ $product->product_name }}
-                                            </h5>
-                                        </label>
-                                    </div>
-
-                                    {{-- Display the first image of the product --}}
-                                    @if ($product->images->isNotEmpty() && Storage::disk('public')->exists($product->images->first()->image_name))
-                                        <img src="{{ asset('storage/' . $product->images->first()->image_name) }}"
-                                            class="d-block w-100 img-thumbnail" alt="Product Image"
-                                            style="height: 40vh; max-width: 100vw; object-fit: cover;">
-                                    @else
-                                        {{-- Display a placeholder image from the Asset/products/ path when no image is available --}}
-                                        @if ($product->images->isNotEmpty())
-                                            <img src="{{ asset('Assets/products/' . $product->images->first()->image_name) }}"
-                                                alt="Product Image" class="card-img-top img-fluid img-thumbnail"
-                                                style="height: 40vh; max-width: 100vw; object-fit: cover;">
-                                        @else
-                                            {{-- Display a placeholder image or text when no image is available --}}
-                                            <div class="card-img-top d-flex align-items-center justify-content-center"
-                                                style="height: 40vh; background: rgba(255, 255, 255, 0.7);">
-                                                <p class="text-muted">No image available</p>
+                            <div class="card shadow-lg h-100" style="border: none;">
+                                <div class="card-body h-100">
+                                    <div class="h-100 d-flex flex-column justify-content-between">
+                                        <div>
+                                            <div>
+                                                @if ($product->images->isNotEmpty() && Storage::disk('public')->exists($product->images->first()->image_name))
+                                                    <img src="{{ asset('storage/' . $product->images->first()->image_name) }}"
+                                                        class="img-fluid shadow-lg w-100" alt="Product Image"
+                                                        style="max-height: 300px; object-fit: cover;">
+                                                @else
+                                                    @if ($product->images->isNotEmpty())
+                                                        <img src="{{ asset('Assets/products/' . $product->images->first()->image_name) }}"
+                                                            alt="Product Image" class="img-fluid shadow-lg w-100"
+                                                            style="max-height: 300px; object-fit: cover;">
+                                                    @else
+                                                        <div class="img-fluid shadow-lg w-100"
+                                                            style="max-height: 300px; background: rgba(255, 255, 255, 0.7);">
+                                                            <p class="text-muted">No image available</p>
+                                                        </div>
+                                                    @endif
+                                                @endif
                                             </div>
-                                        @endif
-                                    @endif
+                                            <div class="mt-3 px-2">
 
-                                    <table class="table mt-3">
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">Color</th>
-                                                <td>{{ $color->color_name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Quantity</th>
-                                                <td>{{ $cartItem->quantity }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Note</th>
-                                                <td>{{ $cartItem->note }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Price</th>
-                                                <td>Rp {{ number_format($productColor->product->price, 0, ',', '.') }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Total</th>
-                                                <td>Rp {{ number_format($cartItem->quantity * $productColor->product->price, 0, ',', '.') }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                <p class="sub-heading text-secondary mb-1 fs-6">
+                                                    {{ $category->category_name }}
+                                                </p>
+                                                <h1 class="heading mb-2 fs-2 border-bottom pb-1">
+                                                    {{ $product->product_name }}
+                                                </h1>
+                                                <p class="text-secondary fw-bold mb-0 text-uppercase">Color</p>
+                                                <p class="fw-medium">{{ $color->color_name }}</p>
+                                                <p class="text-secondary fw-bold mb-0 text-uppercase">Quantity</p>
+                                                <p class="fw-medium">{{ $cartItem->quantity }}</p>
+                                                <p class="text-secondary fw-bold mb-0 text-uppercase">Note</p>
+                                                <p class="fw-medium">{{ $cartItem->note }}</p>
+                                                <p class="text-secondary fw-bold mb-0 text-uppercase">Price</p>
+                                                <p class="fw-medium">Rp
+                                                    {{ number_format($productColor->product->price, 0, ',', '.') }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="px-2 mt-2">
+                                            <div class="mb-3">
+                                                <p class="text-secondary fw-bold mb-0 text-uppercase">Total</p>
+                                                <p class="fw-medium">Rp
+                                                    {{ number_format($cartItem->quantity * $productColor->product->price, 0, ',', '.') }}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <button type="button"
+                                                    class="btn btn-pink-color w-100 fw-bold text-white mb-2"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#updateModal{{ $cartItem->id }}">
+                                                    Update Item
+                                                </button>
 
-                                    {{-- Update and Delete buttons --}}
-                                    <div class="d-flex justify-content-between mt-3">
-                                        <!-- Update Button - Trigger Modal -->
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#updateModal{{ $cartItem->id }}">
-                                            Update
-                                        </button>
-
-                                        <!-- Delete Button - Trigger Modal -->
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#deleteModal{{ $cartItem->id }}">
-                                            Delete
-                                        </button>
+                                                <button type="button" class="btn btn-danger w-100 fw-bold text-white"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal{{ $cartItem->id }}">
+                                                    Delete Item
+                                                </button>
+                                            </div>
+                                            <div class="form-check mt-3">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="cartItem{{ $cartItem->id }}" name="selectedCartItems[]"
+                                                    value="{{ $cartItem->id }}">
+                                                <label class="form-check-label" for="cartItem{{ $cartItem->id }}">
+                                                    <p class="fw-bold">
+                                                        Check to checkout this item
+                                                    </p>
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +107,14 @@
                     @endforeach
 
                 </div>
-                <button type="submit" class="btn btn-success">Proceed to Checkout</button>
+                <div class="mb-5">
+                    <div class="card shadow-lg" style="border: none;">
+                        <div class="card-body mx-auto">
+                            <button type="submit" class="btn btn-pink-color text-white fw-bold" style="width: 500px">Proceed to Checkout</button>
+                        </div>
+                    </div>
+                </div>
+
             </form>
         @endif
         @foreach ($cartItems as $cartItem)
@@ -145,7 +159,8 @@
                         <div class="modal-header">
                             <h5 class="modal-title" id="deleteModalLabel{{ $cartItem->id }}">Delete Cart Item
                             </h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             Are you sure you want to delete this item?
