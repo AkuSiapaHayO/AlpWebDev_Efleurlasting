@@ -24,6 +24,15 @@ class OrderController extends Controller
         ]);
     }
 
+    public function paymentindex()
+    {
+        return view('Admin.Payment.view', [
+            'orders' => Order::all(),
+
+        ]);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */

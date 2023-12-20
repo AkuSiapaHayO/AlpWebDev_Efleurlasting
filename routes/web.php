@@ -97,3 +97,6 @@ Route::get('/home/chat', [HomeController::class, 'chat'])->name('chat.whatsapp')
 //CRUD Colors
 Route::get('/setting/admin/colors', [ColorController::class, 'index'])->middleware('admin')->name('colors.view');
 Route::delete('/setting/admin/colors/{color}/destroy', [ColorController::class, 'destroy'])->middleware('admin')->name('color.destroy');
+
+//CRUD Order
+Route::get('/setting/admin/payment', [OrderController::class, 'paymentindex'])->middleware('admin')->name('payment.view');
