@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="card p-0">
                 <div class="card-header p-3 d-flex align-items-center justify-content-between">
-                    <a href="{{ route('user.setting') }}"><button class="btn btn-outline-success">Back</button></a>
+                    <a href="{{ route('user.setting') }}"><button class="btn btn-pink-color fw-bold text-white">Back</button></a>
                     <div class="mx-auto text-center">
                         <h2 class="fw-bolder m-0">Account Settings</h2>
                     </div>

@@ -26,7 +26,7 @@
                                     updating your
                                     personal information.
                                 </p>
-                                <a href="{{ route('user.edit', $user) }}" class="btn btn-outline-primary"
+                                <a href="{{ route('user.edit', $user) }}" class="btn btn-pink-color fw-bold text-white"
                                     id="edit">Edit</a>
                             </div>
                         </div>
