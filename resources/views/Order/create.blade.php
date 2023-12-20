@@ -64,22 +64,22 @@
 
             <div class="card shadow-lg my-5" style="border: none;">
                 <div class="card-body" class="px-4 px-md-0">
-                    <form action="{{ route('order.finalize') }}" method="get">
+                    <form action="{{ route('order.finalize') }}" method="get" class="row g-3">
                         @csrf
-                        <div class="mb-3">
+                        <div class="col-md-6">
                             <label for="delivery_date" class="form-label">Delivery Date</label>
                             <input type="date" class="form-control" id="delivery_date" name="delivery_date" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="col-md-6">
                             <label for="delivery_time" class="form-label">Delivery Time</label>
                             <input type="time" class="form-control" id="delivery_time" name="delivery_time" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="col-md-6">
                             <label for="recipient_name" class="form-label">Recipient Name</label>
                             <input type="text" class="form-control" id="recipient_name" name="recipient_name"
                                 value="{{ Auth::user()->name }}" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="col-md-6">
                             <label for="recipient_phone" class="form-label">Recipient Phone</label>
                             <input type="tel" class="form-control" id="recipient_phone" name="recipient_phone"
                                 value="{{ Auth::user()->phone }}" required>
