@@ -120,11 +120,22 @@
                                 <h6>Order Items</h6>
                                 <ul>
                                     @foreach ($order->orderItems as $orderItem)
-                                        <li>
-                                            {{ $orderItem->quantity }} x
-                                            {{ $orderItem->productcolor->product->product_name }}
-                                        </li>
+                                        @php
+                                            $productColor = $orderItem->productcolor;
+                                            $product = $productColor->product;
+                                            $subtotal = $orderItem->quantity * $product->price;
+                                        @endphp
+                                        <tr>
+                                            <td>{{ $product->category->category_name }} - {{ $product->product_name }}
+                                            </td>
+                                            <td>{{ $productColor->color->color_name }}</td>
+                                            <td>{{ $orderItem->quantity }}</td>
+                                            <td>{{ $orderItem->note }}</td>
+                                            <td>{{ $product->price }}</td>
+                                            <td>{{ $subtotal }}</td>
+                                        </tr>
                                     @endforeach
+
                                 </ul>
                             </div>
                         </div>
