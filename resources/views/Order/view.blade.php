@@ -19,7 +19,9 @@
 
                     <h4>Order Items</h4>
                     <ul>
+                        @foreach ($order->orderItems as $orderItem)
 
+                        @endforeach
                     </ul>
                 </div>
             </div>

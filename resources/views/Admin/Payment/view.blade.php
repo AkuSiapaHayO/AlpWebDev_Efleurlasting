@@ -62,60 +62,75 @@
     </div>
 
     @foreach ($orders as $order)
-    {{-- View Modal --}}
-    <div class="modal fade" id="viewModal{{ $order->id }}" tabindex="-1" role="dialog"
-        aria-labelledby="viewModalLabel{{ $order->id }}" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="updateModalLabel{{ $order->id }}"> View Order Details </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <dl class="row">
-                        <dt class="col-sm-4">Order Date</dt>
-                        <dd class="col-sm-8">: {{ $order->order_date }}</dd>
+        {{-- View Modal --}}
+        <div class="modal fade" id="viewModal{{ $order->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="viewModalLabel{{ $order->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="updateModalLabel{{ $order->id }}"> View Order Details </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <dl class="row">
+                                    <dt class="col-sm-4">Order Date</dt>
+                                    <dd class="col-sm-8">: {{ $order->order_date }}</dd>
 
-                        <dt class="col-sm-4">Total Amount</dt>
-                        <dd class="col-sm-8">: {{ $order->total_amount }}</dd>
+                                    <dt class="col-sm-4">Total Amount</dt>
+                                    <dd class="col-sm-8">: {{ $order->total_amount }}</dd>
 
-                        <dt class="col-sm-4">Payment Status</dt>
-                        <dd class="col-sm-8">: {{ $order->payment_status ? 'Approved' : 'Unapproved' }}</dd>
+                                    <dt class="col-sm-4">Payment Status</dt>
+                                    <dd class="col-sm-8">: {{ $order->payment_status ? 'Approved' : 'Unapproved' }}</dd>
 
-                        <dt class="col-sm-4">Delivery Date</dt>
-                        <dd class="col-sm-8">: {{ $order->delivery_date }}</dd>
+                                    <dt class="col-sm-4">Delivery Date</dt>
+                                    <dd class="col-sm-8">: {{ $order->delivery_date }}</dd>
 
-                        <dt class="col-sm-4">Delivery Time</dt>
-                        <dd class="col-sm-8">: {{ $order->delivery_time }}</dd>
+                                    <dt class="col-sm-4">Delivery Time</dt>
+                                    <dd class="col-sm-8">: {{ $order->delivery_time }}</dd>
 
-                        <dt class="col-sm-4">Recipient Name</dt>
-                        <dd class="col-sm-8">: {{ $order->recipient_name }}</dd>
+                                    <dt class="col-sm-4">Recipient Name</dt>
+                                    <dd class="col-sm-8">: {{ $order->recipient_name }}</dd>
 
-                        <dt class="col-sm-4">Recipient Phone</dt>
-                        <dd class="col-sm-8">: {{ $order->recipient_phone }}</dd>
+                                    <dt class="col-sm-4">Recipient Phone</dt>
+                                    <dd class="col-sm-8">: {{ $order->recipient_phone }}</dd>
 
-                        <dt class="col-sm-4">Recipient Address</dt>
-                        <dd class="col-sm-8">: {{ $order->recipient_address }}</dd>
+                                    <dt class="col-sm-4">Recipient Address</dt>
+                                    <dd class="col-sm-8">: {{ $order->recipient_address }}</dd>
 
-                        <dt class="col-sm-4">Notes</dt>
-                        <dd class="col-sm-8">: {{ $order->notes }}</dd>
+                                    <dt class="col-sm-4">Notes</dt>
+                                    <dd class="col-sm-8">: {{ $order->notes }}</dd>
 
-                        <dt class="col-sm-4">Payment Details</dt>
-                        <dd class="col-sm-8">: {{ $order->payment_details ? 'Approved' : 'Unapproved' }}</dd>
+                                    <dt class="col-sm-4">Payment Details</dt>
+                                    <dd class="col-sm-8">: {{ $order->payment_details ? 'Approved' : 'Unapproved' }}</dd>
 
-                        <dt class="col-sm-4">Delivery Status</dt>
-                        <dd class="col-sm-8">: {{ $order->delivery_status ? 'Delivered' : 'Not Delivered' }}</dd>
+                                    <dt class="col-sm-4">Delivery Status</dt>
+                                    <dd class="col-sm-8">: {{ $order->delivery_status ? 'Delivered' : 'Not Delivered' }}
+                                    </dd>
 
-                        <dt class="col-sm-4">Is Delivery</dt>
-                        <dd class="col-sm-8">: {{ $order->isDelivery ? 'Yes' : 'No' }}</dd>
+                                    <dt class="col-sm-4">Is Delivery</dt>
+                                    <dd class="col-sm-8">: {{ $order->isDelivery ? 'Pick Up' : 'Delivery' }}</dd>
 
-                        <dt class="col-sm-4">User ID</dt>
-                        <dd class="col-sm-8">: {{ $order->user_id }}</dd>
-                    </dl>
+                                    <dt class="col-sm-4">User ID</dt>
+                                    <dd class="col-sm-8">: {{ $order->user_id }}</dd>
+                                </dl>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Order Items</h6>
+                                <ul>
+                                    @foreach ($order->orderItems as $orderItem)
+                                        <li>
+                                            {{ $orderItem->quantity }} x
+                                            {{ $orderItem->productcolor->product->product_name }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-@endforeach
-
+    @endforeach
 @endsection
