@@ -67,7 +67,16 @@ class OrderController extends Controller
         $recipientAddress = $request->input('recipient_address');
         $notes = $request->input('notes');
         $isDelivery = $request->input('isDelivery');
+        $totalAmountBeforeDelivery = $request->input('totalAmount');
         $totalAmount = $request->input('totalAmount');
+
+        if ($isDelivery) {
+            // Add delivery fee to totalAmount
+            $totalAmount += 25000;
+            $deliveryFee = 25000;
+        } else {
+            $deliveryFee = 0;
+        }
 
         // Pass form data to the view
         return view('Order.finalize', [
@@ -81,6 +90,8 @@ class OrderController extends Controller
             'recipientAddress' => $recipientAddress,
             'notes' => $notes,
             'isDelivery' => $isDelivery,
+            'deliveryFee' => $deliveryFee,
+            'totalAmountBeforeDelivery' => $totalAmountBeforeDelivery,
             'totalAmount' => $totalAmount,
             'cartItemsId' => $cartItemsId,
         ]);

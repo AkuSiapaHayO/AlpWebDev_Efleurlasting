@@ -46,6 +46,14 @@
                         <td>{{ $isDelivery ? 'Yes' : 'No' }}</td>
                     </tr>
                     <tr>
+                        <td>Total Amount Before Delivery</td>
+                        <td>{{ 'Rp ' . number_format($totalAmountBeforeDelivery, 0, ',', '.') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Delivery Fee</td>
+                        <td>{{ 'Rp ' . number_format($deliveryFee, 0, ',', '.') }}</td>
+                    </tr>
+                    <tr>
                         <td>Total Amount</td>
                         <td>{{ 'Rp ' . number_format($totalAmount, 0, ',', '.') }}</td>
                     </tr>
