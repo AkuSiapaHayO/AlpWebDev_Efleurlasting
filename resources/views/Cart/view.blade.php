@@ -3,7 +3,12 @@
 @section('content')
     <div class="container mt-5">
         @if ($cartItems->isEmpty())
-            <p>Your cart is empty.</p>
+            <div class="card mb-4 shadow-lg" style="border: none;">
+                <div class="card-body">
+                    <h1 class="heading text-center">Your Cart is Empty</h1>
+                    <p class="text text-center mb-0">Add something to your cart</p>
+                </div>
+            </div>
         @else
             @php
                 $totalAmount = 0;
@@ -110,7 +115,8 @@
                 <div class="mb-5">
                     <div class="card shadow-lg" style="border: none;">
                         <div class="card-body mx-auto">
-                            <button type="submit" class="btn btn-pink-color text-white fw-bold" style="width: 500px">Proceed to Checkout</button>
+                            <button type="submit" class="btn btn-pink-color text-white fw-bold"
+                                style="width: 500px">Proceed to Checkout</button>
                         </div>
                     </div>
                 </div>
