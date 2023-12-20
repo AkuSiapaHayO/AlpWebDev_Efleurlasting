@@ -100,3 +100,6 @@ Route::delete('/setting/admin/colors/{color}/destroy', [ColorController::class, 
 
 //CRUD Order
 Route::get('/setting/admin/payment', [OrderController::class, 'paymentindex'])->middleware('admin')->name('payment.view');
+Route::get('/setting/admin/payment/{order}', [OrderController::class, 'paymentshow'])->middleware('admin')->name('payment.show');
+Route::get('/setting/admin/payment/{order}/approve', [OrderController::class, 'paymentapprove'])->middleware('admin')->name('payment.approve');
+Route::get('/setting/admin/payment/{order}/delete', [OrderController::class, 'paymentdisapprove'])->middleware('admin')->name('payment.disapprove');

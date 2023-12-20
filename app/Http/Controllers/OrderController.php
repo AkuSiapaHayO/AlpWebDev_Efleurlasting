@@ -33,6 +33,27 @@ class OrderController extends Controller
         ]);
     }
 
+    public function paymentshow(Order $order)
+    {
+        return view('Admin.Payment.show', [
+            'order' => $order,
+        ]);
+    }
+
+    public function paymentapprove(Order $order)
+    {
+        $order->update([
+            'payment_status' => true,
+        ]);
+
+        return redirect()->route('payment.view')->with('success', 'Payment Approved!');
+    }
+
+    public function paymentdisapprove(Order $order)
+    {
+        $order->delete();
+        return redirect()->route('payment.view')->with('success', 'Order Deleted');
+    }
 
     /**
      * Show the form for creating a new resource.

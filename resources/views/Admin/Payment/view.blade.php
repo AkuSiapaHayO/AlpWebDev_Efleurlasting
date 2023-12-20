@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+
     <div class="container mt-5">
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -37,108 +39,92 @@
 
                                 <td>
                                     @if (Storage::disk('public')->exists($order->transfer_evidence_img))
-                                        <img src="{{ asset('storage/' . $order->transfer_evidence_img) }}"
-                                            alt="Transfer Evidence" class="card-img-top img-fluid"
-                                            style="width: 30vh; object-fit: cover;">
+                                        <a href="#" data-bs-toggle="modal"
+                                            data-bs-target="#imageModal{{ $order->id }}">
+                                            <img src="{{ asset('storage/' . $order->transfer_evidence_img) }}"
+                                                alt="Transfer Evidence" class="card-img-top img-fluid"
+                                                style="width: 30vh; object-fit: cover; cursor: pointer;">
+                                        </a>
                                     @else
                                         <p class="text-muted">No image available</p>
                                     @endif
                                 </td>
+
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary d-block mb-2"
-                                        data-bs-toggle="modal" data-bs-target="#viewModal{{ $order->id }}">
-                                        View Details
-                                    </button>
-                                    <a href="#" class="btn btn-success d-block mb-2">Approve</a>
-                                    <a href="#" class="btn btn-danger d-block">Disapprove</a>
+                                    <a href="{{ route('payment.show', ['order' => $order->id]) }}"
+                                        class="btn btn-outline-primary d-block mb-2">View More</a>
+                                    <a href="#" class="btn btn-success d-block mb-2" data-bs-toggle="modal"
+                                        data-bs-target="#approveModal{{ $order->id }}"
+                                        data-order-id="{{ $order->id }}">Approve</a>
+                                    <a href="#" class="btn btn-danger d-block" data-bs-toggle="modal"
+                                        data-bs-target="#disapproveModal{{ $order->id }}"
+                                        data-order-id="{{ $order->id }}">Disapprove</a>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
-
     @foreach ($orders as $order)
-        {{-- View Modal --}}
-        <div class="modal fade" id="viewModal{{ $order->id }}" tabindex="-1" role="dialog"
-            aria-labelledby="viewModalLabel{{ $order->id }}" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
+        <!-- Modal for Approve -->
+        <div class="modal fade" id="approveModal{{ $order->id }}" tabindex="-1"
+            aria-labelledby="approveModalLabel{{ $order->id }}" aria-hidden="true">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="updateModalLabel{{ $order->id }}"> View Order Details </h5>
+                        <h5 class="modal-title" id="approveModalLabel{{ $order->id }}">Approve Payment</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <dl class="row">
-                                    <dt class="col-sm-4">Order Date</dt>
-                                    <dd class="col-sm-8">: {{ $order->order_date }}</dd>
+                        <p>Are you sure you want to approve this payment?</p>
+                        <p>You won't be able to update this anymore, please be sure before approving this payment.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="{{ route('payment.approve', ['order' => $order->id]) }}"
+                            class="btn btn-success">Approve</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                                    <dt class="col-sm-4">Total Amount</dt>
-                                    <dd class="col-sm-8">: {{ $order->total_amount }}</dd>
+        <!-- Modal for Disapprove -->
+        <div class="modal fade" id="disapproveModal{{ $order->id }}" tabindex="-1"
+            aria-labelledby="disapproveModalLabel{{ $order->id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="disapproveModalLabel{{ $order->id }}">Disapprove Payment</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to disapprove this payment?</p>
+                        <p>Order will be deleted <b>permanently</b>, please be sure to contact the Customer beforehand.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="{{ route('payment.disapprove', ['order' => $order->id]) }}"
+                            class="btn btn-outline-danger">Disapprove</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                                    <dt class="col-sm-4">Payment Status</dt>
-                                    <dd class="col-sm-8">: {{ $order->payment_status ? 'Approved' : 'Unapproved' }}</dd>
-
-                                    <dt class="col-sm-4">Delivery Date</dt>
-                                    <dd class="col-sm-8">: {{ $order->delivery_date }}</dd>
-
-                                    <dt class="col-sm-4">Delivery Time</dt>
-                                    <dd class="col-sm-8">: {{ $order->delivery_time }}</dd>
-
-                                    <dt class="col-sm-4">Recipient Name</dt>
-                                    <dd class="col-sm-8">: {{ $order->recipient_name }}</dd>
-
-                                    <dt class="col-sm-4">Recipient Phone</dt>
-                                    <dd class="col-sm-8">: {{ $order->recipient_phone }}</dd>
-
-                                    <dt class="col-sm-4">Recipient Address</dt>
-                                    <dd class="col-sm-8">: {{ $order->recipient_address }}</dd>
-
-                                    <dt class="col-sm-4">Notes</dt>
-                                    <dd class="col-sm-8">: {{ $order->notes }}</dd>
-
-                                    <dt class="col-sm-4">Payment Details</dt>
-                                    <dd class="col-sm-8">: {{ $order->payment_details ? 'Approved' : 'Unapproved' }}</dd>
-
-                                    <dt class="col-sm-4">Delivery Status</dt>
-                                    <dd class="col-sm-8">: {{ $order->delivery_status ? 'Delivered' : 'Not Delivered' }}
-                                    </dd>
-
-                                    <dt class="col-sm-4">Is Delivery</dt>
-                                    <dd class="col-sm-8">: {{ $order->isDelivery ? 'Pick Up' : 'Delivery' }}</dd>
-
-                                    <dt class="col-sm-4">User ID</dt>
-                                    <dd class="col-sm-8">: {{ $order->user_id }}</dd>
-                                </dl>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Order Items</h6>
-                                <ul>
-                                    @foreach ($order->orderItems as $orderItem)
-                                        @php
-                                            $productColor = $orderItem->productcolor;
-                                            $product = $productColor->product;
-                                            $subtotal = $orderItem->quantity * $product->price;
-                                        @endphp
-                                        <tr>
-                                            <td>{{ $product->category->category_name }} - {{ $product->product_name }}
-                                            </td>
-                                            <td>{{ $productColor->color->color_name }}</td>
-                                            <td>{{ $orderItem->quantity }}</td>
-                                            <td>{{ $orderItem->note }}</td>
-                                            <td>{{ $product->price }}</td>
-                                            <td>{{ $subtotal }}</td>
-                                        </tr>
-                                    @endforeach
-
-                                </ul>
-                            </div>
-                        </div>
+        <!-- Modal for Image Preview -->
+        <div class="modal fade" id="imageModal{{ $order->id }}" tabindex="-1"
+            aria-labelledby="imageModalLabel{{ $order->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imageModalLabel{{ $order->id }}">Transder Evidence Image Preview
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{ asset('storage/' . $order->transfer_evidence_img) }}" class="img-fluid"
+                            alt="Full-Screen Image">
                     </div>
                 </div>
             </div>
