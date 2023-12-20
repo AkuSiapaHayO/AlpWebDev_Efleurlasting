@@ -148,7 +148,7 @@ class OrderController extends Controller
         }
 
         // Redirect or perform any additional logic as needed
-        return redirect()->route('order.view');
+        return redirect()->route('home');
     }
 
     /**
