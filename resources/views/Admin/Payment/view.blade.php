@@ -110,7 +110,7 @@
                         <dd class="col-sm-8">: {{ $order->isDelivery ? 'Yes' : 'No' }}</dd>
 
                         <dt class="col-sm-4">User ID</dt>
-                        <dd class="col-sm-8">: {{ $order->user->username }}</dd>
+                        <dd class="col-sm-8">: {{ $order->user_id }}</dd>
                     </dl>
                 </div>
             </div>

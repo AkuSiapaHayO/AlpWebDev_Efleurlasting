@@ -80,7 +80,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="deliverySelect" class="form-label">Select Delivery Option:</label>
-                    <select class="form-select" id="deliverySelect" name="deliveryOption" onchange="updateTotalAmount()">
+                    <select class="form-select" id="deliverySelect" name="deliveryOption">
                         <option value="0" selected>No Delivery</option>
                         <option value="1">With Delivery (+$25.00)</option>
                     </select>
@@ -91,25 +91,4 @@
             </form>
         </div>
     </div>
-    <script>
-        function updateTotalAmount() {
-            var deliverySelect = document.getElementById('deliverySelect');
-            var totalAmountInput = document.querySelector('input[name="totalAmount"]');
-
-            // Get the selected value from the dropdown
-            var selectedValue = parseFloat(deliverySelect.value);
-
-            // Update the hidden input field with the new totalAmount
-            var newTotalAmount = selectedValue === 1 ? {{ $totalAmount }} + 25000 : {{ $totalAmount }};
-            totalAmountInput.value = newTotalAmount.toFixed(2); // Adjust the precision as needed
-        }
-
-        // Additional function to call updateTotalAmount initially if the dropdown has a pre-selected option on page load
-        function initialize() {
-            updateTotalAmount();
-        }
-
-        // Call the initialize function when the page is loaded
-        window.onload = initialize;
-    </script>
 @endsection
