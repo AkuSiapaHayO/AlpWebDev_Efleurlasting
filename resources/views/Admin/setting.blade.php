@@ -51,15 +51,19 @@
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                        Order History
+                        All Orders
                     </button>
                 </h2>
                 <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         <p>
-                            Review and Explore past order history in this section. Stay informed about the purchasing
-                            patterns and preferences of users.
+                            Explore and manage all orders placed on your platform. This section provides a comprehensive view
+                            of order history, allowing you to track completed orders and those that are still pending. Stay informed
+                            about purchasing patterns and user preferences to enhance your admin insights.
                         </p>
+                        <a href="{{ route('orders.view') }}" class="card-link">
+                            <button class="btn btn-outline-primary">View All Orders</button>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -24,6 +24,15 @@ class OrderController extends Controller
         ]);
     }
 
+    public function adminindex()
+    {
+        $orders = Order::where('payment_status', true)->get();
+
+        return view('Admin.Order.view', [
+            'orders' => $orders,
+        ]);
+    }
+
     public function paymentindex()
     {
         $orders = Order::where('payment_status', false)->get();
