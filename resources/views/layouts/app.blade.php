@@ -24,6 +24,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
+    @livewireStyles
 </head>
 
 <body>
@@ -140,14 +141,15 @@
             @yield('content')
         </main>
 
-        <footer class="w-100 bg-white px-5 pb-3 pt-3 @if(request()->is('login') || request()->is('register')) d-none @endif">
+        <footer class="w-100 bg-white px-5 pb-3 pt-3 @unless (request()->routeIs(['home', 'about', 'products', 'category.show'])) d-none @endunless">
             <div class="d-flex flex-column align-items-center justify-content-center">
-                <img src="{{asset('Assets/Logo/logo.png')}}" style="max-width: 250px" alt="">
+                <img src="{{ asset('Assets/Logo/logo.png') }}" style="max-width: 250px" alt="">
                 <p>&#169; Efleurlasting. All Right Reserved.</p>
             </div>
         </footer>
     </div>
 
+    @livewireScripts
 </body>
 
 </html>

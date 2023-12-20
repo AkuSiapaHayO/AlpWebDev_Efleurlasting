@@ -2,13 +2,13 @@
 
 @section('content')
     <section>
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="col-md-6 d-none d-md-block p-0">
+        <div class="container-fluid" style="max-width: 1540px">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-6 d-none d-xl-block p-0">
                     <img src="{{ asset('Assets/Categories/CategoryImage7.jpg') }}" class="img-fluid vh-100 w-100"
                         style="object-fit: cover; filter: blur(0px);" alt="">
                 </div>
-                <div class="col-md-6 px-5 py-5">
+                <div class="col-12 col-xl-6 px-5 py-5">
                     <div class="">
                         <div class="d-flex flex-column align-items-center justify-content-center">
                             <div>

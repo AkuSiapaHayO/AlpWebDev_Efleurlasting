@@ -14,24 +14,7 @@
             </div>
         </div>
     </section>
-    {{-- Display Categories --}}
-    {{-- <div class="mb-4">
-            <h2>Categories</h2>
-            <div class="card-group">
-                @foreach ($categories as $category)
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title" style="height: 50px; overflow: hidden;">{{ $category->category_name }}
-                            </h5>
-                            <a href="{{ route('category.show', ['category' => $category->id]) }}"
-                                class="btn btn-primary">View
-                                Category</a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div> --}}
-    {{-- Display Products --}}
+    
     <div class="container-lg">
         <form action="#" method="GET" class="form-inline d-flex gap-2 ms-auto my-4"
             style="max-width: 400px; padding: 0 12px">
@@ -84,7 +67,7 @@
     </div>
 
     <div class="container-lg">
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mx-0 mt-5">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mx-0 my-5">
             @foreach ($categories as $category)
                 <div class="col mb-4">
                     <a class="link-light link-offset-2 link-underline link-underline-opacity-0"
@@ -116,4 +99,28 @@
             @endforeach
         </div>
     </div>
+
+    <section class="contact position-relative">
+        <div class="container-lg">
+            <div class="d-flex flex-column align-items-center justify-content-center py-4">
+                <div class="w-75">
+                    <h1 class="heading text-center text-light">Contact Us</h1>
+                    <p class="text text-center text-light">Contact us for more information about the product. For
+                        custom order, please order via Whats-Apps.
+                    </p>
+                </div>
+                <a href="{{ route('chat.whatsapp') }}">
+                    <button class="btn btn-light-green text-light fw-bold fs-5" style="padding:10px 40px">
+                        <img src="{{ asset('Assets/Icons/whatsapp.png') }}" style="max-width: 30px" class="img-fluid me-2"
+                            alt="">
+                        Chat Now
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="z-index: -1; background-color:rgb(0, 0, 0, 0.6)">
+        </div>
+        <img src="{{ asset('Assets/Categories/CategoryImage7.jpg') }}" class="position-absolute top-0 start-0 w-100 h-100"
+            style="z-index:-2; object-fit:cover;" alt="">
+    </section>
 @endsection
