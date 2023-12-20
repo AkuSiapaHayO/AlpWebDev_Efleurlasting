@@ -99,8 +99,8 @@
                                                     id="cartItem{{ $cartItem->id }}" name="selectedCartItems[]"
                                                     value="{{ $cartItem->id }}">
                                                 <label class="form-check-label" for="cartItem{{ $cartItem->id }}">
-                                                    <p class="fw-bold">
-                                                        Check to checkout this item
+                                                    <p class="fw-bold m-0">
+                                                        Checkout
                                                     </p>
                                                 </label>
                                             </div>
