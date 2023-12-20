@@ -79,7 +79,7 @@
                     <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
                 </div>
                 <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="isDelivery" name="isDelivery" value="1" onchange="updateTotalAmount()">
+                    <input type="checkbox" class="form-check-input" id="isDelivery" name="isDelivery" value="1">
                     <label class="form-check-label" for="isDelivery">Is Delivery</label>
                 </div>
                 <input type="hidden" name="totalAmount" value="{{ $totalAmount }}">
@@ -89,28 +89,5 @@
             </form>
         </div>
     </div>
-    <script>
-        function updateTotalAmount() {
-            var isDeliveryCheckbox = document.getElementById('isDelivery');
-            var totalAmountInput = document.querySelector('input[name="totalAmount"]');
 
-            // Check if the "Is Delivery" checkbox is checked
-            if (isDeliveryCheckbox.checked) {
-                // Add 25000 to the totalAmount
-                var currentTotalAmount = parseFloat(totalAmountInput.value);
-                var newTotalAmount = currentTotalAmount + 25000;
-
-                // Update the hidden input field with the new totalAmount
-                totalAmountInput.value = newTotalAmount.toFixed(2); // Adjust the precision as needed
-            }
-        }
-
-        // Additional function to call updateTotalAmount initially if the checkbox is checked on page load
-        function initialize() {
-            updateTotalAmount();
-        }
-
-        // Call the initialize function when the page is loaded
-        window.onload = initialize;
-    </script>
 @endsection
