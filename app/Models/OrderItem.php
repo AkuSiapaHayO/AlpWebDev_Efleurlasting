@@ -15,4 +15,12 @@ class OrderItem extends Model
         'order_id',
         'productcolor_id'
     ];
+
+    public function order() {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function productcolor() {
+        return $this->belongsTo(ProductColor::class);
+    }
 }
