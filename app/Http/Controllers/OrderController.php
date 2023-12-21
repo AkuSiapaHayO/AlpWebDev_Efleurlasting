@@ -98,7 +98,7 @@ class OrderController extends Controller
         $recipientAddress = $request->input('recipient_address');
         $notes = $request->input('notes');
         // $isDelivery = ($request->input('deliveryOption') == 1);
-        $isDelivery = ($request->input('deliveryOption') == 0) ? false : true;
+        $isDelivery = ($request->input('deliveryOption') == "0") ? false : true;
         $totalAmountBeforeDelivery = $request->input('totalAmount');
 
         $deliveryFee = 0;
@@ -106,9 +106,12 @@ class OrderController extends Controller
         if ($isDelivery == true) {
             $deliveryFee = 25000;
             $totalAmount = $totalAmountBeforeDelivery + $deliveryFee;
+            $boolIsDelivery = true;
         } else {
             $totalAmount = $totalAmountBeforeDelivery;
+            $boolIsDelivery = false;
         }
+
 
         // Pass form data to the view
         return view('Order.finalize', [
@@ -121,7 +124,7 @@ class OrderController extends Controller
             'recipientPhone' => $recipientPhone,
             'recipientAddress' => $recipientAddress,
             'notes' => $notes,
-            'isDelivery' => $isDelivery,
+            'isDelivery' => $boolIsDelivery,
             'deliveryFee' => $deliveryFee,
             'totalAmountBeforeDelivery' => $totalAmountBeforeDelivery,
             'totalAmount' => $totalAmount,
@@ -134,18 +137,13 @@ class OrderController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+{
+    try {
         $user = Auth::user();
         $cartItemsId = explode(',', $request->input('cartItemId'));
         $cartItems = CartItem::whereIn('id', $cartItemsId)->get();
-        if ($request->has('isDelivery')) {
-            $isDelivery = $request->input('isDelivery');
-                if($isDelivery = null) {
-                    $isDelivery = 0;
-                }
-        } else {
-            $isDelivery = 0;
-        }        // Validate the form data
+        $isDelivery = $request->input('isDelivery') ?? true;
+
         $request->validate([
             'paymentDetails' => 'required|string',
             'uploadImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -187,7 +185,12 @@ class OrderController extends Controller
 
         // Redirect or perform any additional logic as needed
         return redirect()->route('order.view');
+    } catch (\Exception $e) {
+        // Log the error
+        dd($e->getMessage());
     }
+}
+
 
     /**
      * Display the specified resource.
