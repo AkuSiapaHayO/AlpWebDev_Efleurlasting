@@ -96,8 +96,8 @@
                         <div class="mb-3">
                             <label for="deliverySelect" class="form-label">Select Delivery Option:</label>
                             <select class="form-select" id="deliverySelect" name="deliveryOption">
-                                <option value="0" selected>Self Pickup (Citraland, Surabaya)</option>
-                                <option value="1">With Delivery (+Rp25k, Surabaya only)</option>
+                                <option value='0' selected>Self Pickup (Citraland, Surabaya)</option>
+                                <option value='1'>With Delivery (+Rp25k, Surabaya only)</option>
                             </select>
                         </div>
                         <input type="hidden" name="totalAmount" value="{{ $totalAmount }}">

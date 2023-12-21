@@ -97,15 +97,17 @@ class OrderController extends Controller
         $recipientPhone = $request->input('recipient_phone');
         $recipientAddress = $request->input('recipient_address');
         $notes = $request->input('notes');
-        $isDelivery = ($request->input('isDelivery') === 0) ? false : true;
+        // $isDelivery = ($request->input('deliveryOption') == 1);
+        $isDelivery = ($request->input('deliveryOption') == 0) ? false : true;
         $totalAmountBeforeDelivery = $request->input('totalAmount');
-        $totalAmount = $request->input('totalAmount');
 
-        if ($isDelivery) {
-            $totalAmount += 25000;
+        $deliveryFee = 0;
+
+        if ($isDelivery == true) {
             $deliveryFee = 25000;
+            $totalAmount = $totalAmountBeforeDelivery + $deliveryFee;
         } else {
-            $deliveryFee = 0;
+            $totalAmount = $totalAmountBeforeDelivery;
         }
 
         // Pass form data to the view
@@ -136,6 +138,7 @@ class OrderController extends Controller
         $user = Auth::user();
         $cartItemsId = explode(',', $request->input('cartItemId'));
         $cartItems = CartItem::whereIn('id', $cartItemsId)->get();
+        $isDelivery = $request->input('isDelivery', 0);
 
         // Validate the form data
         $request->validate([
@@ -158,7 +161,7 @@ class OrderController extends Controller
             'recipient_phone' => $request->input('recipient_phone'),
             'recipient_address' => $request->input('recipient_address'),
             'notes' => $request->input('notes'),
-            'isDelivery' => $request->input('isDelivery'),
+            'isDelivery' => $isDelivery,
             'payment_status' => false,
             'delivery_status' => false,
             'user_id' => $user->id,
@@ -178,7 +181,7 @@ class OrderController extends Controller
         }
 
         // Redirect or perform any additional logic as needed
-        return redirect()->route('home');
+        return redirect()->route('order.view');
     }
 
     /**
