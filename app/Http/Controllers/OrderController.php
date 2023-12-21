@@ -138,9 +138,14 @@ class OrderController extends Controller
         $user = Auth::user();
         $cartItemsId = explode(',', $request->input('cartItemId'));
         $cartItems = CartItem::whereIn('id', $cartItemsId)->get();
-        $isDelivery = $request->input('isDelivery', 0);
-
-        // Validate the form data
+        if ($request->has('isDelivery')) {
+            $isDelivery = $request->input('isDelivery');
+                if($isDelivery = null) {
+                    $isDelivery = 0;
+                }
+        } else {
+            $isDelivery = 0;
+        }        // Validate the form data
         $request->validate([
             'paymentDetails' => 'required|string',
             'uploadImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
