@@ -15,8 +15,8 @@
                     @foreach ($carousels as $key => $carousel)
                         <div class="carousel-item @if ($key === 0) active @endif">
                             @if (File::exists(public_path($carousel->image)))
-                                <img src="{{ asset($carousel->image) }}" class="d-block w-100"
-                                    alt="Carousel-Image" style="max-height: 500px; max-width: 1540px; object-fit: cover;">
+                                <img src="{{ asset($carousel->image) }}" class="d-block w-100" alt="Carousel-Image"
+                                    style="max-height: 500px; max-width: 1540px; object-fit: cover;">
                             @else
                                 <img src="{{ asset('Assets/' . $carousel->image) }}" class="d-block w-100"
                                     alt="Carousel-Image" style="max-height: 500px; max-width: 1540px; object-fit: cover;">
@@ -112,7 +112,9 @@
                 <div class="card shadow-lg h-100 mb-5" style="border: none;">
                     <div class="card-body p-5">
                         <h1 class="heading borders-left">Testimonial</h1>
-                        <form action="" class="mt-5">
+                        <form action="{{ route('testimony.store') }}" method="POST" class="mt-5">
+                            @csrf
+                            @method('post')
                             <div class="row g-3">
                                 <div class="col-12">
                                     <label for="name" class="form-label">Name</label>
@@ -130,18 +132,22 @@
                                     <label for="product" class="form-label">Choose Product</label>
                                     <select class="form-select" name="product" id="product"
                                         aria-label="Default select example" required>
-                                        <option value="" disabled selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        @foreach ($orderItems as $orderItem)
+                                            <option value="{{ $orderItem->id }}">
+                                                {{ $orderItem->productcolor->product->category->category_name }} -
+                                                {{ $orderItem->productcolor->product->product_name }} (Color:
+                                                {{ $orderItem->productcolor->color->color_name }})
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <label for="product-image" class="form-label">Review Image</label>
-                                    <input type="file" id="product-image" name="product-image" class="form-control"
+                                    <label for="product_image" class="form-label">Review Image</label>
+                                    <input type="file" id="product_image" name="product_image" class="form-control"
                                         accept="image/jpg, image/png, image/jpeg" onchange="previewImage()">
                                     <img class="img-preview img-fluid mt-3 w-50" style="max-width: 300px">
                                 </div>
+
                             </div>
                             <button type="submit" class="btn btn-pink-color text-white fw-bold mt-4 w-100">Submit
                                 Testimony</button>
@@ -151,6 +157,41 @@
             </div>
         </section>
     @endauth
+
+    <section>
+        <div class="container-lg">
+            <h2>All Testimonies</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Testimony</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>User</th>
+                        <th>Product</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($testimonies as $testimony)
+                        <tr>
+                            <td>{{ $testimony->id }}</td>
+                            <td>{{ $testimony->testimony }}</td>
+                            <td>
+                                <img src="{{ asset('path/to/your/images/' . $testimony->testimony_image) }}"
+                                    alt="Testimony Image" width="50">
+                            </td>
+                            <td>{{ $testimony->name }}</td>
+                            <td>{{ $testimony->date }}</td>
+                            <td>{{ $testimony->user->name }}</td>
+                            <td>{{ $testimony->product->product_name }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </section>
 
 
     <section class="contact position-relative">
@@ -179,7 +220,7 @@
 
     <script>
         function previewImage() {
-            const image = document.querySelector('#product-image');
+            const image = document.querySelector('#product_image');
             const imgPreview = document.querySelector('.img-preview');
 
             imgPreview.style.display = 'block';

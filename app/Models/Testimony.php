@@ -14,5 +14,7 @@ class Testimony extends Model
         'testimony_image',
         'name',
         'date',
+        'user_id',
+        'productcolor_id'
     ];
 }

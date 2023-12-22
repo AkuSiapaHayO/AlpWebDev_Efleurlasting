@@ -10,6 +10,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\TestimonyController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -50,6 +51,9 @@ Route::get('/checkout', [OrderController::class, 'create'])->name('checkout.crea
 Route::get('/checkout/payment', [OrderController::class, 'finalize'])->name('order.finalize');
 Route::post('/checkout/order/store', [OrderController::class, 'store'])->name('order.store');
 Route::get('/checkout/order', [OrderController::class, 'index'])->name('order.view');
+
+//CRUD Testimonies
+Route::post('/testimony', [TestimonyController::class, 'store'])->middleware('auth')->name('testimony.store');
 
 //Settings
 Route::get('/setting/user', [HomeController::class, 'settingUser'])->middleware('auth')->name('user.setting');
