@@ -129,6 +129,7 @@ class CarouselController extends Controller
             }
         }
         $carousel->delete();
+        
         return redirect()->route('carousel.view');
     }
 }

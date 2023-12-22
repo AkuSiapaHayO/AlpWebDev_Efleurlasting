@@ -40,21 +40,14 @@
                                 <div class="card shadow-lg h-100" style="border: none;">
                                     <div class="card-body">
                                         <div class="position-relative">
-                                            @if ($product->images->isNotEmpty() && Storage::disk('public')->exists($product->images->first()->image_name))
-                                                <img src="{{ asset('storage/' . $product->images->first()->image_name) }}"
+                                            @if (File::exists(public_path($product->images->first()->image_name)))
+                                                <img src="{{ asset('Products/' . $product->images->first()->image_name) }}"
                                                     class="d-block w-100 rounded" alt="..."
                                                     style="max-height: 200px; max-width: 100vw; object-fit: cover;">
                                             @else
-                                                @if ($product->images->isNotEmpty())
-                                                    <img src="{{ asset('Assets/products/' . $product->images->first()->image_name) }}"
-                                                        alt="Product Image" class="card-img-top img-fluid rounded"
-                                                        style="max-height: 200px; max-width: 100vw; object-fit: cover;">
-                                                @else
-                                                    <div class="card-img-top d-flex align-items-center justify-content-center rounded"
-                                                        style="max-height: 200px; background: rgba(255, 255, 255, 0.7);">
-                                                        <p class="text-muted">No image available</p>
-                                                    </div>
-                                                @endif
+                                                <img src="{{ asset('Assets/Products/' . $product->images->first()->image_name) }}"
+                                                    class="d-block w-100 rounded" alt="..."
+                                                    style="max-height: 200px; max-width: 100vw; object-fit: cover;">
                                             @endif
                                             <div class="position-absolute start-0 top-0 w-100 h-100 rounded"
                                                 style="background-color: rgba(255, 255, 255, 0.5)"></div>

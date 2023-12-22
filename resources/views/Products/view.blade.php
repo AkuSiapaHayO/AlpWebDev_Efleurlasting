@@ -14,7 +14,7 @@
             </div>
         </div>
     </section>
-    
+
     <div class="container-lg">
         <form action="#" method="GET" class="form-inline d-flex gap-2 ms-auto my-4"
             style="max-width: 400px; padding: 0 12px">
@@ -26,23 +26,16 @@
                 <div class="col mb-4">
                     <a class="link-offset-2 link-underline link-underline-opacity-0"
                         href="{{ route('product.show', ['product' => $product->id]) }}">
-                        <div class="card position-relative shadow-lg h-100 new"
+                        <div class="card shadow-lg h-100 new"
                             style="transition: 0.3s; border-radius: 7px;">
-                            @if ($product->images->isNotEmpty() && Storage::disk('public')->exists($product->images->first()->image_name))
-                                <img src="{{ asset('storage/' . $product->images->first()->image_name) }}"
+                            @if (File::exists(public_path($product->images->first()->image_name)))
+                                <img src="{{ asset('Products/' . $product->images->first()->image_name) }}"
                                     class="d-block w-100" alt="..."
-                                    style="max-height: 400px; max-width: 100vw; object-fit: cover;">
+                                    style="max-height: 400px; object-fit: cover;">
                             @else
-                                @if ($product->images->isNotEmpty())
-                                    <img src="{{ asset('Assets/products/' . $product->images->first()->image_name) }}"
-                                        alt="Product Image" class="card-img-top img-fluid"
-                                        style="max-height: 400px; max-width: 100vw; object-fit: cover;">
-                                @else
-                                    <div class="card-img-top d-flex align-items-center justify-content-center"
-                                        style="max-height: 400px; background: rgba(255, 255, 255, 0.7);">
-                                        <p class="text-muted">No image available</p>
-                                    </div>
-                                @endif
+                                <img src="{{ asset('Assets/Products/' . $product->images->first()->image_name) }}"
+                                    class="d-block w-100" alt="..."
+                                    style="max-height: 400px; object-fit: cover;">
                             @endif
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <p class="card-title mb-3 text" style="max-height: 50px; overflow: hidden;">
@@ -69,20 +62,14 @@
                     <a class="link-light link-offset-2 link-underline link-underline-opacity-0"
                         href="{{ route('category.show', ['category' => $category->id]) }}">
                         <div class="position-relative shadow-lg h-100 category-image" style="transition: 0.3s">
-                            @if (Storage::disk('public')->exists($category->category_image))
-                                <img src="{{ asset('storage/' . $category->category_image) }}" class="d-block w-100"
-                                    alt="..." style="max-height: 250px; object-fit: cover;">
+                            @if (File::exists(public_path($category->category_image)))
+                                <img src="{{ asset($category->category_image) }}"
+                                    class="d-block w-100 h-100 img-fluid rounded img-shadow" alt="..."
+                                    style="max-height: 250px; object-fit: cover;">
                             @else
-                                @if ($category->category_image)
-                                    <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
-                                        alt="Product Image" class="card-img-top img-fluid"
-                                        style="max-height: 250px; object-fit: cover;">
-                                @else
-                                    <div class="card-img-top d-flex align-items-center justify-content-center"
-                                        style="max-height: 250px background: rgba(255, 255, 255, 0.7);">
-                                        <p class="text-muted">No image available</p>
-                                    </div>
-                                @endif
+                                <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
+                                    class="d-block img-fluid w-100 h-100 rounded img-shadow" alt="..."
+                                    style="max-height: 250px; object-fit: cover;">
                             @endif
                             <div class="position-absolute start-0 top-0 w-100 h-100"
                                 style="background-color: rgb(0, 0, 0, 0.5)"></div>

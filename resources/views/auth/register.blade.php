@@ -125,7 +125,7 @@
                                         placeholder="08xxxxxxxxxx" value="{{ old('phone') }}" required>
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-pink-color mt-4 w-100 fw-bold">Register</button>
+                                    <button type="submit" class="btn btn-pink-color mt-4 w-100 fw-bold text-white">Register</button>
                                 </div>
                             </form>
                         </div>

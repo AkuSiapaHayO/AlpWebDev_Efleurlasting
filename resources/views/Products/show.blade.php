@@ -9,11 +9,11 @@
                         <div class="carousel-inner img-shadow">
                             @foreach ($images as $key => $image)
                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                    @if (Storage::disk('public')->exists($image->image_name))
-                                        <img src="{{ asset('storage/' . $image->image_name) }}" class="d-block w-100"
+                                    @if (File::exists(public_path($image->image_name)))
+                                        <img src="{{ asset('Product/' . $image->image_name) }}" class="d-block w-100"
                                             alt="Product Image" style="height: 500px; object-fit: cover;">
                                     @else
-                                        <img src="{{ asset('Assets/products/' . $image->image_name) }}" alt="Product Image"
+                                        <img src="{{ asset('Assets/Products/' . $image->image_name) }}" alt="Product Image"
                                             class="d-block w-100" style="height: 500px; object-fit: cover;">
                                     @endif
                                 </div>
@@ -58,7 +58,8 @@
                     <p class="text-secondary fw-bold mb-1 text-uppercase">Quantity</p>
                     @livewire('counter')
                     <div class="my-3">
-                        <label for="note" class="form-label text-secondary fw-bold mb-0 mb-2">Notes (Input your custom color here)</label>
+                        <label for="note" class="form-label text-secondary fw-bold mb-0 mb-2">Notes (Input your custom
+                            color here)</label>
                         <input type="text" class="form-control" id="note" name="note"
                             placeholder="Input 'none' for non-customizable color" required>
                     </div>

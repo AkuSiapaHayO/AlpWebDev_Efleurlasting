@@ -1,81 +1,62 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="container-lg">
+        <div class="card shadow-lg mb-3 mt-5 mt-md-5" style="border: none;">
+            <div class="card-body d-flex justify-content-between align-items-center">
                 <a href="{{ route('admin.categories.view') }}">
-                    <button class="btn btn-outline-primary">Back</button>
+                    <button class="btn btn-pink-color fw-bold text-white">Back</button>
                 </a>
-                <h1>View Category</h1>
+                <h1 class="heading mx-auto mb-0">View Category</h1>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        @if ($category->category_image && Storage::disk('public')->exists($category->category_image))
-                            <img src="{{ asset('storage/' . $category->category_image) }}" class="card-img-top img-thumbnail"
-                                style="max-height:400px; object-fit:cover" alt="Category Image">
-                        @else
-                            <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
-                                class="card-img-top img-thumbnail" style="max-height:400px; object-fit:cover"
-                                alt="Category Image">
-                        @endif
-                    </div>
-                    <div class="col-md-8">
-                        <h2 class="card-title" style="overflow: hidden;">
-                            {{ $category->category_name }}
-                        </h2>
-                        <p class="card-text">{{ $category->description }}</p>
-                        <a href="{{ route('category.show', ['category' => $category->id]) }}"
-                            class="btn btn-sm btn-primary">View</a>
-                        <a href="{{ route('category.edit', ['category' => $category->id]) }}"
-                            class="btn btn-sm btn-secondary">Edit</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Products</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-6">
-                            @foreach ($products as $product)
-                                <div class="col mb-4">
-                                    <div class="card position-relative">
-                                        {{-- Check if the product has an image --}}
-                                        @if ($product->images->isNotEmpty() && Storage::disk('public')->exists($product->images->first()->image_name))
-                                            <img src="{{ asset('storage/' . $product->images->first()->image_name) }}"
-                                                class="d-block w-100" alt="..."
-                                                style="max-height: 50vh; max-width: 100vw; object-fit: cover;">
-                                        @else
-                                            @if ($product->images->isNotEmpty())
-                                                <img src="{{ asset('Assets/products/' . $product->images->first()->image_name) }}"
-                                                    alt="Product Image" class="card-img-top img-fluid"
-                                                    style="max-height: 50vh; max-width: 100vw; object-fit: cover;">
-                                            @else
-                                                {{-- Display a placeholder image or text when no image is available --}}
-                                                <div class="card-img-top d-flex align-items-center justify-content-center"
-                                                    style="height: 50vh; width:100vw; background: rgba(255, 255, 255, 0.7);">
-                                                    <p class="text-muted">No image available</p>
-                                                </div>
-                                            @endif
-                                        @endif
+        </div>
 
-                                        {{-- Text and link at the bottom of the card --}}
-                                        <div class="card-body">
-                                            <h6 class="card-title mb-0" style="max-height: 50px; overflow: hidden;">
-                                                {{ $product->category->category_name }} - {{ $product->product_name }}
-                                            </h6>
-                                            <p>{{ $product->is_active ? 'Active' : 'InActive' }}</p>
-                                            <a href="{{ route('products.show', ['product' => $product->id]) }}"
-                                                class="btn btn-primary mt-2">View Details</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
+        <div class="card shadow-lg" style="border: none;">
+            <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                @if (File::exists(public_path($category->category_image)))
+                    <img src="{{ asset($category->category_image) }}" class="d-block w-100 img-fluid rounded img-shadow"
+                        style="max-height:400px; max-width: 500px; object-fit:cover" alt="Category Image">
+                @else
+                    <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
+                        class="d-block w-100 img-fluid rounded img-shadow"
+                        style="max-height:400px; max-width: 500px; object-fit:cover" alt="Category Image">
+                @endif
+                <div class="my-4">
+                    <h1 class="heading mt-3 text-center" style="overflow: hidden;">
+                        {{ $category->category_name }}
+                    </h1>
+                    <p class="text text-center mb-0 px-lg-5">{{ $category->description }}</p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="container-lg mt-5">
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mx-0">
+            @foreach ($products as $product)
+                <div class="col mb-4">
+                    <a class="link-offset-2 link-underline link-underline-opacity-0"
+                        href="{{ route('product.show', ['product' => $product->id]) }}">
+                        <div class="card shadow-lg h-100 new" style="transition: 0.3s; border-radius: 7px;">
+                            @if (File::exists(public_path($product->images->first()->image_name)))
+                                <img src="{{ asset('Products/' . $product->images->first()->image_name) }}"
+                                    class="d-block w-100" alt="..." style="max-height: 400px; object-fit: cover;">
+                            @else
+                                <img src="{{ asset('Assets/Products/' . $product->images->first()->image_name) }}"
+                                    class="d-block w-100" alt="..." style="max-height: 400px; object-fit: cover;">
+                            @endif
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <p class="card-title mb-3 text" style="max-height: 50px; overflow: hidden;">
+                                    {{ $product->category->category_name }} - {{ $product->product_name }}
+                                </p>
+                                <p class="mb-0 text">
+                                    Rp {{ number_format($product->price, 0, '.', ',') }}
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection
