@@ -13,8 +13,13 @@
                     @foreach ($carousels as $i => $carousel)
                         <div class="col">
                             <div class="card w-100 h-100">
-                                <img src="{{ asset($carousel->image) }}" class="card-img-top"
-                                    style="max-height:125px; object-fit:cover" alt="Carousel-Image">
+                                @if (File::exists(public_path($carousel->image)))
+                                    <img src="{{ asset($carousel->image) }}" class="card-img-top"
+                                        style="max-height:125px; object-fit:cover" alt="Carousel-Image">
+                                @else
+                                    <img src="{{ asset('Assets/' . $carousel->image) }}" class="card-img-top"
+                                        style="max-height:125px; object-fit:cover" alt="Carousel-Image">
+                                @endif
                                 <div class="card-body">
                                     <div class="border-bottom pb-3">
                                         <h5 class="card-title">{{ $carousel->title }}</h5>
