@@ -15,8 +15,8 @@
                     @foreach ($categories as $category)
                         <div class="col">
                             <div class="card w-100 h-100">
-                                @if ($category->category_image && Storage::disk('public')->exists($category->category_image))
-                                    <img src="{{ asset('storage/' . $category->category_image) }}" class="card-img-top"
+                                @if (File::exists(public_path($category->category_image)))
+                                    <img src="{{ asset($category->category_image) }}" class="card-img-top"
                                         style="max-height:400px; object-fit:cover" alt="Category Image">
                                 @else
                                     <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"

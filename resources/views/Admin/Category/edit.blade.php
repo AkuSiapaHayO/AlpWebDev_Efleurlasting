@@ -18,13 +18,17 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="mb-3">
-                                {{-- Image container --}}
                                 <div style="width: 100%; height: 500px; overflow: hidden; position: relative;">
-                                    {{-- Image preview --}}
-                                    <img id="image-preview"
-                                    src="{{ old('category_image') ? asset('storage/' . old('category_image')) : (isset($category) && $category->category_image && Storage::disk('public')->exists($category->category_image) ? asset('storage/' . $category->category_image) : asset('Assets/Categories/' . $category->category_image)) }}"
-                                    class="img-fluid img-thumbnail" alt="Category Image"
-                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                    @if (File::exists(public_path($category->category_image)))
+                                        <img id="image-preview" src="{{ asset($category->category_image) }}"
+                                            class="img-fluid img-thumbnail" alt="Category Image"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
+                                    @else
+                                        <img id="image-preview" src="{{ asset('Assets/Categories/' . $category->category_image) }}"
+                                            class="img-fluid img-thumbnail" alt="Category Image"
+                                            style="width: 100%; height: 100%; object-fit: cover;">
+                                    @endif
+
                                 </div>
 
                                 {{-- Image upload --}}

@@ -28,8 +28,8 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    @if (Storage::disk('public')->exists($category->category_image))
-                        <img src="{{ asset('storage/' . $category->category_image) }}"
+                    @if (File::exists(public_path($category->category_image)))
+                        <img src="{{ asset($category->category_image) }}"
                             class="d-block w-100 h-100 img-fluid rounded img-shadow" alt="..."
                             style="max-height: 500px; object-fit: cover;">
                     @else

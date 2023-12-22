@@ -69,21 +69,15 @@
                     <a class="link-light link-offset-2 link-underline link-underline-opacity-0"
                         href="{{ route('category.show', ['category' => $category->id]) }}">
                         <div class="position-relative shadow-lg h-100 category-image" style="transition: 0.3s">
-                            @if (Storage::disk('public')->exists($category->category_image))
-                                <img src="{{ asset('storage/' . $category->category_image) }}" class="d-block w-100"
-                                    alt="..." style="max-height: 250px; object-fit: cover;">
-                            @else
-                                @if ($category->category_image)
-                                    <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
-                                        alt="Product Image" class="card-img-top img-fluid"
-                                        style="max-height: 250px; object-fit: cover;">
-                                @else
-                                    <div class="card-img-top d-flex align-items-center justify-content-center"
-                                        style="max-height: 250px background: rgba(255, 255, 255, 0.7);">
-                                        <p class="text-muted">No image available</p>
-                                    </div>
-                                @endif
-                            @endif
+                            @if (File::exists(public_path($category->category_image)))
+                            <img src="{{ asset($category->category_image) }}"
+                                class="d-block w-100 h-100 img-fluid rounded img-shadow" alt="..."
+                                style="max-height: 250px; object-fit: cover;">
+                        @else
+                            <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
+                                class="d-block img-fluid w-100 h-100 rounded img-shadow" alt="..."
+                                style="max-height: 250px; object-fit: cover;">
+                        @endif
                             <div class="position-absolute start-0 top-0 w-100 h-100"
                                 style="background-color: rgb(0, 0, 0, 0.5)"></div>
                             <div class="position-absolute start-0 bottom-0" style="z-index: 2;">

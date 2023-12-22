@@ -12,13 +12,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        @if ($category->category_image && Storage::disk('public')->exists($category->category_image))
-                            <img src="{{ asset('storage/' . $category->category_image) }}" class="card-img-top img-thumbnail"
+                        @if (File::exists(public_path($category->category_image)))
+                            <img src="{{ asset($category->category_image) }}" class="card-img-top"
                                 style="max-height:400px; object-fit:cover" alt="Category Image">
                         @else
-                            <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
-                                class="card-img-top img-thumbnail" style="max-height:400px; object-fit:cover"
-                                alt="Category Image">
+                            <img src="{{ asset('Assets/Categories/' . $category->category_image) }}" class="card-img-top"
+                                style="max-height:400px; object-fit:cover" alt="Category Image">
                         @endif
                     </div>
                     <div class="col-md-8">
