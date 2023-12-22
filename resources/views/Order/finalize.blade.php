@@ -106,7 +106,7 @@
                             <input type="hidden" name="recipient_phone" value="{{ $recipientPhone }}">
                             <input type="hidden" name="recipient_address" value="{{ $recipientAddress }}">
                             <input type="hidden" name="notes" value="{{ $notes }}">
-                            <input type="hidden" name="isDelivery" value="{{ $isDelivery }}">
+                            <input type="text" name="isDelivery" value="{{ $isDelivery }}" placeholder="{{ $isDelivery }}">
                             <input type="hidden" name="cartItemId" value="{{ implode(',', $cartItemsId) }}">
                         </div>
                         <div class="modal-footer">
