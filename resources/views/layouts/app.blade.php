@@ -32,7 +32,6 @@
         <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">
-                    {{-- {{ config('app.name', 'Laravel') }} --}}
                     <img src="{{ asset('Assets/Logo/logo_image_efleurlasting.png') }}" alt="Logo Image Efleurlasting"
                         class="img-fluid" style="width: 50px; height: auto;">
                     <img src="{{ asset('Assets/Logo/logo_title_efleurlasting.png') }}" alt="Logo Title Efleurlasting"
@@ -45,9 +44,6 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-
-                    {{-- FIX ROUTE  --}}
                     <ul class="navbar-nav gap-3 ms-5">
                         <li class="nav-item {{ request()->routeIs('products') ? 'active-link' : '' }}">
                             <a class="nav-link p-0 text-black" href="{{ route('products') }}">Products</a>
@@ -63,11 +59,6 @@
                             @endif
                         @endauth
                     </ul>
-
-
-
-
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto align-items-center">
                         @auth
                             @if (Auth::user()->isAdmin())
@@ -83,7 +74,7 @@
                                     @php($user = Auth::user())
                                     @if ($user->profile_image)
                                         <a class="nav-link" href="{{ route('user.setting') }}">
-                                            <img src="{{ asset('storage/' . $user->profile_image) }}" alt=""
+                                            <img src="{{ asset($user->profile_image) }}" alt=""
                                                 style="width: 35px; height: 35px; overflow: hidden; object-fit:cover; object-position: center; border-radius: 50%"
                                                 class="img-fluid">
                                         </a>
@@ -97,9 +88,6 @@
                                 </li>
                             @endif
                         @endauth
-
-
-                        <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">

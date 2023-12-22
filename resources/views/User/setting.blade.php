@@ -9,7 +9,7 @@
                     <div class="col-md-4 border-end">
                         <div style="max-width:500px; overflow:hidden" class="mb-3">
                             @if ($user->profile_image)
-                                <img src="{{ asset('storage/' . $user->profile_image) }}" alt=""
+                                <img src="{{ asset($user->profile_image) }}" alt=""
                                     class="img-fluid w-100 rounded" style="max-height:500px; object-fit:cover">
                             @else
                                 <img src="{{ asset('Assets/Icons/profile.png') }}" alt="" class="img-fluid w-100 rounded"

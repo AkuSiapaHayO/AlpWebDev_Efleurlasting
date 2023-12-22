@@ -71,14 +71,16 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         if (!empty($data['profile-image'])) {
-            $data['profile-image'] = $data['profile-image']->store('user', ['disk' => 'public']);
+            $image = $data['profile-image'];
+            $imageName = 'User/' . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('User'), $imageName);
 
             return User::create([
                 'username' => $data['username'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
                 'name' => $data['name'],
-                'profile_image' => $data['profile-image'],
+                'profile_image' => $imageName,
                 'gender' => $data['gender'],
                 'age' => $data['age'],
                 'birthdate' => $data['birthdate'],
@@ -108,9 +110,6 @@ class RegisterController extends Controller
                 'role_id' => 2,
             ]);
         }
-
-
-
     }
 
     public function register(Request $request)
