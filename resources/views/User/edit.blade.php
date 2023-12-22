@@ -5,7 +5,8 @@
         <div class="row justify-content-center">
             <div class="card p-0">
                 <div class="card-header p-3 d-flex align-items-center justify-content-between">
-                    <a href="{{ route('user.setting') }}"><button class="btn btn-pink-color fw-bold text-white">Back</button></a>
+                    <a href="{{ route('user.setting') }}"><button
+                            class="btn btn-pink-color fw-bold text-white">Back</button></a>
                     <div class="mx-auto text-center">
                         <h2 class="fw-bolder m-0">Account Settings</h2>
                     </div>
@@ -15,16 +16,12 @@
                         <div class="col-md-3 mb-3">
                             <p class="fw-bold fs-5">Profile Picture</p>
                             @if ($user->profile_image)
-                                {{-- <div style="max-width: 300px; oveflow: hidden" class="mb-3"> --}}
-                                <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile-image"
+                                <img src="{{ asset($user->profile_image) }}" alt="Profile-image"
                                     class="img-fluid rounded w-100 mb-3" style="max-height: 300px; object-fit:cover">
-                                {{-- </div> --}}
                             @else
-                                {{-- <div style="max-width: 300px; oveflow: hidden" class="mb-3"> --}}
                                 <img src="{{ asset('Assets/Icons/profile.png') }}" alt="Profile-image"
                                     class="img-fluid rounded w-100 mb-3"
                                     style="max-height: 300px; width:auto; object-fit:cover">
-                                {{-- </div> --}}
                             @endif
                             <form action="{{ route('user.updateProfileImage', $user) }}" method="POST"
                                 enctype="multipart/form-data">

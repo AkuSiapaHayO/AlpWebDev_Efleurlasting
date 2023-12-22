@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -78,36 +79,51 @@ class UserController extends Controller
 
         if ($request->file('profile-image')) {
             if ($user->profile_image) {
-                Storage::disk('public')->delete($user->profile_image);
+                $originalImagePath = public_path($user->profile_image);
+                if (File::exists($originalImagePath)) {
+                    File::delete($originalImagePath);
+                }
             }
 
-            $validatedData['profile-image'] = $request->file('profile-image')->store('user', ['disk' => 'public']);
+            $image = $validatedData['profile-image'];
+            $imageName = 'User/' . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('User'), $imageName);
 
             $user->update([
-                'profile_image' => $validatedData['profile-image']
+                'profile_image' => $imageName
             ]);
         }
 
         return redirect()->route('user.edit', $user);
     }
 
-    // Delete a record
     public function destroy(User $user)
     {
         $cart = $user->cart;
+
         if ($cart) {
             $cart->cartItems()->delete();
             $cart->delete();
         }
 
+        if ($user->profile_image) {
+            $originalImagePath = public_path($user->profile_image);
+            if (File::exists($originalImagePath)) {
+                File::delete($originalImagePath);
+            }
+        }
+
         $user->delete();
+        
         return redirect()->route('login');
     }
 
-    public function destroyProfileImage(User $user) {
+    public function destroyProfileImage(User $user)
+    {
         if ($user->profile_image) {
-            if (Storage::disk('public')->exists($user->profile_image)) {
-                Storage::disk('public')->delete($user->profile_image);
+            $originalImagePath = public_path($user->profile_image);
+            if (File::exists($originalImagePath)) {
+                File::delete($originalImagePath);
                 $user->update(['profile_image' => null]);
             }
         }

@@ -18,38 +18,31 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         if ($request->has('search')) {
-            $products = Product::where('product_name', 'like', '%'.$request->search.'%')->where('is_active', true)->paginate(15)->withQueryString();
+            $products = Product::where('product_name', 'like', '%' . $request->search . '%')->where('is_active', true)->paginate(15)->withQueryString();
         } else {
             $products = Product::where('is_active', true)->paginate(15);
         }
-
-        
 
         return view('Products.view', compact('categories', 'products'));
     }
 
     public function adminindex()
     {
-        return view('Admin.Product.view', [
-            'products' => Product::all(),
-            'categories' => Category::all(),
-        ]);
+        $products = Product::all();
+        $categories = Category::all();
+
+        return view('Admin.Product.view', compact('products', 'categories'));
     }
 
     public function adminshow(Product $product)
     {
 
         $product->load('category');
-
         $productColors = $product->productColors;
+        $category = $product->category;
         $images = $product->images;
 
-        return view('Admin.Product.show', [
-            'product' => $product,
-            'category' => $product->category,
-            'productColors' => $productColors,
-            'images' => $images,
-        ]);
+        return view('Admin.Product.show', compact('product', 'productColors', 'category', 'images'));
     }
 
     /**
@@ -57,10 +50,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('Admin.Product.create', [
-            'categories' => Category::all(),
-            'colors' => Color::all(),
-        ]);
+        $categories = Category::all();
+        $colors = Color::all();
+
+        return view('Admin.Product.create', compact('categories', 'colors'));
     }
 
     /**
@@ -71,6 +64,7 @@ class ProductController extends Controller
         $request->validate([
             'images.*' => 'image',
         ]);
+        
         $is_active = $request->has('is_active') && $request->input('is_active') === 'on';
 
         $product = Product::create([
@@ -82,7 +76,6 @@ class ProductController extends Controller
             'category_id' => $request->input('category_id'),
         ]);
 
-        // Existing Colors
         if ($request->has('selected_colors')) {
             foreach ($request->input('selected_colors') as $colorId) {
                 ProductColor::create([
@@ -92,7 +85,6 @@ class ProductController extends Controller
             }
         }
 
-        // New Colors
         if ($request->has('additional_newcolors')) {
             foreach ($request->input('additional_newcolors') as $color) {
                 if (!is_null($color)) {
@@ -105,7 +97,6 @@ class ProductController extends Controller
             }
         }
 
-        // Images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $imagePath = $image->store('user', ['disk' => 'public']);

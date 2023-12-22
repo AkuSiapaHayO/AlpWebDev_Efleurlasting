@@ -14,17 +14,18 @@
                 <div class="carousel-inner position-relative">
                     @foreach ($carousels as $key => $carousel)
                         <div class="carousel-item @if ($key === 0) active @endif">
-                            @if (Storage::disk('public')->exists($carousel->image))
-                                <img src="{{ asset('storage/' . $carousel->image) }}" class="d-block w-100" alt="..."
-                                    style="max-height: 60vh; max-width: 1540px; object-fit: cover;">
+                            @if (File::exists(public_path($carousel->image)))
+                                <img src="{{ asset($carousel->image) }}" class="d-block w-100"
+                                    alt="Carousel-Image" style="max-height: 500px; max-width: 1540px; object-fit: cover;">
                             @else
-                                <img src="{{ asset('Assets/Carousel/' . $carousel->image) }}" class="d-block w-100"
-                                    alt="..." style="max-height: 60vh; max-width: 1540px; object-fit: cover;">
+                                <img src="{{ asset('Assets/' . $carousel->image) }}" class="d-block w-100"
+                                    alt="Carousel-Image" style="max-height: 500px; max-width: 1540px; object-fit: cover;">
                             @endif
                             <div
                                 class="carousel-captions position-absolute start-0 bottom-0 py-5 w-100 d-none d-md-flex flex-column align-items-center px-5">
                                 <h5 class="heading text-black text-center fs-2 py-1 pt-3">{{ $carousel->title }}</h5>
-                                <p class="text text-center py-2 text-black fw-semibold w-50">{{ $carousel->description }}</p>
+                                <p class="text text-center py-2 text-black fw-semibold w-50">{{ $carousel->description }}
+                                </p>
                             </div>
                         </div>
                     @endforeach

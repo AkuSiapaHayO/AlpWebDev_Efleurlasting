@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Carousel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreCarouselRequest;
 use App\Http\Requests\UpdateCarouselRequest;
@@ -40,12 +41,14 @@ class CarouselController extends Controller
         ]);
 
         if ($request->file('carousel-image')) {
-            $validatedData['carousel-image'] = $request->file('carousel-image')->store('carousel', 'public');
+            $image = $validatedData['carousel-image'];
+            $imageName = 'Carousel/' . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('Carousel'), $imageName);
 
             Carousel::create([
                 'title' => $validatedData['title'],
                 'description' => $validatedData['description'],
-                'image' => $validatedData['carousel-image'],
+                'image' => $imageName,
             ]);
 
             return redirect()->route('carousel.view');
@@ -96,16 +99,19 @@ class CarouselController extends Controller
 
         if ($request->file('carousel-image')) {
             if ($carousel->image) {
-                if (Storage::disk('public')->exists($carousel->image)) {
-                    Storage::disk('public')->delete($carousel->image);
+                $originalImagePath = public_path($carousel->image);
+                if (File::exists($originalImagePath)) {
+                    File::delete($originalImagePath);
                 }
             }
         }
 
-        $validatedData['carousel-image'] = $request->file('carousel-image')->store('carousel', 'public');
+        $image = $validatedData['carousel-image'];
+        $imageName = 'Carousel/' . time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('Carousel'), $imageName);
 
         $carousel->update([
-            'image' => $validatedData['carousel-image'],
+            'image' => $imageName,
         ]);
 
         return redirect()->route('carousel.view');
@@ -117,8 +123,9 @@ class CarouselController extends Controller
     public function destroy(Carousel $carousel)
     {
         if ($carousel->image) {
-            if (Storage::disk('public')->exists($carousel->image)) {
-                Storage::disk('public')->delete($carousel->image);
+            $originalImagePath = public_path($carousel->image);
+            if (File::exists($originalImagePath)) {
+                File::delete($originalImagePath);
             }
         }
         $carousel->delete();
