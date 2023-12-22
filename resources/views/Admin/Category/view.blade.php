@@ -1,68 +1,72 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="container">
+
+        <div class="card shadow-lg mb-3 mt-3 mt-md-5" style="border: none;">
+            <div class="card-body d-flex justify-content-between align-items-center">
                 <a href="{{ route('products.view') }}">
-                    <button class="btn btn-outline-primary">Back</button>
+                    <button class="btn btn-pink-color fw-bold text-white">Back</button>
                 </a>
-                <h1>Edit Categories</h1>
+                <h1 class="heading mb-0 mx-auto">Edit Categories</h1>
             </div>
-            <div class="card-body">
-                {{-- Display Categories --}}
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                    @foreach ($categories as $category)
-                        <div class="col">
-                            <div class="card w-100 h-100">
-                                @if (File::exists(public_path($category->category_image)))
-                                    <img src="{{ asset($category->category_image) }}" class="card-img-top"
-                                        style="max-height:400px; object-fit:cover" alt="Category Image">
-                                @else
-                                    <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
-                                        class="card-img-top" style="max-height:400px; object-fit:cover"
-                                        alt="Category Image">
-                                @endif
-                                <div class="card-body">
-                                    <h4 class="card-title" style="overflow: hidden;">
-                                        {{ $category->category_name }}
-                                    </h4>
-                                    <p class="card-text" style="height: 200px; overflow-y: auto;">{{ $category->description }}</p>
-                                    <a href="{{ route('admin.category.show', ['category' => $category->id]) }}"
-                                        class="btn btn-sm btn-primary">View</a>
-                                    <a href="{{ route('category.edit', ['category' => $category->id]) }}"
-                                        class="btn btn-sm btn-secondary">Edit</a>
-                                </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+            @foreach ($categories as $category)
+                <div class="col mb-3">
+                    <div class="card shadow-lg h-100 category-image" style="border: none; transition: 0.3s">
+                        <div class="position-relative">
+                            @if (File::exists(public_path($category->category_image)))
+                                <img src="{{ asset($category->category_image) }}" class="card-img-top"
+                                    style="max-height:400px; object-fit:cover" alt="Category Image">
+                            @else
+                                <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
+                                    class="card-img-top" style="max-height:400px; object-fit:cover" alt="Category Image">
+                            @endif
+                            <div class="position-absolute start-0 top-0 w-100 h-100"
+                                style="background-color: rgb(0, 0, 0, 0.3)"></div>
+                            <div class="position-absolute start-0 bottom-0 w-100">
+                                <p class="heading ms-3 text-white fs-3">{{ $category->category_name }}</p>
                             </div>
                         </div>
-                    @endforeach
-                    <div class="col">
-                        <div class="card w-100 h-100">
-                            <div class="m-3">
-                                <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="category_image" class="form-label">Category Image</label>
-                                        <input type="file" class="form-control" id="category_image" name="category_image"
-                                            accept="image/*" required>
-                                        <div id="image-preview-container"
-                                            style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
-                                    </div>
 
-                                    <div class="mb-3">
-                                        <label for="category_name" class="form-label">Category Name</label>
-                                        <input type="text" class="form-control" id="category_name" name="category_name"
-                                            required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="description" class="form-label">Description</label>
-                                        <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-success">Create Category</button>
-                                </form>
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <p class="text">{{ $category->description }}</p>
+                            <div class="d-flex flex-column align-items-center">
+                                <a href="{{ route('admin.category.show', ['category' => $category->id]) }}"
+                                    class="btn btn-sm btn-pink-color fw-bold text-white w-100 mb-3">View</a>
+                                <a href="{{ route('category.edit', ['category' => $category->id]) }}"
+                                    class="btn btn-sm btn-pink-color fw-bold text-white w-100">Edit</a>
                             </div>
+
                         </div>
+                    </div>
+                </div>
+            @endforeach
+            <div class="col mb-3">
+                <div class="card shadow-lg h-100" style="border: none;">
+                    <div class="card-body">
+                        <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="category_image" class="form-label">Category Image</label>
+                                <input type="file" class="form-control" id="category_image" name="category_image"
+                                    accept="image/*" required>
+                                <div id="image-preview-container" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="category_name" class="form-label">Category Name</label>
+                                <input type="text" class="form-control" id="category_name" name="category_name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" name="description" rows="6" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-pink-color fw-bold text-white w-100">Create Category</button>
+                        </form>
                     </div>
                 </div>
             </div>

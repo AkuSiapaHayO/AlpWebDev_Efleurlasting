@@ -26,16 +26,16 @@
                 <div class="col mb-4">
                     <a class="link-offset-2 link-underline link-underline-opacity-0"
                         href="{{ route('product.show', ['product' => $product->id]) }}">
-                        <div class="card position-relative shadow-lg h-100 new"
+                        <div class="card shadow-lg h-100 new"
                             style="transition: 0.3s; border-radius: 7px;">
                             @if (File::exists(public_path($product->images->first()->image_name)))
                                 <img src="{{ asset('Products/' . $product->images->first()->image_name) }}"
                                     class="d-block w-100" alt="..."
-                                    style="max-height: 400px; max-width: 100vw; object-fit: cover;">
+                                    style="max-height: 400px; object-fit: cover;">
                             @else
                                 <img src="{{ asset('Assets/Products/' . $product->images->first()->image_name) }}"
                                     class="d-block w-100" alt="..."
-                                    style="max-height: 400px; max-width: 100vw; object-fit: cover;">
+                                    style="max-height: 400px; object-fit: cover;">
                             @endif
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <p class="card-title mb-3 text" style="max-height: 50px; overflow: hidden;">
