@@ -20,6 +20,7 @@
                             <th>Delivery Status</th>
                             <th>Delivery Date</th>
                             <th>Total Amount</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,7 +35,12 @@
                                 <td>{{ $order->isDelivery ? 'Pick Up' : 'Delivery' }}</td>
                                 <td>{{ $order->delivery_status ? 'Delivered' : 'Not Delivered' }}</td>
                                 <td>{{ $order->order_date }}</td>
-                                <td>{{ $order->total_amount}}</td>
+                                <td>Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
+                                <td>
+                                    <a href="" class="btn btn-outline-primary">
+                                        View More
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
