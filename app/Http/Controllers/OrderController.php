@@ -64,6 +64,15 @@ class OrderController extends Controller
         return redirect()->route('payment.view')->with('success', 'Order Deleted');
     }
 
+    public function orderfinish(Order $order)
+    {
+        $order->update([
+            'delivery_status' =>true,
+        ]);
+
+        return redirect()->route('orders.view')->with('success', 'Order Approved');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

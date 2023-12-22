@@ -104,3 +104,4 @@ Route::get('/setting/admin/payment/{order}', [OrderController::class, 'paymentsh
 Route::get('/setting/admin/payment/{order}/approve', [OrderController::class, 'paymentapprove'])->middleware('admin')->name('payment.approve');
 Route::get('/setting/admin/payment/{order}/delete', [OrderController::class, 'paymentdisapprove'])->middleware('admin')->name('payment.disapprove');
 Route::get('/setting/admin/orders', [OrderController::class, 'adminindex'])->middleware('admin')->name('orders.view');
+Route::get('/setting/admin/order/{order}/finish', [OrderController::class, 'orderfinish'])->middleware('admin')->name('order.finish');
