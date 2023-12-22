@@ -190,13 +190,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <button type="submit" class="btn btn-success mt-3">Update Product</button>
+                        </form>
                     </div>
                 </div>
                 <div class="d-flex flex-column align-items-end">
                     {{-- Update Button --}}
-                    <button type="submit" class="btn btn-success mt-3">Update Product</button>
-                    </form>
-                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal" data-bs-target="#deleteModal">
+
+                    <button type="button" class="btn btn-danger mt-2" data-bs-toggle="modal"
+                        data-bs-target="#deleteModal">
                         Delete Category
                     </button>
 
@@ -211,7 +213,8 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Are you sure you want to delete this product? All Images, and Cart Items of customers will be destroyed. Please be sure before deleting this category.
+                                    Are you sure you want to delete this product? All Images, and Cart Items of customers
+                                    will be destroyed. Please be sure before deleting this category.
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"

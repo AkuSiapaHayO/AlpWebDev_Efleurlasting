@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\ProductColor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -36,7 +37,6 @@ class ProductController extends Controller
 
     public function adminshow(Product $product)
     {
-
         $product->load('category');
         $productColors = $product->productColors;
         $category = $product->category;
@@ -64,7 +64,7 @@ class ProductController extends Controller
         $request->validate([
             'images.*' => 'image',
         ]);
-        
+
         $is_active = $request->has('is_active') && $request->input('is_active') === 'on';
 
         $product = Product::create([
@@ -99,10 +99,11 @@ class ProductController extends Controller
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $imagePath = $image->store('user', ['disk' => 'public']);
+                $imageName = 'Products/' . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('Products'), $imageName);
 
                 $product->images()->create([
-                    'image_name' => $imagePath,
+                    'image_name' => $imageName,
                     'product_id' => $product->id,
                 ]);
             }
@@ -119,13 +120,9 @@ class ProductController extends Controller
 
         $productColors = $product->productColors;
         $images = $product->images;
+        $category = $product->category;
 
-        return view('Products.show', [
-            'product' => $product,
-            'category' => $product->category,
-            'productColors' => $productColors,
-            'images' => $images,
-        ]);
+        return view('Products.show', compact('product', 'category', 'images', 'productColors'));
     }
 
     /**
@@ -133,18 +130,13 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $category = $product->category;
         $productColors = $product->productColors;
         $images = $product->images;
+        $categories = Category::all();
+        $colors = Color::all();
         $checkedColors = $productColors->pluck('color_id')->toArray();
-        return view('Admin.Product.edit', [
-            'product' => $product,
-            'category' => $product->category,
-            'productColors' => $productColors,
-            'images' => $images,
-            'categories' => Category::all(),
-            'colors' => Color::all(),
-            'checkedColors' => $checkedColors,
-        ]);
+        return view('Admin.Product.edit', compact('product', 'category', 'productColors', 'images', 'categories', 'colors', 'checkedColors'));
     }
 
     /**
@@ -154,7 +146,6 @@ class ProductController extends Controller
     {
         $is_active = $request->has('is_active') && $request->input('is_active') === 'on';
 
-        // Details
         $product->update([
             'product_name' => $request->filled('product_name') ? $request->input('product_name') : $product->product_name,
             'description' => $request->filled('description') ? $request->input('description') : $product->description,
@@ -164,17 +155,13 @@ class ProductController extends Controller
             'category_id' => $request->filled('category_id') ? $request->input('category_id') : $product->category_id,
         ]);
 
-        // Existing Colors
         $selectedColorIds = $request->input('selected_colors', []);
 
-        // Check and create ProductColor entries
         foreach ($selectedColorIds as $colorId) {
-            // Check if ProductColor with the same product_id and color_id already exists
             $existingProductColor = ProductColor::where('product_id', $product->id)
                 ->where('color_id', $colorId)
                 ->first();
 
-            // If not, create a new ProductColor entry
             if (!$existingProductColor) {
                 ProductColor::create([
                     'product_id' => $product->id,
@@ -183,12 +170,10 @@ class ProductController extends Controller
             }
         }
 
-        // Delete ProductColor entries with color_id not in selected colors
         ProductColor::where('product_id', $product->id)
             ->whereNotIn('color_id', $selectedColorIds)
             ->delete();
 
-        // New Colors
         if ($request->has('additional_newcolors')) {
             foreach ($request->input('additional_newcolors') as $color) {
                 if (!is_null($color)) {
@@ -202,16 +187,16 @@ class ProductController extends Controller
         }
 
         // Images
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $imagePath = $image->store('user', ['disk' => 'public']);
+        // if ($request->hasFile('images')) {
+        //     foreach ($request->file('images') as $image) {
+        //         $imagePath = $image->store('user', ['disk' => 'public']);
 
-                $product->images()->create([
-                    'image_name' => $imagePath,
-                    'product_id' => $product->id,
-                ]);
-            }
-        }
+        //         $product->images()->create([
+        //             'image_name' => $imagePath,
+        //             'product_id' => $product->id,
+        //         ]);
+        //     }
+        // }
 
         return redirect()->route('products.show', ['product' => $product->id])->with('success', 'Product Updated');
     }
@@ -227,8 +212,8 @@ class ProductController extends Controller
         $images = $product->images;
 
         foreach ($images as $image) {
-            if (Storage::disk('public')->exists($image->image_name)) {
-                Storage::disk('public')->delete($image->image_name);
+            if (File::exists(public_path($image->image_name))) {
+                File::exists(public_path($image->image_name));
             }
 
             $image->delete();

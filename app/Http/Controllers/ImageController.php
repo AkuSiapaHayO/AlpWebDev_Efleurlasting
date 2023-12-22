@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
@@ -30,17 +31,18 @@ class ImageController extends Controller
      */
     public function store(Request $request, Product $product)
     {
-        // Images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $imagePath = $image->store('user', ['disk' => 'public']);
+                $imageName = 'Product/' . time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('Product'), $imageName);
 
                 $product->images()->create([
-                    'image_name' => $imagePath,
+                    'image_name' => $imageName,
                     'product_id' => $product->id,
                 ]);
             }
         }
+        
         return redirect()->route('products.edit', ['product' => $product->id]);
     }
 
@@ -75,13 +77,12 @@ class ImageController extends Controller
     {
         $product = $image->product;
 
-        // Check if the image exists in storage
-        if (Storage::disk('public')->exists($image->image_name)) {
-            // Delete the image from storage
-            Storage::disk('public')->delete($image->image_name);
+        if (File::exists(public_path($image->image_name))) {
+            File::delete(public_path($image->image_name));
         }
 
         $image->delete();
+
         return redirect()->route('products.edit', ['product' => $product->id]);
     }
 }
