@@ -19,7 +19,7 @@
                     <div class="col-12 mt-3">
                         <img class="img-preview img-fluid w-100 rounded"
                             style="max-height:400px; object-fit:cover; display: none;">
-                        <img src="{{ asset('Assets/Carousel/CarouselExample.png') }}" alt="" id="upload-text"
+                        <img src="{{ asset('Carousel/CarouselExample.png') }}" alt="" id="upload-text"
                             class="img-fluid w-100 rounded" style="max-height:400px; object-fit:cover;">
                     </div>
                     <div class="col-12 mt-3">

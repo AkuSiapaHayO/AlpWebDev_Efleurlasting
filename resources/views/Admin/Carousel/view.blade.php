@@ -13,21 +13,16 @@
                     @foreach ($carousels as $i => $carousel)
                         <div class="col">
                             <div class="card w-100 h-100">
-                                @if (Storage::disk('public')->exists($carousel->image))
-                                    <img src="{{ asset('storage/' . $carousel->image) }}" class="card-img-top"
-                                        style="max-height:125px; object-fit:cover" alt="...">
-                                @else
-                                    <img src="{{ asset('Assets/Carousel/' . $carousel->image) }}" class="card-img-top"
-                                        style="max-height:125px; object-fit:cover" alt="...">
-                                @endif
-
+                                <img src="{{ asset($carousel->image) }}" class="card-img-top"
+                                    style="max-height:125px; object-fit:cover" alt="Carousel-Image">
                                 <div class="card-body">
                                     <div class="border-bottom pb-3">
                                         <h5 class="card-title">{{ $carousel->title }}</h5>
                                         <p class="card-text">{{ $carousel->description }}</p>
                                     </div>
                                     <div class="border-bottom pb-3">
-                                        <form action="{{ route('carousel.update', $carousel) }}" class="mt-3" method="POST">
+                                        <form action="{{ route('carousel.update', $carousel) }}" class="mt-3"
+                                            method="POST">
                                             @csrf
                                             @method('put')
                                             <div>
@@ -44,7 +39,8 @@
                                                 Slide
                                             </button>
                                         </form>
-                                        <form action="{{ route('carousel.updateImage', $carousel) }}" class="mt-3" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ route('carousel.updateImage', $carousel) }}" class="mt-3"
+                                            method="POST" enctype="multipart/form-data">
                                             @csrf
                                             @method('put')
                                             <div>
