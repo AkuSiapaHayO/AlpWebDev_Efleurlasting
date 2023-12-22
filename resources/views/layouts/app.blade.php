@@ -33,9 +33,9 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}">
                     {{-- {{ config('app.name', 'Laravel') }} --}}
-                    <img src="{{ asset('assets/Logo/logo_image_efleurlasting.png') }}" alt="Logo Image Efleurlasting"
+                    <img src="{{ asset('Assets/Logo/logo_image_efleurlasting.png') }}" alt="Logo Image Efleurlasting"
                         class="img-fluid" style="width: 50px; height: auto;">
-                    <img src="{{ asset('assets/Logo/logo_title_efleurlasting.png') }}" alt="Logo Title Efleurlasting"
+                    <img src="{{ asset('Assets/Logo/logo_title_efleurlasting.png') }}" alt="Logo Title Efleurlasting"
                         class="img-fluid" style="width: 150px; height: auto;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
