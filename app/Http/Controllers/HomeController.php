@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Carousel;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\Testimony;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,10 +29,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
         $carousels = Carousel::all();
         $categories = Category::inRandomOrder()->limit(2)->get();
+        $testimonies = Testimony::all();
+        $userId = auth()->id();
 
-        return view('home', compact('carousels', 'categories'));
+        $orderItems = OrderItem::whereHas('order', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })->get();
+
+        return view('home', compact('user', 'carousels', 'categories', 'testimonies', 'orderItems'));
     }
 
     public function about()
