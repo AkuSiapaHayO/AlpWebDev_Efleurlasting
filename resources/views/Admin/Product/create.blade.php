@@ -115,7 +115,6 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            {{-- Existing Colors --}}
                                             <div class="mb-3">
                                                 <label for="colors" class="form-label">Available Colors</label>
                                                 <div id="color-inputs">
@@ -133,11 +132,9 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            {{-- New Colors --}}
                                             <div class="mb-3">
                                                 <label for="newcolors" class="form-label">New Colors</label>
                                                 <div id="newcolor-inputs">
-                                                    <!-- Input container for dynamic string inputs -->
                                                 </div>
                                                 <button type="button" class="btn btn-primary mt-2"
                                                     onclick="addNewColorInput()">Add
@@ -159,13 +156,13 @@
     </div>
 
     <script>
-        function addNewColorInput() { // Updated function name
-            const newColorInputsContainer = document.querySelector('#newcolor-inputs'); // Updated id to 'newcolor-inputs'
-            const newColorInput = document.createElement('input'); // Fix: Change 'color' to 'input'
+        function addNewColorInput() { 
+            const newColorInputsContainer = document.querySelector('#newcolor-inputs'); 
+            const newColorInput = document.createElement('input');
 
-            newColorInput.type = 'text'; // Fix: Change 'newInput' to 'newColor'
+            newColorInput.type = 'text'; 
             newColorInput.className = 'form-control mt-2';
-            newColorInput.name = 'additional_newcolors[]'; // Updated name to 'additional_newcolors[]'
+            newColorInput.name = 'additional_newcolors[]'; 
             newColorInput.placeholder = 'Enter additional color';
 
             newColorInputsContainer.appendChild(newColorInput);
@@ -179,40 +176,33 @@
 
             if (existingColors.length === 0 && newColors.length === 0) {
                 alert('Please select at least one color.');
-                return false; // Prevent form submission
+                return false;
             }
 
-            return true; // Continue with form submission
+            return true; 
         }
 
         function previewImages() {
-            // Get the file input element
             var input = document.getElementById('images');
 
-            // Get the container for image previews
             var previewContainer = document.getElementById('image-preview-container');
 
-            // Clear previous previews
             previewContainer.innerHTML = '';
 
-            // Loop through each selected file
             for (var i = 0; i < input.files.length; i++) {
                 var file = input.files[i];
 
-                // Check if the file is an image
                 if (file && file.type.startsWith('image/')) {
                     // Create a new image element
                     var img = document.createElement('img');
-                    img.className = 'img-thumbnail'; // Optional: Add a class for styling
-                    img.style.width = '48%'; // Set the width of the preview image (adjust as needed)
-                    img.style.height = '300px'; // Set the height of the preview image
-                    img.style.objectFit = 'cover'; // Set object-fit property
+                    img.className = 'img-thumbnail'; 
+                    img.style.width = '48%'; 
+                    img.style.height = '300px'; 
+                    img.style.objectFit = 'cover'; 
 
 
-                    // Set the source of the image to the file object URL
                     img.src = URL.createObjectURL(file);
 
-                    // Append the image to the preview container
                     previewContainer.appendChild(img);
                 }
             }

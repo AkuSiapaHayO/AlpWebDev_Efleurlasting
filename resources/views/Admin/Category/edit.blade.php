@@ -87,21 +87,16 @@
         </div>
     </div>
     <script>
-        // Get the file input element
         var input = document.getElementById('category_image');
 
-        // Get the image preview element
         var preview = document.getElementById('image-preview');
 
-        // Set the initial image source based on the current value of the file input
         preview.src = input.files && input.files.length > 0 ? URL.createObjectURL(input.files[0]) : preview.src;
 
-        // Update the image preview when the file input changes
         input.addEventListener('change', function() {
             if (input.files && input.files.length > 0) {
                 preview.src = URL.createObjectURL(input.files[0]);
             } else {
-                // If no file is selected, show the default image
                 preview.src = "{{ asset('Assets/Categories/default-image.jpg') }}";
             }
         });

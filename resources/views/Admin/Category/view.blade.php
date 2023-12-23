@@ -75,39 +75,30 @@
 
     <script>
         function previewImage() {
-            // Get the file input element
             var input = document.getElementById('category_image');
 
-            // Get the container for image preview
             var previewContainer = document.getElementById('image-preview-container');
 
-            // Clear previous previews
             previewContainer.innerHTML = '';
 
-            // Check if a file is selected
             if (input.files.length > 0) {
                 var file = input.files[0];
 
-                // Check if the file is an image
                 if (file && file.type.startsWith('image/')) {
-                    // Create a new image element
                     var img = document.createElement('img');
-                    img.className = 'img-thumbnail'; // Optional: Add a class for styling
-                    img.style.width = '100%'; // Set the width of the preview image to 100%
-                    img.style.height = '290px'; // Set the height of the preview image
-                    img.style.objectFit = 'cover'; // Set object-fit property
-                    img.style.marginTop = '20px'; // Add top padding
+                    img.className = 'img-thumbnail'; 
+                    img.style.width = '100%'; 
+                    img.style.height = '290px'; 
+                    img.style.objectFit = 'cover'; 
+                    img.style.marginTop = '20px'; 
 
-                    // Set the source of the image to the file object URL
                     img.src = URL.createObjectURL(file);
 
-                    // Append the image to the preview container
                     previewContainer.appendChild(img);
                 }
             }
         }
 
-        // Trigger the preview when the file input changes
         document.getElementById('category_image').addEventListener('change', previewImage);
     </script>
 @endsection

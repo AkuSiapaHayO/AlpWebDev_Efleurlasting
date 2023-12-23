@@ -65,17 +65,17 @@
                     <h4>Available Colors</h4>
                     <div class="row">
                         @foreach ($productColors as $productColor)
-                            <div class="col">
+                            <div class="col mb-2 mb-md-0">
                                 <div class="card">
                                     <div class="card-body p-2">
-                                        <p class="card-text">{{ $productColor->color->color_name }}</p>
+                                        <p class="text-center mb-0">{{ $productColor->color->color_name }}</p>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
                     <a href="{{ route('products.edit', ['product' => $product]) }}"
-                        class="btn btn-pink-color fw-bold text-white w-100 mt-3">Edit</a>
+                        class="btn btn-pink-color fw-bold text-white w-100 mt-2 mt-md-3">Edit</a>
                 </div>
             </div>
         </div>

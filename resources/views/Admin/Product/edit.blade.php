@@ -12,8 +12,7 @@
 
             <div class="card-body">
                 @csrf
-                @method('PUT') {{-- Use the PUT method for update --}}
-
+                @method('PUT')
                 <div class="row">
                     <div class="col-md-4">
                         {{-- Existing Images --}}
@@ -102,21 +101,8 @@
                                     </div>
                                 </div>
 
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        const is_activeCheckbox = document.getElementById('is_active');
-                                        const is_activeInput = document.getElementById('is_active_input');
 
-                                        // Initial check to set the state on page load
-                                        is_activeInput.disabled = !is_activeCheckbox.checked;
 
-                                        // Add an event listener to the checkbox
-                                        is_activeCheckbox.addEventListener('change', function() {
-                                            // Update the disabled attribute based on the checkbox state
-                                            is_activeInput.disabled = !this.checked;
-                                        });
-                                    });
-                                </script>
                             </div>
 
                             <div class="mb-3">
@@ -235,13 +221,13 @@
     </div>
 
     <script>
-        function addNewColorInput() { // Updated function name
-            const newColorInputsContainer = document.querySelector('#newcolor-inputs'); // Updated id to 'newcolor-inputs'
-            const newColorInput = document.createElement('input'); // Fix: Change 'color' to 'input'
+        function addNewColorInput() {
+            const newColorInputsContainer = document.querySelector('#newcolor-inputs');
+            const newColorInput = document.createElement('input');
 
-            newColorInput.type = 'text'; // Fix: Change 'newInput' to 'newColor'
+            newColorInput.type = 'text';
             newColorInput.className = 'form-control mt-2';
-            newColorInput.name = 'additional_newcolors[]'; // Updated name to 'additional_newcolors[]'
+            newColorInput.name = 'additional_newcolors[]';
             newColorInput.placeholder = 'Enter additional color';
 
             newColorInputsContainer.appendChild(newColorInput);
@@ -253,43 +239,51 @@
 
             if (existingColors.length === 0 && newColors.length === 0) {
                 alert('Please select at least one color.');
-                return false; // Prevent form submission
+                return false;
             }
 
-            return true; // Continue with form submission
+            return true;
         }
 
         function previewImages() {
-            // Get the file input element
             var input = document.getElementById('images');
 
-            // Get the container for image previews
             var previewContainer = document.getElementById('image-preview-container');
 
-            // Clear previous previews
             previewContainer.innerHTML = '';
 
-            // Loop through each selected file
             for (var i = 0; i < input.files.length; i++) {
                 var file = input.files[i];
 
-                // Check if the file is an image
                 if (file && file.type.startsWith('image/')) {
-                    // Create a new image element
+
                     var img = document.createElement('img');
-                    img.className = 'img-thumbnail'; // Optional: Add a class for styling
-                    img.style.width = '48%'; // Set the width of the preview image (adjust as needed)
-                    img.style.height = '300px'; // Set the height of the preview image
-                    img.style.objectFit = 'cover'; // Set object-fit property
+                    img.className = 'img-thumbnail';
+                    img.style.width = '48%';
+                    img.style.height = '300px';
+                    img.style.objectFit = 'cover';
 
-
-                    // Set the source of the image to the file object URL
                     img.src = URL.createObjectURL(file);
 
-                    // Append the image to the preview container
                     previewContainer.appendChild(img);
                 }
             }
         }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const is_activeCheckbox = document.getElementById('is_active');
+            const is_activeInput = document.getElementById('is_active_input');
+
+            // Initial check to set the state on page load
+            is_activeInput.disabled = !is_activeCheckbox.checked;
+
+            // Add an event listener to the checkbox
+            is_activeCheckbox.addEventListener('change', function() {
+                // Update the disabled attribute based on the checkbox state
+                is_activeInput.disabled = !this.checked;
+            });
+        });
     </script>
 @endsection
