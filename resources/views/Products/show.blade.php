@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-lg">
         <div class="row py-4 py-md-5">
-            <div class="col-md-6 px-4 px-md-4 px-lg-5 d-flex align-items-center justify-content-center">
+            <div class="col-md-6 px-4 px-lg-5 d-flex align-items-center justify-content-center">
                 <div class="card shadow-lg w-100" style="border: none">
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner img-shadow">
@@ -11,10 +11,10 @@
                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                     @if (File::exists(public_path($image->image_name)))
                                         <img src="{{ asset('Product/' . $image->image_name) }}" class="d-block w-100"
-                                            alt="Product Image" style="height: 500px; object-fit: cover;">
+                                            alt="Product Image" style="max-height: 500px; object-fit: cover;">
                                     @else
                                         <img src="{{ asset('Assets/Products/' . $image->image_name) }}" alt="Product Image"
-                                            class="d-block w-100" style="height: 500px; object-fit: cover;">
+                                            class="d-block w-100" style="max-height: 500px; object-fit: cover;">
                                     @endif
                                 </div>
                             @endforeach
@@ -33,7 +33,6 @@
                 </div>
             </div>
 
-            {{-- Display other product details on the right side --}}
             <div class="col-md-6 px-4 px-md-4 px-lg-5 pt-5 pt-md-0">
                 <p class="sub-heading text-secondary borders-left">{{ $category->category_name }}</p>
                 <h1 class="heading mb-4 fs-1 border-bottom pb-2">{{ $product->product_name }}</h1>
