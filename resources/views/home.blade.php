@@ -114,7 +114,8 @@
                 <div class="card shadow-lg h-100 mb-5" style="border: none;">
                     <div class="card-body p-5">
                         <h1 class="heading borders-left">Testimonial</h1>
-                        <form action="{{ route('testimony.store') }}" method="POST" class="mt-5">
+                        <form action="{{ route('testimony.store') }}" method="POST" class="mt-5"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('post')
                             <div class="row g-3">
@@ -145,7 +146,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="product_image" class="form-label">Review Image</label>
-                                    <input type="file" id="product_image" name="product_image" class="form-control"
+                                    <input type="file" name="product_image" id="product_image" class="form-control"
                                         accept="image/jpg, image/png, image/jpeg" onchange="previewImage()">
                                     <img class="img-preview img-fluid mt-3 w-50" style="max-width: 300px">
                                 </div>
@@ -171,8 +172,8 @@
                         <th>Image</th>
                         <th>Name</th>
                         <th>Date</th>
-                        <th>User</th>
-                        <th>Product</th>
+                        {{-- <th>User</th>
+                        <th>Product</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -186,8 +187,7 @@
                             </td>
                             <td>{{ $testimony->name }}</td>
                             <td>{{ $testimony->date }}</td>
-                            <td>{{ $testimony->user->name }}</td>
-                            <td>{{ $testimony->product->product_name }}</td>
+                            {{-- <td>{{ $testimony->product->product_name }}</td> --}}
                         </tr>
                     @endforeach
                 </tbody>

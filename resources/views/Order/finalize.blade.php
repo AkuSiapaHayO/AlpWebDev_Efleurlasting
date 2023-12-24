@@ -99,7 +99,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="uploadImage" class="form-label">Upload SS Bukti Transfer</label>
-                                <input type="file" class="form-control" id="uploadImage" name="uploadImage" required>
+                                <input type="file" class="form-control" id="uploadImage" name="uploadImage" accept="image/jpg, image/png, image/jpeg" required>
                             </div>
 
                             <input type="hidden" name="order_date" value="{{ now() }}">

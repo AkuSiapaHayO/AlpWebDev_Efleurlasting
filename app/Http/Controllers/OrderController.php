@@ -153,18 +153,19 @@ class OrderController extends Controller
         $cartItems = CartItem::whereIn('id', $cartItemsId)->get();
         $isDelivery = $request->input('isDelivery') ?? true;
 
-        $request->validate([
+        $validatedDate = $request->validate([
             'paymentDetails' => 'required|string',
-            'uploadImage' => 'required|image|mimes:jpeg,png,jpg,gif',
-            // Add other validation rules as needed
+            'uploadImage' => 'required|image',
         ]);
 
-        // Handle image upload
-        $imagePath = $request->file('uploadImage')->store('user', ['disk' => 'public']);
+        if ($request->file('uploadImage')) {
+            $image = $validatedDate['uploadImage'];
+            $imageName = 'Transfer/' . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('Transfer'), $imageName);
+        }
 
-        // Create a new Order instance using the create method
         $order = Order::create([
-            'payment_details' => $request->input('paymentDetails'),
+            'payment_details' => $validatedDate['paymentDetails'],
             'order_date' => now(),
             'total_amount' => $request->input('total_amount'),
             'delivery_date' => $request->input('delivery_date'),
@@ -177,7 +178,7 @@ class OrderController extends Controller
             'payment_status' => false,
             'delivery_status' => false,
             'user_id' => $user->id,
-            'transfer_evidence_img' => $imagePath,
+            'transfer_evidence_img' => $imageName,
         ]);
 
         foreach ($cartItems as $cartItem) {
@@ -188,14 +189,11 @@ class OrderController extends Controller
                 'productcolor_id' => $cartItem->productcolor_id,
             ]);
 
-            // Delete the CartItem
             $cartItem->delete();
         }
 
-        // Redirect or perform any additional logic as needed
         return redirect()->route('order.view');
     } catch (\Exception $e) {
-        // Log the error
         dd($e->getMessage());
     }
 }

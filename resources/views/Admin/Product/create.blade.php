@@ -1,168 +1,173 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-5">
-
-        <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center">
-                <a href="{{ route('products.view') }}">
-                    <button class="btn btn-outline-primary">Back</button>
-                </a>
-                <h1 class="mx-auto">Create New Product</h1>
+    <section>
+        <div class="container-lg">
+            <div class="card my-3 my-md-4 shadow-lg" style="border: none;">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <a href="{{ route('products.view') }}">
+                        <button class="btn btn-pink-color fw-bold text-white">Back</button>
+                    </a>
+                    <h1 class="mx-auto heading mb-0">Create New Product</h1>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container-lg">
             <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data"
                 onsubmit="return validateColors(this)">
                 @csrf
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            {{-- Images --}}
-                            <div class="mb-4">
-                                <label for="images" class="form-label">Product Images</label>
-                                <input type="file" class="form-control" id="images" name="images[]"
-                                    accept="image/jpg, image/png, image/jpeg" multiple onchange="previewImages()">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card shadow-lg mb-3" style="border: none;">
+                            <div class="card-body">
+                                <label for="images" class="form-label heading borders-left fs-3 mb-0">Product
+                                    Images</label>
                             </div>
-                            <div id="image-preview-container" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
                         </div>
-
-                        <div class="col-md-8">
-                            <div class="row">
-                                {{-- Product --}}
-                                <div class="col-md-10">
-                                    <div class="mb-3">
+                        <div class="card shadow-lg mb-3" style="border: none;">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <input type="file" class="form-control" id="images" name="images[]"
+                                        accept="image/jpg, image/png, image/jpeg" multiple onchange="previewImages()">
+                                </div>
+                                <div id="image-preview-container" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card shadow-lg mb-3" style="border: none;">
+                            <div class="card-body">
+                                <h1 class="heading fs-3 borders-left mb-0">New Product Form</h1>
+                            </div>
+                        </div>
+                        <div class="card shadow-lg mb-3" style="border: none;">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
                                         <label for="product_name" class="form-label">Product Name</label>
+                                    </div>
+                                    <div class="col-md-10 d-flex align-items-center">
                                         <input type="text" class="form-control" id="product_name" name="product_name"
                                             required>
                                     </div>
-                                </div>
-                                {{-- Is Active --}}
-                                <div class="col-md-2">
-                                    <div class="mb-3" style="padding-top: 2rem;">
-                                        <div class="form-check form-switch mx-2">
-                                            <!-- Actual checkbox -->
+                                    <div class="col-md-2 d-flex align-items-center">
+                                        <div class="ps-5 form-check form-switch mx-2">
                                             <input class="form-check-input" type="checkbox" role="switch" id="is_active"
                                                 name="is_active" checked style="transform: scale(1.8);">
 
-                                            <!-- Label for the checkbox -->
                                             <label class="form-check-label" for="is_active"
                                                 style="padding-left: 10px;">Active</label>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="mb-3">
+                                    <div class="col-12">
                                         <input type="text" class="form-control" id="is_active_input"
                                             name="is_active_input" disabled hidden>
                                     </div>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Description</label>
+                                    <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="size" class="form-label">Size</label>
+                                            <input type="text" class="form-control" id="size" name="size"
+                                                required>
+                                        </div>
+                                    </div>
 
-                                <script>
-                                    document.addEventListener('DOMContentLoaded', function() {
-                                        const is_activeCheckbox = document.getElementById('is_active');
-                                        const is_activeInput = document.getElementById('is_active_input');
-
-                                        // Initial check to set the state on page load
-                                        is_activeInput.disabled = !is_activeCheckbox.checked;
-
-                                        // Add an event listener to the checkbox
-                                        is_activeCheckbox.addEventListener('change', function() {
-                                            // Update the disabled attribute based on the checkbox state
-                                            is_activeInput.disabled = !this.checked;
-                                        });
-                                    });
-                                </script>
-
-
-                            </div>
-
-
-                            <div class="mb-3">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="size" class="form-label">Size</label>
-                                        <input type="text" class="form-control" id="size" name="size" required>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="price" class="form-label">Price</label>
+                                            <input type="number" class="form-control" id="price" name="price"
+                                                required>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="price" class="form-label">Price</label>
-                                        <input type="number" class="form-control" id="price" name="price" required>
+                                <div class="mb-3">
+                                    <label for="category_id" class="form-label">Category</label>
+                                    <select class="form-select" id="category_id" name="category_id" required>
+                                        <option value="" disabled selected>Select a category</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card shadow-lg mb-3" style="border: none;">
+                            <div class="card-body">
+                                <h1 class="heading fs-3 borders-left mb-0">Choose Colors</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card shadow-lg mb-3" style="border: none;">
+                                    <div class="card-body">
+                                        <label for="colors" class="form-label fw-bold fs-5">Available Colors</label>
+                                        <div id="color-inputs">
+                                            @foreach ($colors as $color)
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        value="{{ $color->id }}" name="selected_colors[]">
+                                                    <label class="form-check-label" for="color_{{ $color->id }}">
+                                                        {{ $color->color_name }}
+                                                    </label>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="mb-3">
-                                <label for="category_id" class="form-label">Category</label>
-                                <select class="form-select" id="category_id" name="category_id" required>
-                                    <option value="" disabled selected>Select a category</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title">Choose Colors</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="colors" class="form-label">Available Colors</label>
-                                                <div id="color-inputs">
-                                                    @foreach ($colors as $color)
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                value="{{ $color->id }}" name="selected_colors[]">
-                                                            <label class="form-check-label"
-                                                                for="color_{{ $color->id }}">
-                                                                {{ $color->color_name }}
-                                                            </label>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
+                            <div class="col-md-6">
+                                <div class="card shadow-lg mb-3" style="border: none;">
+                                    <div class="card-body d-flex flex-column align-items-center">
+                                        <label for="newcolors" class="form-label fw-bold fs-5">New Colors</label>
+                                        <div id="newcolor-inputs">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="mb-3">
-                                                <label for="newcolors" class="form-label">New Colors</label>
-                                                <div id="newcolor-inputs">
-                                                </div>
-                                                <button type="button" class="btn btn-primary mt-2"
-                                                    onclick="addNewColorInput()">Add
-                                                    Color</button>
-                                            </div>
-                                        </div>
+                                        <button type="button" class="btn btn-pink-color text-white fw-bold w-100"
+                                            onclick="addNewColorInput()">Add
+                                            Color</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="card shadow-lg mb-3" style="border: none;">
+                            <div class="card-body">
+                                <button type="submit" class="btn btn-pink-color text-white fw-bold w-100">Create Product</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="d-flex flex-column align-items-end mt-3">
-                        <button type="submit" class="btn btn-success">Create Product</button>
-                    </div>
-
                 </div>
             </form>
         </div>
-    </div>
+    </section>
 
     <script>
-        function addNewColorInput() { 
-            const newColorInputsContainer = document.querySelector('#newcolor-inputs'); 
+        document.addEventListener('DOMContentLoaded', function() {
+            const is_activeCheckbox = document.getElementById('is_active');
+            const is_activeInput = document.getElementById('is_active_input');
+
+            is_activeInput.disabled = !is_activeCheckbox.checked;
+
+            is_activeCheckbox.addEventListener('change', function() {
+                is_activeInput.disabled = !this.checked;
+            });
+        });
+    </script>
+
+    <script>
+        function addNewColorInput() {
+            const newColorInputsContainer = document.querySelector('#newcolor-inputs');
             const newColorInput = document.createElement('input');
 
-            newColorInput.type = 'text'; 
+            newColorInput.type = 'text';
             newColorInput.className = 'form-control mt-2';
-            newColorInput.name = 'additional_newcolors[]'; 
+            newColorInput.name = 'additional_newcolors[]';
             newColorInput.placeholder = 'Enter additional color';
 
             newColorInputsContainer.appendChild(newColorInput);
@@ -179,7 +184,7 @@
                 return false;
             }
 
-            return true; 
+            return true;
         }
 
         function previewImages() {
@@ -193,12 +198,11 @@
                 var file = input.files[i];
 
                 if (file && file.type.startsWith('image/')) {
-                    // Create a new image element
                     var img = document.createElement('img');
-                    img.className = 'img-thumbnail'; 
-                    img.style.width = '48%'; 
-                    img.style.height = '300px'; 
-                    img.style.objectFit = 'cover'; 
+                    img.className = 'img-thumbnail';
+                    img.style.width = '48%';
+                    img.style.height = '300px';
+                    img.style.objectFit = 'cover';
 
 
                     img.src = URL.createObjectURL(file);
