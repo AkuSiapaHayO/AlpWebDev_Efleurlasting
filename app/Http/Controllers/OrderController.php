@@ -155,7 +155,7 @@ class OrderController extends Controller
 
         $request->validate([
             'paymentDetails' => 'required|string',
-            'uploadImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'uploadImage' => 'required|image|mimes:jpeg,png,jpg,gif',
             // Add other validation rules as needed
         ]);
 

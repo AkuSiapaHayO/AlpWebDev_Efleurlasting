@@ -62,7 +62,8 @@
                                 botanical
                                 masterpieces that tell stories of beauty, passion, and attention to detail.
                             </p>
-                            <a href="#"><button class="btn btn-outline-pink-color px-5 fw-bold">More</button></a>
+                            <a href="{{ route('products') }}"><button
+                                    class="btn btn-outline-pink-color px-5 fw-bold">More</button></a>
                         </div>
                     </div>
                 </div>
@@ -84,7 +85,8 @@
                                 <p class="sub-heading text-secondary mb-3 borders-left">Featured Category</p>
                                 <h1 class="heading">{{ $category->category_name }}</h1>
                                 <p class="text">{{ $category->description }}</p>
-                                <a href="#"><button class="btn btn-outline-pink-color px-5 fw-bold">Know
+                                <a href="{{ route('category.show', ['category' => $category->id]) }}"><button
+                                        class="btn btn-outline-pink-color px-5 fw-bold">Know
                                         More</button></a>
                             </div>
                         </div>

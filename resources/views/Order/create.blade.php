@@ -1,19 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="card my-5 shadow-lg" style="border: none;">
-            <div class="card-body">
-                <h1 class="heading text-center">Your Cart</h1>
-                <p class="text text-center mb-0">Check your items in your cart carefully</p>
+    <section>
+        <div class="container-lg">
+            <div class="card my-4 my-md-3 shadow-lg" style="border: none;">
+                <div class="card-body">
+                    <h1 class="heading text-center">Your Cart</h1>
+                    <p class="text text-center mb-0">Check your items in your cart carefully</p>
+                </div>
             </div>
         </div>
+    </section>
 
+    <section>
         @php
             $totalAmount = 0;
         @endphp
-
-        <div>
+        <div class="container-lg">
             <div class="card shadow-lg" style="border: none;">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -61,8 +64,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="card shadow-lg my-5" style="border: none;">
+    <section>
+        <div class="container-lg">
+            <div class="card shadow-lg my-4 my-md-3" style="border: none;">
                 <div class="card-body" class="px-4 px-md-0">
                     <form action="{{ route('order.finalize') }}" method="get" class="row g-3">
                         @csrf
@@ -91,7 +98,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="notes" class="form-label">Notes</label>
-                            <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                            <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Please provice your greetings card custom text here"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="deliverySelect" class="form-label">Select Delivery Option:</label>
@@ -108,5 +115,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection

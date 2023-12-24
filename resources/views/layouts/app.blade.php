@@ -125,7 +125,7 @@
             </div>
         </nav>
 
-        <main style="padding-top: 55px">
+        <main style="padding-top: 65px">
             @yield('content')
         </main>
 
