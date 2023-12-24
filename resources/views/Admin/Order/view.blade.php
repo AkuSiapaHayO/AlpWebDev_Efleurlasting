@@ -37,7 +37,7 @@
                                     @if($order->delivery_status)
                                         <span class="btn btn-success">Delivered</span>
                                     @else
-                                        <span class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmationModal">Not Delivered</span>
+                                        <span class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmationModal{{ $order->id }}">Not Delivered</span>
                                     @endif
                                 </td>
 
@@ -59,7 +59,7 @@
     </div>
     @foreach ($orders as $order)
         {{-- Confirmation Modal --}}
-        <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+        <div class="modal fade" id="confirmationModal{{ $order->id }}" tabindex="-1" aria-labelledby="confirmationModalLabel{{ $order->id }}"
             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
