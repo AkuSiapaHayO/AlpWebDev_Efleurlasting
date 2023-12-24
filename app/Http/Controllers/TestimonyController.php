@@ -29,36 +29,28 @@ class TestimonyController extends Controller
 
     public function store(Request $request)
     {
-        try {
-            $request->validate([
-                'product_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            ]);
+        $validatedData = $request->validate([
+            'product_image' => 'required|image',
+        ]);
 
-            // Images
-            if ($request->hasFile('product_image')) {
-                $imagePath = $request->file('product_image')->store('user', ['disk' => 'public']);
-
-                Testimony::create([
-                    'testimony' => $request->input('testimony'),
-                    'testimony_image' => $imagePath,
-                    'name' => $request->user()->username,
-                    'date' => now(),
-                    'user_id' => auth()->id(),
-                    'product_id' => $request->input('product'),
-                ]);
-            }
-
-            return redirect()->route('home');
-        } catch (\Exception $e) {
-            dd($e->getMessage(), $request->all());
+        if ($request->file('product_image')) {
+            $image = $validatedData['product_image'];
+            $imageName = 'Testimony/' . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('Testimony'), $imageName);
         }
+
+        Testimony::create([
+            'testimony' => $request->input('testimony'),
+            'testimony_image' => $imageName,
+            'name' => $request->user()->username,
+            'date' => now(),
+            'user_id' => auth()->id(),
+            'productcolor_id' => $request->input('product'),
+        ]);
+
+        return redirect()->route('home');
+
     }
-
-
-    // Web Code
-    // $image = $request->file('product_image');
-    // $imagePath = 'Testimony/' . time() . '.' . $image->getClientOriginalExtension();
-    // $image->storeAs('public', $imagePath);
 
     /**
      * Display the specified resource.

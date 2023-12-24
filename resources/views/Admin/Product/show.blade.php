@@ -2,8 +2,8 @@
 
 @section('content')
     <section>
-        <div class="container-lg my-3 mt-md-5">
-            <div class="card shadow-lg" style="border: none;">
+        <div class="container-lg">
+            <div class="card shadow-lg my-3 my-md-4" style="border: none;">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <a href="{{ route('products.view') }}">
                         <button class="btn btn-pink-color fw-bold text-white">Back</button>
@@ -12,10 +12,13 @@
                 </div>
             </div>
         </div>
-        <div class="container-lg mt-3 mt-md-5">
-            <div class="row">
-                <div class="col-md-6 px-4 px-lg-5 mb-4 mb-md-0">
-                    <div class="card shadow-lg" style="border: none;">
+    </section>
+
+    <section>
+        <div class="container-lg">
+            <div class="row pb-4 py-md-4">
+                <div class="col-md-6 px-4 px-lg-5 d-flex align-items-center justify-content-center">
+                    <div class="card shadow-lg w-100" style="border: none;">
                         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner img-shadow">
                                 @foreach ($images as $key => $image)
@@ -44,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 px-4 px-lg-5 mb-4 mb-md-0">
+                <div class="col-md-6 px-4 px-md-4 px-lg-5 pt-5 pt-md-0">
                     <h1 class="heading">{{ $category->category_name }} - {{ $product->product_name }}</h1>
                     <table class="table">
                         <tbody>
@@ -66,9 +69,9 @@
                     <div class="row">
                         @foreach ($productColors as $productColor)
                             <div class="col mb-2 mb-md-0">
-                                <div class="card">
+                                <div class="card shadow-lg" style="border: none;">
                                     <div class="card-body p-2">
-                                        <p class="text-center mb-0">{{ $productColor->color->color_name }}</p>
+                                        <p class="text-md-center mb-0">{{ $productColor->color->color_name }}</p>
                                     </div>
                                 </div>
                             </div>
