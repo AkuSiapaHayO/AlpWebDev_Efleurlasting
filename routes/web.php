@@ -38,7 +38,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 
 //Products + Category
-Route::get('/products', [ProductController::class, 'index'])->name('products');
+Route::get('/product', [ProductController::class, 'index'])->name('products');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
 Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
 

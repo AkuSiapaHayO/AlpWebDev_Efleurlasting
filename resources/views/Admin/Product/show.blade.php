@@ -66,15 +66,13 @@
                         </tbody>
                     </table>
                     <h4>Available Colors</h4>
-                    <div class="row">
+                    <div class="d-flex flex-column gap-2">
                         @foreach ($productColors as $productColor)
-                            <div class="col mb-2 mb-md-0">
                                 <div class="card shadow-lg" style="border: none;">
                                     <div class="card-body p-2">
                                         <p class="text-md-center mb-0">{{ $productColor->color->color_name }}</p>
                                     </div>
                                 </div>
-                            </div>
                         @endforeach
                     </div>
                     <a href="{{ route('products.edit', ['product' => $product]) }}"

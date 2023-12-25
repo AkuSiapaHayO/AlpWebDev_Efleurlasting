@@ -30,7 +30,7 @@
                         <div class="card shadow-lg mb-3" style="border: none;">
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <input type="file" class="form-control" id="images" name="images[]"
+                                    <input type="file" name="images[]" id="images" class="form-control"
                                         accept="image/jpg, image/png, image/jpeg" multiple onchange="previewImages()">
                                 </div>
                                 <div id="image-preview-container" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
@@ -138,7 +138,8 @@
                         </div>
                         <div class="card shadow-lg mb-3" style="border: none;">
                             <div class="card-body">
-                                <button type="submit" class="btn btn-pink-color text-white fw-bold w-100">Create Product</button>
+                                <button type="submit" class="btn btn-pink-color text-white fw-bold w-100">Create
+                                    Product</button>
                             </div>
                         </div>
                     </div>

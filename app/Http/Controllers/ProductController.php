@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Color;
+use App\Models\Image;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\ProductColor;
@@ -99,7 +100,7 @@ class ProductController extends Controller
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $imageName = 'Products/' . time() . '.' . $image->getClientOriginalExtension();
+                $imageName = 'Products/' . uniqid() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('Products'), $imageName);
 
                 $product->images()->create([
