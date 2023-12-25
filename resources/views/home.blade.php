@@ -161,7 +161,7 @@
         </section>
     @endauth
 
-    <section>
+    {{-- <section>
         <div class="container-lg">
             <h2>All Testimonies</h2>
             <table class="table">
@@ -171,10 +171,10 @@
                         <th>Testimony</th>
                         <th>Image</th>
                         <th>Name</th>
-                        <th>Date</th>
+                        <th>Date</th> --}}
                         {{-- <th>User</th>
                         <th>Product</th> --}}
-                    </tr>
+                    {{-- </tr>
                 </thead>
                 <tbody>
                     @foreach ($testimonies as $testimony)
@@ -186,14 +186,14 @@
                                     alt="Testimony Image" width="50">
                             </td>
                             <td>{{ $testimony->name }}</td>
-                            <td>{{ $testimony->date }}</td>
+                            <td>{{ $testimony->date }}</td> --}}
                             {{-- <td>{{ $testimony->product->product_name }}</td> --}}
-                        </tr>
+                        {{-- </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-    </section>
+    </section> --}}
 
 
     <section class="contact position-relative">
