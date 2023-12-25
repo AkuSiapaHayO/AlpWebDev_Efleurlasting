@@ -99,11 +99,11 @@
                                 <div class="card h-100 shadow-lg new" style="transition: 0.3s; border-radius: 7px;">
                                     @if (File::exists(public_path($product->images->first()->image_name)))
                                         <img src="{{ asset($product->images->first()->image_name) }}" class="d-block w-100"
-                                            alt="..." style="max-height: 400px; object-fit: cover;">
+                                            alt="..." style="height: 300px; object-fit: cover;">
                                     @else
                                         <img src="{{ asset('Assets/Products/' . $product->images->first()->image_name) }}"
                                             class="d-block w-100" alt="..."
-                                            style="max-height: 400px; object-fit: cover;">
+                                            style="height: 300px; object-fit: cover;">
                                     @endif
                                     <div class="card-body">
                                         <p class="heading">

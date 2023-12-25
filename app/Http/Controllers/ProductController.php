@@ -214,7 +214,7 @@ class ProductController extends Controller
 
         foreach ($images as $image) {
             if (File::exists(public_path($image->image_name))) {
-                File::exists(public_path($image->image_name));
+                File::delete(public_path($image->image_name));
             }
 
             $image->delete();

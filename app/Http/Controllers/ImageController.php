@@ -33,8 +33,8 @@ class ImageController extends Controller
     {
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $imageName = 'Product/' . time() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('Product'), $imageName);
+                $imageName = 'Products/' . uniqid() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('Products'), $imageName);
 
                 $product->images()->create([
                     'image_name' => $imageName,

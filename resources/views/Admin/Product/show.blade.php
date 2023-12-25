@@ -25,11 +25,11 @@
                                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                         @if (File::exists(public_path($image->image_name)))
                                             <img src="{{ asset($image->image_name) }}" class="d-block w-100 img-shadow"
-                                                alt="Product Image" style="max-height: 500px; object-fit: cover;">
+                                                alt="Product Image" style="height: 500px; object-fit: cover;">
                                         @else
                                             <img src="{{ asset('Assets/Products/' . $image->image_name) }}"
                                                 alt="Product Image" class="d-block w-100"
-                                                style="max-height: 500px; object-fit: cover;">
+                                                style="height: 500px; object-fit: cover;">
                                         @endif
                                     </div>
                                 @endforeach

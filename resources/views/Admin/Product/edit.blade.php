@@ -59,7 +59,7 @@
                                 <div class="">
                                     <label for="images" class="form-label heading borders-left fs-3 mb-3">Add New
                                         Images</label>
-                                    <input type="file" class="form-control" id="images" name="images[]"
+                                    <input type="file" class="form-control mb-3" id="images" name="images[]"
                                         accept="image/jpg, image/png, image/jpeg" multiple onchange="previewImages()">
                                 </div>
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
