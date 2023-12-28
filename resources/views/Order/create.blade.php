@@ -2,11 +2,16 @@
 
 @section('content')
     <section>
-        <div class="container-lg">
-            <div class="card my-4 my-md-3 shadow-lg" style="border: none;">
-                <div class="card-body">
-                    <h1 class="heading text-center">Your Cart</h1>
+        <div class="position-relative">
+            <img src="{{ asset('Assets/About/AboutImage1.jpg') }}" class="vw-100 img-fluid"
+                style="object-fit: cover; max-height: 35vh; z-index: 0;" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100"
+                style="z-index: 1; background-color: rgba(255, 255, 255, 0.7)"></div>
+            <div class="position-absolute bottom-0 start-0 w-100 px-5 py-5 d-none d-md-block" style="z-index: 2;">
+                <div class="d-flex flex-column align-items-center justify-content-center mb-5">
+                    <h1 class="heading borders-left" style="font-size: 60px;">Checkout</h1>
                     <p class="text text-center mb-0">Check your items in your cart carefully</p>
+
                 </div>
             </div>
         </div>
@@ -16,7 +21,8 @@
         @php
             $totalAmount = 0;
         @endphp
-        <div class="container-lg">
+        <div class="container-lg mt-5">
+            <p class="sub-heading text-secondary mb-3 pb-1 borders-left">Cart items checked out</p>
             <div class="card shadow-lg" style="border: none;">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -68,7 +74,11 @@
     </section>
 
     <section>
-        <div class="container-lg">
+        <div class="container-lg mt-5">
+            <p class="sub-heading text-secondary borders-left">
+                Order Details
+            </p>
+            <h1 class="heading mb-3 pb-1">Fill out these Order Details</h1>
             <div class="card shadow-lg my-4 my-md-3" style="border: none;">
                 <div class="card-body" class="px-4 px-md-0">
                     <form action="{{ route('order.finalize') }}" method="get" class="row g-3">
@@ -98,7 +108,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="notes" class="form-label">Notes</label>
-                            <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Please provice your greetings card custom text here"></textarea>
+                            <textarea class="form-control" id="notes" name="notes" rows="3"
+                                placeholder="Please provice your greetings card custom text here"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="deliverySelect" class="form-label">Select Delivery Option:</label>

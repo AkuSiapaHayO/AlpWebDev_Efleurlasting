@@ -2,7 +2,22 @@
 
 @section('content')
     <section>
-        <div class="container-lg">
+        <div class="position-relative">
+            <img src="{{ asset('Assets/About/AboutImage1.jpg') }}" class="vw-100 img-fluid"
+                style="object-fit: cover; max-height: 30vh; z-index: 0;" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100"
+                style="z-index: 1; background-color: rgba(255, 255, 255, 0.7)"></div>
+            <div class="position-absolute bottom-0 start-0 w-100 px-5 py-1 d-none d-md-block" style="z-index: 2;">
+                <div class="d-flex flex-column align-items-center justify-content-center mb-5">
+                    <h1 class="heading borders-left" style="font-size: 60px;">Payment</h1>
+                    <button type="button" class="btn btn-pink-color fw-bold text-white" onclick="goBack()">Back</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- <section>
+        <div class="container-lg mt-3">
             <div class="card my-4 my-md-3 shadow-lg" style="border: none;">
                 <div class="card-body d-flex justify-content-between">
                     <button type="button" class="btn btn-pink-color fw-bold text-white" onclick="goBack()">Back</button>
@@ -10,14 +25,18 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section>
-        <div class="container-lg">
+        <div class="container-lg my-5">
+            <p class="sub-heading text-secondary borders-left">
+                Order Details
+            </p>
+            <h1 class="heading mb-3 pb-1">Please make sure you have filled in the correct Order Details</h1>
             <div class="card shadow-lg" style="border: none;">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Order Information</th>
@@ -99,7 +118,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="uploadImage" class="form-label">Upload SS Bukti Transfer</label>
-                                <input type="file" class="form-control" id="uploadImage" name="uploadImage" accept="image/jpg, image/png, image/jpeg" required>
+                                <input type="file" class="form-control" id="uploadImage" name="uploadImage"
+                                    accept="image/jpg, image/png, image/jpeg" required>
                             </div>
 
                             <input type="hidden" name="order_date" value="{{ now() }}">

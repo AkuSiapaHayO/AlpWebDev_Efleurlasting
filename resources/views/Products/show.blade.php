@@ -7,16 +7,16 @@
                 <div class="col-md-6 px-4 px-lg-5 d-flex align-items-center justify-content-center">
                     <div class="card shadow-lg w-100" style="border: none">
                         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner img-shadow">
+                            <div class="carousel-inner rounded img-border">
                                 @foreach ($images as $key => $image)
                                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                         @if (File::exists(public_path($image->image_name)))
                                             <img src="{{ asset('Product/' . $image->image_name) }}" class="d-block w-100"
-                                                alt="Product Image" style="max-height: 500px; object-fit: cover;">
+                                                alt="Product Image" style="max-height: 650px; object-fit: cover;">
                                         @else
                                             <img src="{{ asset('Assets/Products/' . $image->image_name) }}"
                                                 alt="Product Image" class="d-block w-100"
-                                                style="max-height: 500px; object-fit: cover;">
+                                                style="max-height: 650px; object-fit: cover;">
                                         @endif
                                     </div>
                                 @endforeach

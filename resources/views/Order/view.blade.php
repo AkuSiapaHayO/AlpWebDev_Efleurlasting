@@ -2,6 +2,21 @@
 
 @section('content')
     <section>
+        <div class="position-relative">
+            <img src="{{ asset('Assets/About/AboutImage1.jpg') }}" class="vw-100 img-fluid"
+                style="object-fit: cover; max-height: 30vh; z-index: 0;" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100"
+                style="z-index: 1; background-color: rgba(255, 255, 255, 0.7)"></div>
+            <div class="position-absolute bottom-0 start-0 w-100 px-5 py-1 d-none d-md-block" style="z-index: 2;">
+                <div class="d-flex flex-column align-items-center justify-content-center mb-5">
+                    <h1 class="heading borders-left" style="font-size: 60px;">Orders</h1>
+                    <a href="{{ route('user.setting') }}"><button
+                        class="btn btn-pink-color fw-bold text-white">Back</button></a>                </div>
+            </div>
+        </div>
+    </section>
+
+    {{-- <section>
         <div class="container-lg">
             <div class="card my-4 my-md-3 shadow-lg" style="border: none;">
                 <div class="card-body d-flex justify-content-between align-items-center">
@@ -11,23 +26,36 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section>
-        <div class="container-lg">
+        <div class="container-lg mt-5">
             @foreach ($orders as $order)
                 <div class="card mb-3 shadow-lg p-0 p-lg-3" style="border: none;">
                     <div class="card-body">
-                        <p class="fw-bolder fs-4 text-uppercase">Order <span style="color: #ee7c99">#{{ $order->id }}</span>
+                        <p class="fw-bolder fs-4 text-uppercase">Order ID : <span
+                                style="color: #ee7c99">{{ $order->id }}</span>
                         </p>
-                        <p class="text-secondary fw-bold mb-0 text-uppercase">Total Amount</p>
-                        <p class="fw-medium">{{ number_format($order->total_amount, 0, ',', '.') }}</p>
-                        <p class="text-secondary fw-bold mb-0 text-uppercase">Order Date</p>
-                        <p class="fw-medium">{{ $order->order_date }}</p>
-                        <p class="text-secondary fw-bold mb-0 text-uppercase">Delivery Date</p>
-                        <p class="fw-medium">{{ $order->delivery_date }}</p>
-                        <p class="text-secondary fw-bold mb-0 text-uppercase">Delivery Time</p>
-                        <p class="fw-medium">{{ $order->delivery_time }}</p>
+                        <div class="row">
+                            <div class="col-3">
+                                <p class="text-secondary fw-bold mb-0 text-uppercase">Total Amount</p>
+                                <p class="fw-medium">{{ number_format($order->total_amount, 0, ',', '.') }}</p>
+
+                            </div>
+                            <div class="col-3">
+                                <p class="text-secondary fw-bold mb-0 text-uppercase">Order Date</p>
+                                <p class="fw-medium">{{ $order->order_date }}</p>
+                            </div>
+                            <div class="col-3">
+                                <p class="text-secondary fw-bold mb-0 text-uppercase">Delivery Date</p>
+                                <p class="fw-medium">{{ $order->delivery_date }}</p>
+                            </div>
+                            <div class="col-3">
+                                <p class="text-secondary fw-bold mb-0 text-uppercase">Delivery Time</p>
+                                <p class="fw-medium">{{ $order->delivery_time }}</p>
+                            </div>
+                        </div>
+
                         <p class="haeding text-secondary fw-bold mb-0 text-uppercase">Order Items</p>
                         @php
                             $totalAmount = 0;
