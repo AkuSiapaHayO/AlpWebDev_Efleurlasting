@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Testimony;
 use Illuminate\Http\Request;
+use App\Models\OrderItem;
 
 class TestimonyController extends Controller
 {
@@ -39,17 +40,20 @@ class TestimonyController extends Controller
             $image->move(public_path('Testimony'), $imageName);
         }
 
+        $orderItemId = $request->input('orderitem_id');
+        $orderItem = OrderItem::with('productColor')->find($orderItemId);
+        $productColorId = $orderItem->productColor->id;
+
         Testimony::create([
             'testimony' => $request->input('testimony'),
             'testimony_image' => $imageName,
             'name' => $request->user()->username,
             'date' => now(),
             'user_id' => auth()->id(),
-            'productcolor_id' => $request->input('product'),
+            'productcolor_id' => $productColorId,
         ]);
 
         return redirect()->route('home');
-
     }
 
     /**

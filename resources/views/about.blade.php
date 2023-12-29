@@ -5,9 +5,9 @@
     <section>
         <div class="position-relative">
             <img src="{{ asset('Assets/About/AboutImage1.jpg') }}" class="vw-100 img-fluid"
-                style="object-fit: cover; max-height: 50vh; z-index: 0;" alt="">
+                style="object-fit: cover; max-height: 35vh; z-index: 0;" alt="">
             <div class="position-absolute top-0 start-0 w-100 h-100"
-                style="z-index: 1; background-color: rgba(255, 255, 255, 0.5)"></div>
+                style="z-index: 1; background-color: rgba(255, 255, 255, 0.7)"></div>
             <div class="position-absolute bottom-0 start-0 w-100 px-5 py-5 d-none d-md-block" style="z-index: 2;">
                 <div class="d-flex flex-column align-items-center justify-content-center mb-5">
                     <h1 class="heading borders-left" style="font-size: 60px;">Handcrafted <br> Bouquet</h1>
@@ -16,6 +16,7 @@
         </div>
     </section>
 
+    {{-- Add Pictures if possible--}}
     <section>
         <div class="container my-5">
             <div class="row gy-5">
@@ -24,7 +25,7 @@
                         <div class="card-body p-5">
                             <h1 class="heading borders-left mb-3">Mission</h1>
                             <p class="text">
-                                At [Your Company Name], we are driven by a singular mission — to bring everlasting beauty
+                                At Efleurlasting, we are driven by a singular mission — to bring everlasting beauty
                                 into
                                 your
                                 life
@@ -46,7 +47,7 @@
                     <div class="card shadow-lg h-100" style="border: none;">
                         <div class="card-body p-5">
                             <h1 class="heading borders-left mb-3">Story</h1>
-                            <p class="text">Established in [Year], [Your Company Name] has blossomed from a small passion
+                            <p class="text">Established in 2022, Efleurlasting has blossomed from a small passion
                                 project into a leading
                                 name in the artificial flower industry. Our journey began with a deep appreciation for the
                                 enduring
@@ -66,7 +67,7 @@
                         <div class="card-body p-5">
                             <h1 class="heading borders-left mb-3">Services</h1>
                             <p class="text">
-                                [Your Company Name] is more than just a provider of artificial flowers; we are curators of
+                                Efleurlasting is more than just a provider of artificial flowers; we are curators of
                                 enchanting experiences. Our comprehensive range of services includes bespoke floral
                                 arrangements
                                 for weddings, events, and special occasions, ensuring that each moment is adorned with the
@@ -88,8 +89,8 @@
             <div class="d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="w-75">
                     <h1 class="heading text-center text-light">Contact Us</h1>
-                    <p class="text text-center text-light">Contact us for more information about the product. For
-                        custom order, please order via Whats-Apps.
+                    <p class="text text-center text-light">Contact us for further informations on our bouquets. For
+                        custom orders, please order via Whats-Apps.
                     </p>
                 </div>
                 <a href="{{ route('chat.whatsapp') }}">

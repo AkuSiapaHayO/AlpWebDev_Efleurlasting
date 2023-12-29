@@ -51,6 +51,9 @@
                         <li class="nav-item {{ request()->routeIs('products') ? 'active-link' : '' }}">
                             <a class="nav-link p-0 text-black" href="{{ route('products') }}">Products</a>
                         </li>
+                        <li class="nav-item {{ request()->routeIs('categories') ? 'active-link' : '' }}">
+                            <a class="nav-link p-0 text-black" href="{{ route('categories') }}">Categories</a>
+                        </li>
                         <li class="nav-item {{ request()->routeIs('about') ? 'active-link' : '' }}">
                             <a class="nav-link p-0 text-black" href="{{ route('about') }}">About</a>
                         </li>
@@ -111,6 +114,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('user.setting') }}">
+                                        Profile
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -128,7 +134,7 @@
             </div>
         </nav>
 
-        <main style="padding-top: 65px">
+        <main>
             @yield('content')
         </main>
 

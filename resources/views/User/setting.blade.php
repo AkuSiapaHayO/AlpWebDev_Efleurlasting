@@ -3,7 +3,7 @@
 @section('content')
     @php($user = Auth::user())
     <section>
-        <div class="container-lg">
+        <div class="container-lg mt-5">
             <div class="card my-1 my-md-4 shadow-lg" style="border: none;">
                 <div class="card-body">
                     <div class="row gx-5">
@@ -26,11 +26,11 @@
                                         updating your
                                         personal information.
                                     </p>
-                                    <a href="{{ route('user.edit', $user) }}" class="btn btn-pink-color fw-bold text-white w-100"
-                                        id="edit">Edit</a>
+                                    <a href="{{ route('user.edit', $user) }}"
+                                        class="btn btn-pink-color fw-bold text-white w-100" id="edit">Edit</a>
                                 </div>
                             </div>
-                            <div class="card shadow-lg" style="border: none;">
+                            {{-- <div class="card shadow-lg" style="border: none;">
                                 <div class="card-body">
                                     <h5 class="card-title border-bottom pb-2">Order History</h5>
                                     <p class="card-text">Check your order history here
@@ -38,7 +38,7 @@
                                     <a href="{{ route('order.view') }}" class="btn btn-pink-color fw-bold text-white w-100" id="edit">View
                                         Orders</a>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="col-md-8">
                             <div class="d-flex align-items-center">
@@ -128,6 +128,21 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container-lg my-5">
+            <p class="sub-heading text-secondary borders-left">
+                {{ $user->name }}'s Orders
+            </p>
+            <h1 class="heading mb-3 pb-1">View All of Your Past Orders</h1>
+            <div class="row">
+                <div class="col-2">
+                    <a href="{{ route('order.view') }}" class="btn btn-pink-color fw-bold text-white w-100" id="edit">View
+                        Orders</a>
                 </div>
             </div>
         </div>

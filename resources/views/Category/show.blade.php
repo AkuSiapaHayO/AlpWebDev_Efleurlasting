@@ -4,12 +4,12 @@
     <section>
         <div class="position-relative">
             <img src="{{ asset('Assets/About/AboutImage1.jpg') }}" class="vw-100 img-fluid"
-                style="object-fit: cover; max-height: 20vh; z-index: 0;" alt="">
+                style="object-fit: cover; max-height: 35vh; z-index: 0;" alt="">
             <div class="position-absolute top-0 start-0 w-100 h-100"
-                style="z-index: 1; background-color: rgba(255, 255, 255, 0.5)"></div>
-            <div class="position-absolute bottom-0 start-0 w-100 px-5 pb-5 d-none d-md-block" style="z-index: 2;">
-                <div class="d-flex flex-column align-items-center justify-content-center">
-                    <h1 class="heading borders-left" style="font-size: 60px;">Discover <br>our Product</h1>
+                style="z-index: 1; background-color: rgba(255, 255, 255, 0.7)"></div>
+            <div class="position-absolute bottom-0 start-0 w-100 px-5 py-5 d-none d-md-block" style="z-index: 2;">
+                <div class="d-flex flex-column align-items-center justify-content-center mb-5">
+                    <h1 class="heading borders-left" style="font-size: 60px;">Discover <br>our Category</h1>
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
         <div class="container-lg">
             <div class="row py-5">
                 <div class="col-md-7 px-4 px-md-5">
-                    <div class="card shadow-lg h-100" style="border: none;">
+                    <div class="card h-100" style="border: none;">
                         <div class="card-body d-flex flex-column justify-content-center p-5">
                             <p class="sub-heading text-secondary borders-left">Category</p>
                             <h1 class="heading mb-3">{{ $category->category_name }}</h1>
@@ -30,11 +30,11 @@
                 <div class="col-md-5">
                     @if (File::exists(public_path($category->category_image)))
                         <img src="{{ asset($category->category_image) }}"
-                            class="d-block w-100 h-100 img-fluid rounded img-shadow" alt="..."
+                            class="d-block w-100 h-100 img-fluid rounded img-border" alt="..."
                             style="max-height: 500px; object-fit: cover;">
                     @else
                         <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
-                            class="d-block img-fluid w-100 h-100 rounded img-shadow" alt="..."
+                            class="d-block img-fluid w-100 h-100 rounded img-border" alt="..."
                             style="max-height: 500px; object-fit: cover;">
                     @endif
                 </div>
@@ -89,8 +89,8 @@
             <div class="d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="w-75">
                     <h1 class="heading text-center text-light">Contact Us</h1>
-                    <p class="text text-center text-light">Contact us for more information about the product. For
-                        custom order, please order via Whats-Apps.
+                    <p class="text text-center text-light">Contact us for further informations on our bouquets. For
+                        custom orders, please order via Whats-Apps.
                     </p>
                 </div>
                 <a href="{{ route('chat.whatsapp') }}">

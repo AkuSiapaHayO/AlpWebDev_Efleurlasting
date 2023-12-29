@@ -35,7 +35,7 @@
                                             class="form-control mb-3" accept="image/jpg, image/png, image/jpeg" required>
                                     </div>
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-outline-primary mb-3 w-100">Edit Profile
+                                        <button type="submit" class="btn btn-primary mb-3 w-100">Edit Profile
                                             Image</button>
                                     </div>
                                 </form>
@@ -207,4 +207,6 @@
             </div>
         </div>
     </section>
+
+
 @endsection

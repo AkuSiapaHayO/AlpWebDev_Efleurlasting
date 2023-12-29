@@ -40,6 +40,7 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 //Products + Category
 Route::get('/product', [ProductController::class, 'index'])->name('products');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
+Route::get('category', [CategoryController::class, 'index'])->name('categories');
 Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
 
 //CRUD Cart + Order
@@ -53,7 +54,7 @@ Route::post('/checkout/order/store', [OrderController::class, 'store'])->name('o
 Route::get('/checkout/order', [OrderController::class, 'index'])->name('order.view');
 
 //CRUD Testimonies
-Route::post('/testimony', [TestimonyController::class, 'store'])->middleware('auth')->name('testimony.store');
+Route::post('/new/testimony', [TestimonyController::class, 'store'])->middleware('auth')->name('testimony.store');
 
 //Settings
 Route::get('/setting/user', [HomeController::class, 'settingUser'])->middleware('auth')->name('user.setting');

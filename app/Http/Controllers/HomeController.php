@@ -31,8 +31,8 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $carousels = Carousel::all();
-        $categories = Category::inRandomOrder()->limit(2)->get();
-        $testimonies = Testimony::all();
+        $categories = Category::inRandomOrder()->limit(3)->get();
+        $testimonies = Testimony::inRandomOrder()->limit(2)->get();
         $userId = auth()->id();
 
         $orderItems = OrderItem::whereHas('order', function ($query) use ($userId) {
@@ -60,7 +60,10 @@ class HomeController extends Controller
 
     public function settingUser()
     {
-        return view('User.setting');
+        $user = Auth::user();
+        $orders = Order::where('user_id', $user->id)->get();
+
+        return view('User.setting', compact('orders'));
     }
 
     public function chat()
