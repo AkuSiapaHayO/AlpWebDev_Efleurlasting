@@ -51,7 +51,6 @@
                             href="{{ route('product.show', ['product' => $product->id]) }}">
                             <div class="card position-relative shadow-lg h-100 new"
                                 style="transition: 0.3s; border-radius: 7px;">
-                                {{-- Check if the product has an image --}}
                                 @if ($product->images->isNotEmpty() && Storage::disk('public')->exists($product->images->first()->image_name))
                                     <img src="{{ asset('storage/' . $product->images->first()->image_name) }}"
                                         class="d-block w-100" alt="..."
@@ -62,7 +61,6 @@
                                             alt="Product Image" class="card-img-top img-fluid"
                                             style="max-height: 400px; max-width: 100vw; object-fit: cover;">
                                     @else
-                                        {{-- Display a placeholder image or text when no image is available --}}
                                         <div class="card-img-top d-flex align-items-center justify-content-center"
                                             style="max-height: 400px; background: rgba(255, 255, 255, 0.7);">
                                             <p class="text-muted">No image available</p>
@@ -70,7 +68,6 @@
                                     @endif
                                 @endif
 
-                                {{-- Text and link at the bottom of the card --}}
                                 <div class="card-body d-flex flex-column justify-content-between">
                                     <p class="card-title mb-3 text" style="max-height: 50px; overflow: hidden;">
                                         {{ $product->category->category_name }} - {{ $product->product_name }}
