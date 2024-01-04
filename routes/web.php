@@ -40,7 +40,7 @@ Route::get('/about', [HomeController::class, 'about'])->name('about');
 //Products + Category
 Route::get('/product', [ProductController::class, 'index'])->name('products');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
-Route::get('category', [CategoryController::class, 'index'])->name('categories');
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 Route::get('/category/{category}', [CategoryController::class, 'show'])->name('category.show');
 
 //CRUD Cart + Order

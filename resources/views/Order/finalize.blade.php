@@ -16,17 +16,6 @@
         </div>
     </section>
 
-    {{-- <section>
-        <div class="container-lg mt-3">
-            <div class="card my-4 my-md-3 shadow-lg" style="border: none;">
-                <div class="card-body d-flex justify-content-between">
-                    <button type="button" class="btn btn-pink-color fw-bold text-white" onclick="goBack()">Back</button>
-                    <h1 class="heading text-center mx-auto my-0">Finalize your Order</h1>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
     <section>
         <div class="container-lg my-5">
             <p class="sub-heading text-secondary borders-left">

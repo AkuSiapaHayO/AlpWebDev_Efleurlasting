@@ -109,7 +109,7 @@
                         <div class="mb-3">
                             <label for="notes" class="form-label">Notes</label>
                             <textarea class="form-control" id="notes" name="notes" rows="3"
-                                placeholder="Please provice your greetings card custom text here"></textarea>
+                                placeholder="Please provide your greetings card custom text here"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="deliverySelect" class="form-label">Select Delivery Option:</label>

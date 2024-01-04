@@ -16,15 +16,14 @@
     </section>
 
     <section>
-        <div class="container-lg my-5 px-auto">
-
-            <div class="row d-flex align-items-center">
-                <div class="col-md-7">
-                    <p class="sub-heading text-secondary borders-left">
+        <div class="container-lg">
+            <div class="d-flex align-items-center justify-content-center py-5 px-5">
+                <div class="text-center">
+                    <p class="sub-heading text-secondary">
                         Categories
                     </p>
                     <h1 class="heading mb-3 pb-1">Find your perfect bouquet flower</h1>
-                    <p class="text my-auto">
+                    <p class="text text-center">
                         Here at Efleurlasting, we take pride in offering a diverse selection of meticulously crafted
                         bouquets.
                         Whether you're drawn to vibrant hues, delicate arrangements, or bold and modern designs, our
@@ -38,20 +37,20 @@
 
     <section>
         <div class="container-lg">
-            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mx-0 my-5">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 mx-0">
                 @foreach ($categories as $category)
-                    <div class="col mb-4">
+                    <div class="col mb-5 px-3">
                         <a class="link-light link-offset-2 link-underline link-underline-opacity-0"
                             href="{{ route('category.show', ['category' => $category->id]) }}">
                             <div class="position-relative h-100 category-image" style="transition: 0.3s">
                                 @if (File::exists(public_path($category->category_image)))
                                     <img src="{{ asset($category->category_image) }}"
                                         class="d-block w-100 h-100 img-fluid curved-top img-border" alt="..."
-                                        style="max-height: 250px; object-fit: cover;">
+                                        style="max-height: 450px; object-fit: cover;">
                                 @else
                                     <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
                                         class="d-block img-fluid w-100 h-100 curved-top img-border" alt="..."
-                                        style="max-height: 250px; object-fit: cover;">
+                                        style="max-height: 450px; object-fit: cover;">
                                 @endif
                                 <div class="position-absolute start-0 top-0 w-100 h-100 curved-top"
                                     style="background-color: rgb(0, 0, 0, 0.3)"></div>

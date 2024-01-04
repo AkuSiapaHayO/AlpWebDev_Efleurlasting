@@ -14,7 +14,7 @@ class TestimonySeeder extends Seeder
     public function run(): void
     {
         Testimony::create([
-            'testimony' => "Cool",
+            'testimony' => "I am thrilled with the lifelike quality of the artificial flowers from Efleurlasting. They add effortless beauty to my home without the need for maintenance, and I highly recommend their products.",
             'testimony_image' => "classic_sizeregular_1.jpg",
             'name' => "Karyna",
             'date' => now(),
@@ -23,7 +23,7 @@ class TestimonySeeder extends Seeder
         ]);
 
         Testimony::create([
-            'testimony' => "Cool",
+            'testimony' => "Exceptional quality and hassle-free beauty – the artificial flowers from Efleurlasting exceeded my expectations. A perfect addition to any home!",
             'testimony_image' => "classic_sizeregular_1.jpg",
             'name' => "Karyna",
             'date' => now(),

@@ -47,30 +47,27 @@
 
     <section>
         <div class="container-lg">
-            <div class="row py-5">
-                <div class="col-md-5 px-4 px-md-4 d-flex justify-content-end">
+            <div class="row py-5 d-flex justify-content-center">
+                <div class="col-md-5 px-5 pe-md-3 pb-5 pb-md-0  d-flex justify-content-center">
                     <img src="{{ asset('Assets/Home/HomeImage.jpg') }}" alt=""
                         class="d-block w-80 h-100 img-fluid curved-top img-border"
                         style="max-height: 500px; object-fit: cover;">
                 </div>
-
-                <div class="col-md-7 mb-5 mb-md-0 px-4 px-md-3">
-                    <div class="card h-100" style="border: none;">
-                        <div class="card-body d-flex flex-column justify-content-center p-5">
-                            <p class="sub-heading text-secondary borders-left">
-                                Efleurlasting
-                            </p>
-                            <h1 class="heading mb-3 pb-1">What We Do</h1>
-                            <p class="text">At Efleurlasting, we bring floral artistry to life, offering a
-                                stunning
-                                array of handcrafted bouquets designed to elevate your space with timeless elegance. We
-                                craft
-                                botanical
-                                masterpieces that tell stories of beauty, passion, and attention to detail.
-                            </p>
-                            <a href="{{ route('about') }}"><button class="btn btn-outline-pink-color px-5 fw-bold">More
-                                    about us</button></a>
-                        </div>
+                <div class="col-md-7 px-5 ps-md-3">
+                    <div class="d-flex flex-column justify-content-center h-100">
+                        <p class="sub-heading text-secondary borders-left">
+                            Efleurlasting
+                        </p>
+                        <h1 class="heading mb-3 pb-1">What We Do</h1>
+                        <p class="text">At Efleurlasting, we bring floral artistry to life, offering a
+                            stunning
+                            array of handcrafted bouquets designed to elevate your space with timeless elegance. We
+                            craft
+                            botanical
+                            masterpieces that tell stories of beauty, passion, and attention to detail.
+                        </p>
+                        <a href="{{ route('about') }}"><button class="btn btn-outline-pink-color px-5 fw-bold">More
+                                about us</button></a>
                     </div>
                 </div>
             </div>
@@ -78,28 +75,25 @@
     </section>
 
     <section>
-        {{-- I can't figure out how to make it centered T-T --}}
-        <div class="container-lg my-5">
-            <div class="row d-flex align-items-center">
-                <div class="col-md-7">
-                    <p class="sub-heading text-secondary borders-left">
-                        Featured Categories
-                    </p>
-                    <h1 class="heading mb-3 pb-1">Find your perfect bouquet flower</h1>
-                    <p class="text my-auto">
-                        Here at Efleurlasting, we take pride in offering a diverse selection of meticulously crafted
-                        bouquets.
-                        Whether you're drawn to vibrant hues, delicate arrangements, or bold and modern designs, our
-                        collection
-                        features a bouquet for every taste and occasion.
-                    </p>
-                    <a href="{{ route('categories') }}"><button
-                            class="btn btn-outline-pink-color px-5 fw-bold mt-2">More</button></a>
-                </div>
+        <div class="container-lg pt-5 pb-0 pb-md-5 px-0">
+            <div class="px-5 px-md-5 d-flex flex-column align-items-md-center">
+                <p class="sub-heading text-secondary text-md-center mb-3 mb-md-2">
+                    Featured Categories
+                </p>
+                <h1 class="heading mb-3 text-md-center">Find your perfect bouquet flower</h1>
+                <p class="text text-md-center">
+                    Here at Efleurlasting, we take pride in offering a diverse selection of meticulously crafted
+                    bouquets.
+                    Whether you're drawn to vibrant hues, delicate arrangements, or bold and modern designs, our
+                    collection
+                    features a bouquet for every taste and occasion.
+                </p>
+                <a href="{{ route('categories') }}"><button
+                        class="btn btn-outline-pink-color px-5 fw-bold">More</button></a>
             </div>
-            <div class="row my-4">
+            <div class="pt-5 row row-cols-1 row-cols-lg-3 mx-0">
                 @foreach ($categories as $i => $category)
-                    <div class="col-md-3 px-4 px-md-4 text-center">
+                    <div class="position-relative d-flex justify-content-center mb-5 mb-lg-0 col">
                         <a href="{{ route('category.show', ['category' => $category->id]) }}">
                             @if (File::exists(public_path($category->category_image)))
                                 <img src="{{ asset('storage/' . $category->category_image) }}"
@@ -111,99 +105,58 @@
                                     style="max-height: 500px; object-fit: cover;">
                             @endif
                         </a>
-                        <h1 class="text mt-3">{{ $category->category_name }}</h1>
+                        <div class="position-absolute start-0 bottom-0 w-100 p-4 d-flex justify-content-center">
+                            <h1 class="heading text-white text-center w-50">{{ $category->category_name }}</h1>
+                        </div>
                     </div>
                 @endforeach
             </div>
         </div>
     </section>
 
-    {{-- <section>
-        <div class="container-lg mt-5">
-            @foreach ($categories as $i => $category)
-                <div class="row pb-5">
-                    <div class="col-md-7 mb-5 mb-md-0 px-4 px-md-3">
-                        <div class="card shadow-lg h-100" style="border: none;">
-                            <div class="card-body d-flex flex-column justify-content-center p-5">
-                                <p class="sub-heading text-secondary mb-3 borders-left">Featured Category</p>
-                                <h1 class="heading">{{ $category->category_name }}</h1>
-                                <p class="text">{{ $category->description }}</p>
-                                <a href="{{ route('category.show', ['category' => $category->id]) }}"><button
-                                        class="btn btn-outline-pink-color px-5 fw-bold">Know
-                                        More</button></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5 px-4 px-md-4">
-                        @if (File::exists(public_path($category->category_image)))
-                            <img src="{{ asset('storage/' . $category->category_image) }}"
-                                class="d-block w-80 h-100 img-fluid curved-top img-border" alt="..."
-                                style="max-height: 500px; object-fit: cover;">
-                        @else
-                            <img src="{{ asset('Assets/Categories/' . $category->category_image) }}"
-                                class="d-block img-fluid w-80 h-100 curved-top img-border" alt="..."
-                                style="max-height: 500px; object-fit: cover;">
-                        @endif
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </section> --}}
-
     <section>
-        <div class="container-lg my-5 pt-5">
-            <div class="row">
-                <div class="col-5">
-
-                </div>
-                <div class="col-7">
-                    <p class="sub-heading text-secondary borders-right text-end">
-                        Testimonies
-                    </p>
-                    <h1 class="heading mb-3 pb-1 text-end">Our Customer's Testimonies</h1>
-                    <p class="text my-auto text-end">
-                        Explore the heartfelt experiences of our valued customers as they share their thoughts and feedback
-                        about
-                        their journey with us. From delightful surprises to special occasions, our customer testimonies
-                        reflect
-                        the
-                        joy and satisfaction that Efleurlasting brings to every floral moment. Join us in celebrating the
-                        stories
-                        that make our floral arrangements a cherished part of your memories.
-                    </p>
-                </div>
+        <div class="container-lg py-5">
+            <div class="px-5 px-md-5 d-flex flex-column align-items-md-center mb-4">
+                <p class="sub-heading text-secondary text-md-center mb-3 mb-md-2">
+                    Testimonies
+                </p>
+                <h1 class="heading mb-3 text-md-center">Our Customer's Testimonies</h1>
+                <p class="text text-md-center">
+                    Explore the heartfelt experiences of our valued customers as they share their thoughts and feedback
+                    about
+                    their journey with us. From delightful surprises to special occasions, our customer testimonies
+                    reflect
+                    the
+                    joy and satisfaction that Efleurlasting brings to every floral moment. Join us in celebrating the
+                    stories
+                    that make our floral arrangements a cherished part of your memories.
+                </p>
             </div>
-            <div class="row mt-4">
-                <div class="col-4">
-
-                </div>
+            <div class="pt-5 mx-0 row row-cols-1 row-cols-lg-2 g-5">
                 @foreach ($testimonies as $index => $testimony)
-                    <div class="col-4 row ms-1">
-                        <div class="rounded img-border">
-                            <div class="row">
-                                <div class="col-5">
-                                    <img src="{{ asset('Testimony/' . $testimony->testimony_image) }}" class="d-block "
-                                        alt="..." style="max-height: 350px; object-fit: cover;">
-                                </div>
-                                <div class="col-7 my-5 text-end">
-                                    @php
-                                        $productColor = \App\Models\ProductColor::find($testimony->productcolor_id);
-                                    @endphp
-                                    <h1 class="sub-heading fs-2">
+                    <div class="col rounded m-0 mb-4 mb-lg-0">
+                        <div class="img-border d-block d-md-flex h-100">
+                            <div class="px-0 w-100">
+                                <img src="{{ asset('Testimony/' . $testimony->testimony_image) }}"
+                                    class="w-100 d-block img-fluid" alt="..." style="max-height: 350px; object-fit: cover;">
+                            </div>
+                            <div class="w-100 p-4 text-center d-flex flex-column justify-content-between">
+                                @php
+                                    $productColor = \App\Models\ProductColor::find($testimony->productcolor_id);
+                                @endphp
+                                <div>
+                                    <h1 class="sub-heading fs-2 mb-0">
                                         {{ $productColor->product->category->category_name }}</h1>
-                                    <p class="text text-end fs-3">
+                                    <p class="text text-center fs-3 mb-0">
                                         {{ $productColor->product->product_name }}
                                     </p>
-                                    <p class="text text-end fs-5">
-                                        {{ $testimony->testimony }}
-                                    </p>
-                                    <p class="text text-end fs-5">
-                                        {{ $testimony->name }}
-                                    </p>
-                                    <p class="text text-end fs-6">
-                                        {{ $testimony->date }}
-                                    </p>
                                 </div>
+                                <p class="text text-center fs-5 mb-0">
+                                    "{{ $testimony->testimony }}"
+                                </p>
+                                <p class="text text-start fs-5 mb-0">
+                                    {{ $testimony->name }}, {{ $testimony->date }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -215,11 +168,11 @@
     @auth
         @php($user = Auth::user())
         <section>
-            <div class="container-lg p-5">
-                <div class="card shadow-lg h-100 mb-5" style="border: none;">
-                    <div class="card-body p-5">
+            <div class="container-lg py-5">
+                <div class="card shadow-lg h-100" style="border: none;">
+                    <div class="card-body p-4 p-md-5">
                         <h1 class="heading borders-left">Testimony</h1>
-                        <form action="{{ route('testimony.store') }}" method="POST" class="mt-5"
+                        <form action="{{ route('testimony.store') }}" method="POST" class="mt-4"
                             enctype="multipart/form-data">
                             @csrf
                             @method('post')
