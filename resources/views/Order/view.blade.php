@@ -11,22 +11,11 @@
                 <div class="d-flex flex-column align-items-center justify-content-center mb-5">
                     <h1 class="heading borders-left" style="font-size: 60px;">Orders</h1>
                     <a href="{{ route('user.setting') }}"><button
-                        class="btn btn-pink-color fw-bold text-white">Back</button></a>                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- <section>
-        <div class="container-lg">
-            <div class="card my-4 my-md-3 shadow-lg" style="border: none;">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                    <a href="{{ route('user.setting') }}"><button
                             class="btn btn-pink-color fw-bold text-white">Back</button></a>
-                    <h1 class="heading mb-0 mx-auto">Order History</h1>
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
 
     <section>
         <div class="container-lg mt-5">
@@ -36,21 +25,21 @@
                         <p class="fw-bolder fs-4 text-uppercase">Order ID : <span
                                 style="color: #ee7c99">{{ $order->id }}</span>
                         </p>
-                        <div class="row">
-                            <div class="col-3">
+                        <div class="row row-cols-1 row-cols-lg-4">
+                            <div class="col">
                                 <p class="text-secondary fw-bold mb-0 text-uppercase">Total Amount</p>
                                 <p class="fw-medium">{{ number_format($order->total_amount, 0, ',', '.') }}</p>
 
                             </div>
-                            <div class="col-3">
+                            <div class="col">
                                 <p class="text-secondary fw-bold mb-0 text-uppercase">Order Date</p>
                                 <p class="fw-medium">{{ $order->order_date }}</p>
                             </div>
-                            <div class="col-3">
+                            <div class="col">
                                 <p class="text-secondary fw-bold mb-0 text-uppercase">Delivery Date</p>
                                 <p class="fw-medium">{{ $order->delivery_date }}</p>
                             </div>
-                            <div class="col-3">
+                            <div class="col">
                                 <p class="text-secondary fw-bold mb-0 text-uppercase">Delivery Time</p>
                                 <p class="fw-medium">{{ $order->delivery_time }}</p>
                             </div>

@@ -18,10 +18,13 @@
 
     <section>
         <div class="container-lg my-5">
-            <p class="sub-heading text-secondary borders-left">
-                Order Details
-            </p>
-            <h1 class="heading mb-3 pb-1">Please make sure you have filled in the correct Order Details</h1>
+            <div class="ms-3">
+                <p class="sub-heading text-secondary borders-left ps-3">
+                    Order Details
+                </p>
+                <h1 class="heading mb-3 pb-1">Please make sure you have filled in the correct Order Details</h1>
+            </div>
+
             <div class="card shadow-lg" style="border: none;">
                 <div class="card-body">
                     <div class="table-responsive">

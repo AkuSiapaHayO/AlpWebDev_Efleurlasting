@@ -65,7 +65,7 @@
                                 <div class="card h-100 shadow-lg" style="border: none;">
                                     <div class="card-body h-100">
                                         <div class="row w-100">
-                                            <div class="col-md-3">
+                                            <div class="col-md-3 mb-3 md-md-0">
                                                 @if (File::exists(public_path($product->images->first()->image_name)))
                                                     <img src="{{ asset('Products/' . $product->images->first()->image_name) }}"
                                                         class="d-block w-100 h-100" alt="..."
@@ -76,7 +76,7 @@
                                                         style="max-height: 250px; object-fit: cover;">
                                                 @endif
                                             </div>
-                                            <div class="col-md-7 px-3 mb-3 mb-md-0">
+                                            <div class="col-md-7 px-3 mb-4 mb-md-0">
                                                 <p class="heading fs-2 mb-1">
                                                     {{ $category->category_name }} - {{ $product->product_name }}
                                                 </p>

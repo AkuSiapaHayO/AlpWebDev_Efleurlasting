@@ -22,7 +22,7 @@
             $totalAmount = 0;
         @endphp
         <div class="container-lg mt-5">
-            <p class="sub-heading text-secondary mb-3 pb-1 borders-left">Cart items checked out</p>
+            <p class="sub-heading text-secondary mb-3 pb-1 borders-left ps-3 ms-3">Cart items checked out</p>
             <div class="card shadow-lg" style="border: none;">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -75,10 +75,13 @@
 
     <section>
         <div class="container-lg mt-5">
-            <p class="sub-heading text-secondary borders-left">
-                Order Details
-            </p>
-            <h1 class="heading mb-3 pb-1">Fill out these Order Details</h1>
+            <div class="ms-3">
+                <p class="sub-heading text-secondary borders-left ps-3">
+                    Order Details
+                </p>
+                <h1 class="heading mb-3 pb-1">Fill out these Order Details</h1>
+            </div>
+
             <div class="card shadow-lg my-4 my-md-3" style="border: none;">
                 <div class="card-body" class="px-4 px-md-0">
                     <form action="{{ route('order.finalize') }}" method="get" class="row g-3">
