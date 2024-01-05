@@ -138,12 +138,12 @@
                         <div class="img-border d-block d-md-flex h-100">
                             <div class="px-0 w-100">
                                 @if (File::exists(public_path($testimony->testimony_image)))
-                                    <img src="{{ asset('Testimony/' . $testimony->testimony_image) }}"
-                                        class="w-100 d-block img-fluid" alt="..."
+                                    <img src="{{ asset($testimony->testimony_image) }}"
+                                        class="w-100 h-100 d-block img-fluid" alt="..."
                                         style="max-height: 350px; object-fit: cover;">
                                 @else
                                     <img src="{{ asset('Assets/Testimony/' . $testimony->testimony_image) }}"
-                                        class="w-100 d-block img-fluid" alt="..."
+                                        class="w-100 h-100 d-block img-fluid" alt="..."
                                         style="max-height: 350px; object-fit: cover;">
                                 @endif
                             </div>
@@ -233,13 +233,7 @@
                         custom orders, please order via Whats-Apps.
                     </p>
                 </div>
-                <a href="{{ route('chat.whatsapp') }}">
-                    <button class="btn btn-light-green text-light fw-bold fs-5" style="padding:10px 40px">
-                        <img src="{{ asset('Assets/Icons/whatsapp.png') }}" style="max-width: 30px"
-                            class="img-fluid me-2" alt="">
-                        Chat Now
-                    </button>
-                </a>
+                @livewire('chat')
             </div>
         </div>
         <div class="position-absolute top-0 start-0 w-100 h-100" style="z-index: -1; background-color:rgb(0, 0, 0, 0.6)">

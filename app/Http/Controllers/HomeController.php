@@ -65,12 +65,4 @@ class HomeController extends Controller
 
         return view('User.setting', compact('orders'));
     }
-
-    public function chat()
-    {
-        $adminPhoneNumber = '+628983979074';
-
-        $whatsappLink = "whatsapp://send?phone={$adminPhoneNumber}";
-        return redirect()->to($whatsappLink);
-    }
 }

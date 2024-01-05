@@ -30,13 +30,7 @@
                         custom orders, please order via Whats-Apps.
                     </p>
                 </div>
-                <a href="{{ route('chat.whatsapp') }}">
-                    <button class="btn btn-light-green text-light fw-bold fs-5" style="padding:10px 40px">
-                        <img src="{{ asset('Assets/Icons/whatsapp.png') }}" style="max-width: 30px" class="img-fluid me-2"
-                            alt="">
-                        Chat Now
-                    </button>
-                </a>
+                @livewire('chat')
             </div>
         </div>
         <div class="position-absolute top-0 start-0 w-100 h-100" style="z-index: -1; background-color:rgb(0, 0, 0, 0.6)">
