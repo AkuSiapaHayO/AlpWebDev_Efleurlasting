@@ -79,7 +79,7 @@
 
     <section>
         @foreach ($orders as $order)
-            <div class="modal fade" id="approveModal{{ $order->id }}" tabindex="-1"
+            <div wire:ignore.self class="modal fade" id="approveModal{{ $order->id }}" tabindex="-1"
                 aria-labelledby="approveModalLabel{{ $order->id }}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -91,15 +91,11 @@
                             <p>Are you sure you want to approve this payment?</p>
                             <p>You won't be able to update this anymore, please be sure before approving this payment.</p>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <a href="{{ route('payment.approve', ['order' => $order->id]) }}"
-                                class="btn btn-success">Approve</a>
-                        </div>
+                        @livewire('approve-payment', ['orderId' => $order->id], key($order->id))
                     </div>
                 </div>
             </div>
-            <div class="modal fade" id="disapproveModal{{ $order->id }}" tabindex="-1"
+            <div wire:ignore.self class="modal fade" id="disapproveModal{{ $order->id }}" tabindex="-1"
                 aria-labelledby="disapproveModalLabel{{ $order->id }}" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -112,11 +108,7 @@
                             <p>Order will be deleted <b>permanently</b>, please be sure to contact the Customer beforehand.
                             </p>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <a href="{{ route('payment.disapprove', ['order' => $order->id]) }}"
-                                class="btn btn-outline-danger">Disapprove</a>
-                        </div>
+                        @livewire('disapprove-payment', ['orderId' => $order->id], key($order->id))
                     </div>
                 </div>
             </div>
@@ -138,6 +130,4 @@
             </div>
         @endforeach
     </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 @endsection

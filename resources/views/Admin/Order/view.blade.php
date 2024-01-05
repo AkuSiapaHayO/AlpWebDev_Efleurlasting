@@ -83,11 +83,7 @@
                         <div class="modal-body">
                             <p>Are you sure you want to mark this order as delivered?</p>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <a href="{{ route('order.finish', ['order' => $order->id]) }}" class="btn btn-success">Mark as
-                                Delivered</a>
-                        </div>
+                        @livewire('mark-delivery', ['orderId' => $order->id], key($order->id))
                     </div>
                 </div>
             </div>

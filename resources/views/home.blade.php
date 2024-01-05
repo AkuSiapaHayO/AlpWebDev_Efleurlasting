@@ -137,8 +137,15 @@
                     <div class="col rounded m-0 mb-4 mb-lg-0">
                         <div class="img-border d-block d-md-flex h-100">
                             <div class="px-0 w-100">
-                                <img src="{{ asset('Testimony/' . $testimony->testimony_image) }}"
-                                    class="w-100 d-block img-fluid" alt="..." style="max-height: 350px; object-fit: cover;">
+                                @if (File::exists(public_path($testimony->testimony_image)))
+                                    <img src="{{ asset('Testimony/' . $testimony->testimony_image) }}"
+                                        class="w-100 d-block img-fluid" alt="..."
+                                        style="max-height: 350px; object-fit: cover;">
+                                @else
+                                    <img src="{{ asset('Assets/Testimony/' . $testimony->testimony_image) }}"
+                                        class="w-100 d-block img-fluid" alt="..."
+                                        style="max-height: 350px; object-fit: cover;">
+                                @endif
                             </div>
                             <div class="w-100 p-4 text-center d-flex flex-column justify-content-between">
                                 @php

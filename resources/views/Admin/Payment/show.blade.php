@@ -245,11 +245,7 @@
                         <p>Are you sure you want to approve this payment?</p>
                         <p>You won't be able to update this anymore, please be sure before approving this payment.</p>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a href="{{ route('payment.approve', ['order' => $order->id]) }}"
-                            class="btn btn-success">Approve</a>
-                    </div>
+                    @livewire('approve-payment', ['orderId' => $order->id], key($order->id))
                 </div>
             </div>
         </div>
@@ -268,11 +264,7 @@
                         <p>Are you sure you want to disapprove this payment?</p>
                         <p>Order will be deleted <b>permanently</b>, please be sure to contact the Customer beforehand.</p>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a href="{{ route('payment.disapprove', ['order' => $order->id]) }}"
-                            class="btn btn-outline-danger">Disapprove</a>
-                    </div>
+                    @livewire('disapprove-payment', ['orderId' => $order->id], key($order->id))
                 </div>
             </div>
         </div>
