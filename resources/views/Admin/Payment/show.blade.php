@@ -186,21 +186,14 @@
                                                     {{ $product->category->category_name }}
                                                     <br> - {{ $product->product_name }}
                                                     <br>
-                                                    @if ($product->images->isNotEmpty() && Storage::disk('public')->exists($product->images->first()->image_name))
-                                                        <img src="{{ asset('storage/' . $product->images->first()->image_name) }}"
+                                                    @if (File::exists(public_path($product->images->first()->image_name)))
+                                                        <img src="{{ asset($product->images->first()->image_name) }}"
                                                             class="d-block w-100" alt="..."
                                                             style="height: 10vh; max-width: 20vh; object-fit: cover;">
                                                     @else
-                                                        @if ($product->images->isNotEmpty())
-                                                            <img src="{{ asset('Assets/products/' . $product->images->first()->image_name) }}"
-                                                                alt="Product Image" class="card-img-top img-fluid"
-                                                                style="height: 10vh; max-width: 20vh; object-fit: cover;">
-                                                        @else
-                                                            <div class="card-img-top d-flex align-items-center justify-content-center"
-                                                                style="height: 10vh; background: rgba(255, 255, 255, 0.7);">
-                                                                <p class="text-muted">No image available</p>
-                                                            </div>
-                                                        @endif
+                                                        <img src="{{ asset('Assets/Products/' . $product->images->first()->image_name) }}"
+                                                            class="d-block w-100" alt="..."
+                                                            style="height: 10vh; max-width: 20vh; object-fit: cover;">
                                                     @endif
                                                 </td>
                                                 <td style="max-width: 100px">{{ $productColor->color->color_name }}</td>
