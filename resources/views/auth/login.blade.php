@@ -47,7 +47,7 @@
                                 </div>
 
                                 <button type="submit"
-                                    class="btn btn-pink-color fw-bold mt-4 w-100 text-white">{{ __('Login') }}</button>
+                                    class="btn btn-info fw-bold mt-4 w-100 text-white">{{ __('Login') }}</button>
                             </form>
                         </div>
                     </div>

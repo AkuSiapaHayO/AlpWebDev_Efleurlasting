@@ -6,7 +6,7 @@
             <div class="card shadow-lg my-3 my-md-4" style="border: none;">
                 <div class="p-3 pb-0">
                     <a href="{{ route('admin.setting') }}">
-                        <button class="btn btn-pink-color fw-bold text-white">Back</button>
+                        <button class="btn btn-info fw-bold text-white">Back</button>
                     </a>
                 </div>
                 <div class="card-body">

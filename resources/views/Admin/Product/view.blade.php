@@ -6,7 +6,7 @@
             <div class="card shadow-lg my-3 my-md-4" style="border: none;">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <a href="{{ route('admin.setting') }}">
-                        <button class="btn btn-pink-color fw-bold text-white">Back</button>
+                        <button class="btn btn-info fw-bold text-white">Back</button>
                     </a>
                     <h1 class="heading mx-auto mb-0">Edit Products</h1>
                 </div>
@@ -38,7 +38,7 @@
                                                 categories easily with
                                                 this section. </p>
                                             <a href="{{ route('admin.categories.view') }}" class="card-link">
-                                                <button class="btn btn-pink-color text-white fw-bold">Manage
+                                                <button class="btn btn-info text-white fw-bold">Manage
                                                     Categories</button>
                                             </a>
                                         </div>
@@ -69,7 +69,7 @@
                                                 effortlessly in
                                                 this section. </p>
                                             <a href="{{ route('colors.view') }}" class="card-link">
-                                                <button class="btn btn btn-pink-color text-white fw-bold">Manage
+                                                <button class="btn btn btn-info text-white fw-bold">Manage
                                                     Colors</button>
                                             </a>
                                         </div>
@@ -89,7 +89,7 @@
                 <div class="card-body">
                     <div class="d-flex flex-column justify-content-between align-items-center">
                         <h1 class="my-3 heading">All Products</h1>
-                        <a href="{{ route('products.create') }}" class="btn btn-pink-color fw-bold text-white mb-3 w-100"
+                        <a href="{{ route('products.create') }}" class="btn btn-info fw-bold text-white mb-3 w-100"
                             style="max-width: 400px">Add New
                             Product</a>
                     </div>
@@ -113,7 +113,7 @@
                                             {{ $product->is_active ? 'Product is Active' : 'Product is Inactive' }}
                                         </p>
                                         <a href="{{ route('products.show', ['product' => $product->id]) }}"
-                                            class="btn btn-pink-color fw-bold text-white w-100">View Details</a>
+                                            class="btn btn-info fw-bold text-white w-100">View Details</a>
                                     </div>
                                 </div>
                             </div>

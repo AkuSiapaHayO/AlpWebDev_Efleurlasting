@@ -27,18 +27,9 @@
                                         personal information.
                                     </p>
                                     <a href="{{ route('user.edit', $user) }}"
-                                        class="btn btn-pink-color fw-bold text-white w-100" id="edit">Edit</a>
+                                        class="btn btn-info fw-bold text-white w-100" id="edit">Edit</a>
                                 </div>
                             </div>
-                            {{-- <div class="card shadow-lg" style="border: none;">
-                                <div class="card-body">
-                                    <h5 class="card-title border-bottom pb-2">Order History</h5>
-                                    <p class="card-text">Check your order history here
-                                    </p>
-                                    <a href="{{ route('order.view') }}" class="btn btn-pink-color fw-bold text-white w-100" id="edit">View
-                                        Orders</a>
-                                </div>
-                            </div> --}}
                         </div>
                         <div class="col-md-8">
                             <div class="d-flex align-items-center">
@@ -141,7 +132,7 @@
             <h1 class="heading mb-3 pb-1">View All of Your Past Orders</h1>
             <div class="row">
                 <div class="col-2">
-                    <a href="{{ route('order.view') }}" class="btn btn-pink-color fw-bold text-white w-100" id="edit">View
+                    <a href="{{ route('order.view') }}" class="btn btn-info fw-bold text-white w-100" id="edit">View
                         Orders</a>
                 </div>
             </div>

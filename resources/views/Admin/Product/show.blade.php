@@ -6,7 +6,7 @@
             <div class="card shadow-lg my-3 my-md-4" style="border: none;">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <a href="{{ route('products.view') }}">
-                        <button class="btn btn-pink-color fw-bold text-white">Back</button>
+                        <button class="btn btn-info fw-bold text-white">Back</button>
                     </a>
                     <h1 class="heading mx-auto mb-0">View Product</h1>
                 </div>
@@ -76,7 +76,7 @@
                         @endforeach
                     </div>
                     <a href="{{ route('products.edit', ['product' => $product]) }}"
-                        class="btn btn-pink-color fw-bold text-white w-100 mt-2 mt-md-3">Edit</a>
+                        class="btn btn-info fw-bold text-white w-100 mt-2 mt-md-3">Edit</a>
                 </div>
             </div>
         </div>

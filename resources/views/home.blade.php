@@ -66,7 +66,7 @@
                             botanical
                             masterpieces that tell stories of beauty, passion, and attention to detail.
                         </p>
-                        <a href="{{ route('about') }}"><button class="btn btn-outline-pink-color px-5 fw-bold">More
+                        <a href="{{ route('about') }}"><button class="btn btn-outline-info px-5 fw-bold">More
                                 about us</button></a>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                     features a bouquet for every taste and occasion.
                 </p>
                 <a href="{{ route('categories') }}"><button
-                        class="btn btn-outline-pink-color px-5 fw-bold">More</button></a>
+                        class="btn btn-outline-info px-5 fw-bold">More</button></a>
             </div>
             <div class="pt-5 row row-cols-1 row-cols-lg-3 mx-0">
                 @foreach ($categories as $i => $category)
@@ -215,7 +215,7 @@
                                 </div>
 
                             </div>
-                            <button type="submit" class="btn btn-pink-color text-white fw-bold mt-4 w-100">Submit
+                            <button type="submit" class="btn btn-info text-white fw-bold mt-4 w-100">Submit
                                 Testimony</button>
                         </form>
                     </div>

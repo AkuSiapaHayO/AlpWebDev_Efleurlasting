@@ -6,7 +6,7 @@
             <div class="card my-3 my-md-4 shadow-lg" style="border: none;">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <a href="{{ route('products.view') }}">
-                        <button class="btn btn-pink-color fw-bold text-white">Back</button>
+                        <button class="btn btn-info fw-bold text-white">Back</button>
                     </a>
                     <h1 class="mx-auto heading mb-0">Create New Product</h1>
                 </div>
@@ -129,7 +129,7 @@
                                         <label for="newcolors" class="form-label fw-bold fs-5">New Colors</label>
                                         <div id="newcolor-inputs">
                                         </div>
-                                        <button type="button" class="btn btn-pink-color text-white fw-bold w-100"
+                                        <button type="button" class="btn btn-info text-white fw-bold w-100"
                                             onclick="addNewColorInput()">Add
                                             Color</button>
                                     </div>
@@ -138,7 +138,7 @@
                         </div>
                         <div class="card shadow-lg mb-3" style="border: none;">
                             <div class="card-body">
-                                <button type="submit" class="btn btn-pink-color text-white fw-bold w-100">Create
+                                <button type="submit" class="btn btn-info text-white fw-bold w-100">Create
                                     Product</button>
                             </div>
                         </div>

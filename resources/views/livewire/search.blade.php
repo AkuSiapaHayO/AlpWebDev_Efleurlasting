@@ -1,7 +1,7 @@
 <div>
     <form wire:submit.prevent="submitSearch" class="form-inline d-flex gap-2 ms-auto my-4" style="max-width: 400px; padding: 0 12px">
         <input wire:model="search" type="text" class="form-control" placeholder="Search by product name" />
-        <button type="submit" class="btn btn-pink-color text-white fw-bold">Search</button>
+        <button type="submit" class="btn btn-info text-white fw-bold">Search</button>
     </form>
 
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mx-0">

@@ -7,7 +7,7 @@
                 <div class="card shadow-lg my-1 my-md-4" style="border: none;">
                     <div class="p-3 border-bottom d-flex align-items-center justify-content-between">
                         <a href="{{ route('user.setting') }}"><button
-                                class="btn btn-pink-color fw-bold text-white">Back</button></a>
+                                class="btn btn-info fw-bold text-white">Back</button></a>
                         <div class="mx-auto text-center">
                             <h2 class="fw-bolder m-0">Account Settings</h2>
                         </div>

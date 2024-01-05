@@ -6,7 +6,7 @@
             <div class="card my-3 my-md-4 shadow-lg" style="border: none;">
                 <div class="p-3 pb-0">
                     <a href="{{ route('carousel.view') }}">
-                        <button class="btn btn-pink-color fw-bold text-white">Back</button>
+                        <button class="btn btn-info fw-bold text-white">Back</button>
                     </a>
                 </div>
                 <div class="card-body">
@@ -31,7 +31,7 @@
                             <label for="description" class="form-label fw-bold">Carousel Description</label>
                             <textarea name="description" id="description" cols="30" rows="4" class="form-control" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-pink-color fw-bold text-white w-100 fw-bold">Submit</button>
+                        <button type="submit" class="btn btn-info fw-bold text-white w-100 fw-bold">Submit</button>
                     </form>
                 </div>
             </div>

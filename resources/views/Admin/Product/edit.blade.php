@@ -6,7 +6,7 @@
             <div class="card shadow-lg my-3 my-md-4" style="border: none;">
                 <div class="card-body d-flex align-items-center justify-content-between">
                     <a href="javascript:history.back()">
-                        <button class="btn btn-pink-color fw-bold text-white">Back</button>
+                        <button class="btn btn-info fw-bold text-white">Back</button>
                     </a>
                     <h1 class="heading mx-auto mb-0">Edit Product</h1>
                 </div>
@@ -64,7 +64,7 @@
                                 </div>
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <div id="image-preview-container" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
-                                <button type="submit" class="btn btn-pink-color fw-bold text-white mt-3">Upload
+                                <button type="submit" class="btn btn-info fw-bold text-white mt-3">Upload
                                     Images</button>
                             </form>
                         </div>
@@ -165,7 +165,7 @@
                                         <label for="newcolors" class="form-label fw-bold fs-5">New Colors</label>
                                         <div id="newcolor-inputs">
                                         </div>
-                                        <button type="button" class="btn btn-pink-color fw-bold text-white w-100 mt-2"
+                                        <button type="button" class="btn btn-info fw-bold text-white w-100 mt-2"
                                             onclick="addNewColorInput()">Add
                                             Color</button>
                                     </div>
@@ -174,7 +174,7 @@
                         </div>
                         <div class="card shadow-lg" style="border: none;">
                             <div class="card-body">
-                                <button type="submit" class="btn btn-pink-color fw-bold text-white w-100">Update
+                                <button type="submit" class="btn btn-info fw-bold text-white w-100">Update
                                     Product</button>
                             </div>
                         </div>

@@ -6,7 +6,7 @@
             <div class="card shadow-lg my-3 my-md-4" style="border: none;">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <a href="{{ route('admin.setting') }}">
-                        <button class="btn btn-pink-color fw-bold text-white">Back</button>
+                        <button class="btn btn-info fw-bold text-white">Back</button>
                     </a>
                     <h1 class="heading mx-auto mb-0">Approve Payment</h1>
                 </div>

@@ -11,7 +11,7 @@
                 <div class="d-flex flex-column align-items-center justify-content-center mb-5">
                     <h1 class="heading borders-left" style="font-size: 60px;">Orders</h1>
                     <a href="{{ route('user.setting') }}"><button
-                            class="btn btn-pink-color fw-bold text-white">Back</button></a>
+                            class="btn btn-info fw-bold text-white">Back</button></a>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@
             <div class="card my-3 my-md-4 shadow-lg" style="border: none;">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <a href="{{ route('products.view') }}">
-                        <button class="btn btn-pink-color fw-bold text-white">Back</button>
+                        <button class="btn btn-info fw-bold text-white">Back</button>
                     </a>
                     <h1 class="heading mx-auto mb-0">View Colors</h1>
                 </div>

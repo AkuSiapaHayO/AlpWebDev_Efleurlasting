@@ -67,7 +67,7 @@
                         </div>
                         <h1 class="my-4" style="font-size: 35px;">Rp {{ number_format($product->price, 0, '.', ',') }}
                         </h1>
-                        <button type="submit" class="btn btn-pink-color fw-bold text-white w-100">Add to Cart</button>
+                        <button type="submit" class="btn btn-info fw-bold text-white w-100">Add to Cart</button>
                     </form>
                 </div>
             </div>

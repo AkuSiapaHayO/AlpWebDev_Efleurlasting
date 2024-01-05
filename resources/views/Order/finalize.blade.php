@@ -10,7 +10,7 @@
             <div class="position-absolute bottom-0 start-0 w-100 px-5 py-1 d-none d-md-block" style="z-index: 2;">
                 <div class="d-flex flex-column align-items-center justify-content-center mb-5">
                     <h1 class="heading borders-left" style="font-size: 60px;">Payment</h1>
-                    <button type="button" class="btn btn-pink-color fw-bold text-white" onclick="goBack()">Back</button>
+                    <button type="button" class="btn btn-info fw-bold text-white" onclick="goBack()">Back</button>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <button type="button" class="btn btn-pink-color fw-bold text-white w-100" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-info fw-bold text-white w-100" data-bs-toggle="modal"
                         data-bs-target="#paymentModal">
                         Continue to Payment
                     </button>
@@ -128,7 +128,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-pink-color fw-bold text-white">Submit Payment</button>
+                            <button type="submit" class="btn btn-info fw-bold text-white">Submit Payment</button>
                         </div>
                     </div>
                 </form>

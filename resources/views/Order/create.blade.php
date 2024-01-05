@@ -123,7 +123,7 @@
                         </div>
                         <input type="hidden" name="totalAmount" value="{{ $totalAmount }}">
                         <input type="hidden" name="cartItemId" value="{{ implode(',', $cartItemsId) }}">
-                        <button type="submit" class="btn btn-pink-color fw-bold text-white w-100 mt-2">Finalize
+                        <button type="submit" class="btn btn-info fw-bold text-white w-100 mt-2">Finalize
                             Order</button>
                     </form>
                 </div>

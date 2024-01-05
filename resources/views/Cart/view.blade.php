@@ -100,7 +100,7 @@
                                                     </div>
                                                     <div>
                                                         <button type="button"
-                                                            class="btn btn-pink-color w-100 fw-bold text-white mb-2"
+                                                            class="btn btn-info w-100 fw-bold text-white mb-2"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#updateModal{{ $cartItem->id }}">
                                                             Update Item
@@ -132,7 +132,7 @@
                         @endforeach
                         <div class="card mb-5 shadow-lg" style="border: none;">
                             <div class="p-3">
-                                <button type="submit" class="btn btn-pink-color text-white fw-bold w-100">Proceed to
+                                <button type="submit" class="btn btn-info text-white fw-bold w-100">Proceed to
                                     Checkout</button>
                             </div>
                         </div>

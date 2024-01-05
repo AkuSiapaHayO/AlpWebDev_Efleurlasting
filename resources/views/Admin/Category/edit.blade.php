@@ -6,7 +6,7 @@
             <div class="card shadow-lg my-3 my-md-4" style="border: none;">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <a href="{{ route('admin.categories.view') }}">
-                        <button class="btn btn-pink-color fw-bold text-white">Back</button>
+                        <button class="btn btn-info fw-bold text-white">Back</button>
                     </a>
                     <h1 class="heading mx-auto mb-0">Edit Category</h1>
                 </div>
@@ -56,7 +56,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <button type="submit" class="btn btn-pink-color fw-bold text-white w-100 mb-3">Update
+                                    <button type="submit" class="btn btn-info fw-bold text-white w-100 mb-3">Update
                                         Category</button>
 
                                     <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal"
