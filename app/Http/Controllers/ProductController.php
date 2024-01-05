@@ -18,14 +18,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $categories = Category::all();
-        if ($request->has('search')) {
-            $products = Product::where('product_name', 'like', '%' . $request->search . '%')->where('is_active', true)->paginate(15)->withQueryString();
-        } else {
-            $products = Product::where('is_active', true)->paginate(15);
-        }
-
-        return view('Products.view', compact('categories', 'products'));
+        return view('Products.view');
     }
 
     public function adminindex()
