@@ -137,7 +137,7 @@
             @yield('content')
         </main>
 
-        <footer class="w-100 bg-white px-5 pb-3 pt-3 @unless (request()->routeIs(['home', 'about', 'products', 'category.show'])) d-none @endunless">
+        <footer class="w-100 bg-white px-5 pb-3 pt-3 @unless (request()->routeIs(['home', 'about', 'products', 'category.show', 'categories'])) d-none @endunless">
             <div class="d-flex flex-column align-items-center justify-content-center">
                 <img src="{{ asset('Assets/Logo/logo.png') }}" style="max-width: 250px" alt="">
                 <p>&#169; Efleurlasting. All Right Reserved.</p>

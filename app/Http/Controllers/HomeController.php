@@ -68,29 +68,9 @@ class HomeController extends Controller
 
     public function chat()
     {
-        // Replace '123456789' with your actual WhatsApp number
         $adminPhoneNumber = '+628983979074';
 
-        // Redirect to the WhatsApp chat link
         $whatsappLink = "whatsapp://send?phone={$adminPhoneNumber}";
         return redirect()->to($whatsappLink);
     }
-
-    // public function testimonialProduct()
-    // {
-    //     // Get the currently authenticated user
-    //     $user = Auth::user();
-
-    //     // Load the orders with their items and related data
-    //     $user->load('orders.items.productColor.product.colors');
-
-    //     // Extract products from the loaded relationships
-    //     $products = $user->orders->flatMap(function ($order) {
-    //         return $order->items->flatMap(function ($item) {
-    //             return $item->productColor->product;
-    //         });
-    //     })->unique();
-
-    //     return view('home', compact('products'));
-    // }
 }
