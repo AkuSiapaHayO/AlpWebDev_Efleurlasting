@@ -49,7 +49,7 @@
         <div class="container-lg">
             <div class="row py-5 d-flex justify-content-center">
                 <div class="col-md-5 px-5 pe-md-3 pb-5 pb-md-0  d-flex justify-content-center">
-                    <img src="{{ asset('Assets/Home/HomeImage.jpg') }}" alt=""
+                    <img src="{{ asset('Assets/Home/HomeImage.JPG') }}" alt=""
                         class="d-block w-80 h-100 img-fluid curved-top img-border"
                         style="max-height: 500px; object-fit: cover;">
                 </div>
